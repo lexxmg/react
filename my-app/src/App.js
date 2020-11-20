@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+//import './App.css';
+import './css/main.css';
+import './css/list.css';
+import TodoList from './Todo/TodoList';
+
+const title = 'Загголовок из переменной';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper fixed-container">
+      <div className="main">
+        <h1 className="main__title">{title}</h1>
+      </div>
+
+      <TodoList />
     </div>
   );
 }
