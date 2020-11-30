@@ -4,9 +4,41 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+class TodoApp extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      todos: [
+        {name: 'задача-1', checked: true},
+        {name: 'задача-2', checked: true},
+        {name: 'задача-3', checked: false}
+      ]
+    }
+  }
+
+  render() {
+    return (
+      <ol>
+        {
+          this.state.todos.map((obj, i) => {
+            const className = obj.checked ? 'checked' : '';
+
+            return <li key={i} className={className}>{obj.name}</li>
+          })
+        }
+      </ol>
+    );
+  }
+}
+
+function HelloWorld() {
+  return <h1>Hello React</h1>
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TodoApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
