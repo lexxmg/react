@@ -1,34 +1,105 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './css/btn.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 class TodoApp extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       todos: [
         {name: 'задача-1', checked: true},
         {name: 'задача-2', checked: true},
-        {name: 'задача-3', checked: false}
-      ]
+        {name: 'задача-3', checked: false},
+        {name: this.props.name, checked: false}
+      ],
+      date: new Date()
     }
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('компонент отрисован');
+
+    this.timerId = setInterval(() => {
+      this.tick();
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
+  tick() {
+    //console.log(new Date());
+    const stat = this.state.todos;
+    stat[3] = {name: String( new Date() ), checked: false};
+    //stat.push('новая задача');
+    console.log('data' + '-' + stat[3]);
+
+    this.setState({
+      date: new Date,
+      todos: stat
+    });
+  }
+
+  todo(name) {
+    const stat = this.state.todos;
+    stat.push({name: name, checked: false});
+
+    this.setState({todos: stat});
   }
 
   render() {
     return (
-      <ol>
-        {
-          this.state.todos.map((obj, i) => {
-            const className = obj.checked ? 'checked' : '';
+      <div className="fixed-container">
+        <h1 className="title">{String( this.state.date )}</h1>
 
-            return <li key={i} className={className}>{obj.name}</li>
-          })
-        }
-      </ol>
+        <ol>
+          {
+            this.state.todos.map((obj, i) => {
+              const className = obj.checked ? 'checked' : '';
+
+              return (
+                <li key={i} className={className} onClick={() => this.toggle(i)}>
+                  {obj.name}
+                </li>
+              );
+            })
+          }
+        </ol>
+
+        <form action="#" className="form"
+          onSubmit={
+            event => {
+              event.preventDefault();
+              //console.log(event.target.text.value);
+              this.todo(event.target.text.value);
+              event.target.text.value = '';
+            }
+          }>
+          <input type="text" className="form__input" name="text"/>
+
+          <button className="form__btn btn">Создать</button>
+        </form>
+
+        <button className="btn" onClick={() => {this.todo('новая задача')}}>
+          Добавить {String( this.state.date )}
+        </button>
+      </div>
     );
+  }
+
+  toggle(index) {
+    const stat = this.state.todos;
+
+    this.state.todos[index].checked =  !this.state.todos[index].checked;
+
+    this.setState({todos: stat});
   }
 }
 
@@ -38,7 +109,7 @@ function HelloWorld() {
 
 ReactDOM.render(
   <React.StrictMode>
-    <TodoApp />
+    <TodoApp name={'test'}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
