@@ -16,10 +16,12 @@ class TodoApp extends React.Component {
         {name: 'задача-3', checked: false},
         {name: this.props.name, checked: false}
       ],
-      date: new Date()
+      date: new Date(),
+      value: ''
     }
 
     this.toggle = this.toggle.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -54,10 +56,15 @@ class TodoApp extends React.Component {
     this.setState({todos: stat});
   }
 
+  handleChange(event) {
+    //console.log(event.target.value);
+    this.setState({value: event.target.value});
+  }
+
   render() {
     return (
       <div className="fixed-container">
-        <h1 className="title">{String( this.state.date )}</h1>
+        <h1 className="title">{String( this.state.value )}</h1>
 
         <ol>
           {
@@ -78,11 +85,16 @@ class TodoApp extends React.Component {
             event => {
               event.preventDefault();
               //console.log(event.target.text.value);
-              this.todo(event.target.text.value);
-              event.target.text.value = '';
+              this.todo(this.state.value);
+              this.state.value = '';
             }
           }>
-          <input type="text" className="form__input" name="text"/>
+          <input type="text"
+            className="form__input"
+            name="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
 
           <button className="form__btn btn">Создать</button>
         </form>
