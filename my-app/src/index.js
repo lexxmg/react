@@ -56,6 +56,17 @@ class TodoApp extends React.Component {
     this.setState({todos: stat});
   }
 
+  todoDelete(index) {
+    const stat = this.state.todos;
+    console.log('delete');
+
+    stat.splice(index, 1);
+
+    this.setState({
+      todos: stat
+    })
+  }
+
   handleChange(event) {
     //console.log(event.target.value);
     this.setState({value: event.target.value});
@@ -72,7 +83,10 @@ class TodoApp extends React.Component {
               const className = obj.checked ? 'checked' : '';
 
               return (
-                <li key={i} className={className} onClick={() => this.toggle(i)}>
+                <li key={i} className={className}
+                  onClick={() => this.toggle(i)}
+                  onDoubleClick={() => this.todoDelete(i)}
+                >
                   {obj.name}
                 </li>
               );
