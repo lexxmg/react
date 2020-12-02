@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './css/btn.css';
+import Button from './components/button.js';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -94,7 +95,7 @@ class TodoApp extends React.Component {
           }
         </ol>
 
-        <form action="#" className="form"
+        <form className="form"
           onSubmit={
             event => {
               event.preventDefault();
@@ -113,9 +114,15 @@ class TodoApp extends React.Component {
           <button className="form__btn btn">Создать</button>
         </form>
 
-        <button className="btn" onClick={() => {this.todo('новая задача')}}>
-          Добавить {String( this.state.date )}
-        </button>
+        <Button date={this.state.date}
+          foo={ this.todo.bind(this, 'задача через пропсы bind') }
+          name="кнопка-1"
+        />
+
+        <Button date={this.state.date}
+          foo={ this.todo.bind(this, 'клик по кнопке 2') }
+          name="кнопка-2"
+        />
       </div>
     );
   }
