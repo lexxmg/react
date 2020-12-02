@@ -1,8 +1,8 @@
 .list {
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
 
-  list-style-type: none;
+  list-style: circle;
 }
 
 .list__item {
@@ -11,4 +11,8 @@
 
 .list__item:last-child {
   margin: 0;
+}
+
+.list__item--active {
+  text-decoration: line-through;
 }
