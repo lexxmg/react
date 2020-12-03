@@ -1,5 +1,6 @@
 
 import './style.css';
+import Button from '../button/button';
 
 function TodoList() {
   return (
@@ -8,6 +9,7 @@ function TodoList() {
       <li className="list__item list__item--active">задача-2</li>
       <li className="list__item">задача-3</li>
       <li className="list__item">задача-4</li>
+      <li><Button name="кнопка" /></li> 
     </ul>
   )
 }
