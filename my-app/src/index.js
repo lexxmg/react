@@ -4,11 +4,13 @@ import 'normalize.css';
 import './index.css';
 //import App from './App';
 import TodoList from './Todo/TodoList';
+import Button from './button/button';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <TodoList />
+    <Button name="кнопка-2"/>
   </React.StrictMode>,
   document.getElementById('root')
 );
