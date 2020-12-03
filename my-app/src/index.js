@@ -2,15 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 import './index.css';
-//import App from './App';
-import TodoList from './Todo/TodoList';
-import Button from './button/button';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TodoList />
-    <Button name="кнопка-2"/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
