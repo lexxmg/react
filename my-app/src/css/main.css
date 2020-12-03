@@ -14,16 +14,6 @@
   grid-gap: 10px;
 }
 
-.header {
-  grid-area: header;
-
-  background-color: green;
-}
-
-.header__img {
- height: 100%;
-}
-
 .aside {
   grid-area: aside;
 
