@@ -7,7 +7,7 @@ const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBng
 
 const Main = () => {
   return (
-    <main className="main">
+    <div className="">
       <Top />
       <User />
       <UserPost />
@@ -15,7 +15,7 @@ const Main = () => {
       <Post text="пропс это объект"/>
       <Post text="ghjgcc gthtlf§ncz rjvgjytynt rfr j,]trn" img={avatar} />
       <Post text="пропс передается как объект компонете"/>
-    </main>
+    </div>
   )
 }
 
