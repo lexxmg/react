@@ -1,3 +1,5 @@
+import './aside.css';
+
 const Aside = () => {
   return (
     <aside className="aside">
