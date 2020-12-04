@@ -1,0 +1,15 @@
+.footer {
+  grid-area: footer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: blue;
+
+  text-align: center;
+}
+
+.text {
+
+}

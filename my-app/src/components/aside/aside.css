@@ -32,3 +32,23 @@
 .nav-list__link {
   color: white;
 }
+
+@media (max-width: 720px) {
+  .aside {
+    flex-direction: row;
+
+    padding: 5px;
+
+    background-color: green;
+  }
+
+  .nav__list {
+    display: flex;
+
+    justify-content: space-between;
+  }
+
+  .nav {
+  width: 100%;
+  }
+}
