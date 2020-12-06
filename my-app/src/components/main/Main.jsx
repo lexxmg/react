@@ -6,10 +6,17 @@ import Post from './post/Post';
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
 
 const posts = [
-  {name: 'Петя', post: 'werhwgng', avatar: '', id: '1'},
+  {name: 'Петя', post: 'werhwgng', avatar: avatar, id: '1'},
   {name: 'Вася', post: 'werhwgng', avatar: '', id: '2'},
   {name: 'Саша', post: 'werhwgng', avatar: '', id: '3'},
+  {name: 'Даша', post: 'werhwgng', avatar: avatar, id: '4'}
 ]
+
+// const postsMap = posts.map((obj) => {
+//   return (
+//     <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
+//   )
+// });
 
 const Main = () => {
   return (
@@ -18,9 +25,13 @@ const Main = () => {
       <User />
       <UserPost />
 
-      <Post name={posts[0].name} text={posts[0].post}/>
-      <Post text="ghjgcc gthtlf§ncz rjvgjytynt rfr j,]trn" img={avatar} />
-      <Post text="пропс передается как объект компонете"/>
+      {
+        posts.map((obj) => {
+          return (
+            <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
+          )
+        })
+      }
     </div>
   )
 }

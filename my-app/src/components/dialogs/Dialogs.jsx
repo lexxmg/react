@@ -9,7 +9,9 @@ const userData = [
 
 const userDialog = [
   {name: 'Вася', avatar: '', post: 'qwetwerhr', id: '1'},
-  {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '2'}
+  {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '2'},
+  {name: 'Вася', avatar: '', post: 'qwetwerhr', id: '3'},
+  {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '4'}
 ]
 
 const UserLink = (props) => {
@@ -53,24 +55,24 @@ const Dialogs = (props) => {
       <div className="dialogs__container">
         <div className="dialogs__user">
           <ul className="dialogs__list dialogs-list">
-            <UserLink id={userData[0].id} userName={userData[0].name} />
-            <UserLink id="2" userName="Vasya 425"/>
-            <UserLink id="3" userName="Vasya fd"/>
-            <UserLink id="4" userName="Vasya fd"/>
-            <UserLink id="5" userName="Vasya dfsh"/>
-            <UserLink id="6" userName="Vasya dh"/>
-            <UserLink id="7" userName="Vasyasdf"/>
-            <UserLink id="8" userName="Vasya dfhdj"/>
+          {
+            userData.map((obj) => {
+              return (
+                <UserLink key={obj.id} id={obj.id} userName={obj.name} />
+              )
+            })
+          }
           </ul>
         </div>
 
         <div className="dialogs__message">
-          <Dialog name={userDialog[0].name} text={userDialog[0].post} />
-          <Dialog name="Vasya" text="какой то текст какой то текст какой то текст текст какой то текст"/>
-          <Dialog name="Vasya" text="какой то текст какой то текст какой то текст какой то"/>
-          <Dialog name="Vasya" text="какой то текст какой то текст какой то текст какой то текст какой то текст"/>
-          <Dialog name="Vasya" text="какой то текст какой то текст какой то текст текст какой то текст"/>
-          <Dialog name="Vasya" text="какой то текст какой то текст какой то текст какой то"/>
+        {
+          userDialog.map((obj) => {
+            return (
+              <Dialog key={obj.id} name={obj.name} text={obj.post} />
+            )
+          })
+        }
         </div>
       </div>
     </div>
