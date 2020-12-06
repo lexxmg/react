@@ -1,18 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './dialogs.css';
 
-const userData = [
-  {name: 'Вася', avatar: '', id: '1'},
-  {name: 'Петя', avatar: '', id: '2'},
-  {name: 'Саша', avatar: '', id: '3'},
-]
 
-const userDialog = [
-  {name: 'Вася', avatar: '', post: 'qwetwerhr', id: '1'},
-  {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '2'},
-  {name: 'Вася', avatar: '', post: 'qwetwerhr', id: '3'},
-  {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '4'}
-]
 
 const UserLink = (props) => {
   let path = '';
@@ -56,7 +45,7 @@ const Dialogs = (props) => {
         <div className="dialogs__user">
           <ul className="dialogs__list dialogs-list">
           {
-            userData.map((obj) => {
+            props.users.map((obj) => {
               return (
                 <UserLink key={obj.id} id={obj.id} userName={obj.name} />
               )
@@ -67,7 +56,7 @@ const Dialogs = (props) => {
 
         <div className="dialogs__message">
         {
-          userDialog.map((obj) => {
+          props.dialog.map((obj) => {
             return (
               <Dialog key={obj.id} name={obj.name} text={obj.post} />
             )

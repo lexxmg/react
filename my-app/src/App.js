@@ -9,7 +9,8 @@ import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
 
-function App() {
+
+function App(props) {
   return (
     <BrowserRouter>
       <div className="wrapper fixed-container">
@@ -20,9 +21,9 @@ function App() {
         </aside>
 
         <main className="main">
-           <Route exact path="/" component={Main} />
-           <Route path="/prof" component={Main} />
-           <Route path="/message" component={Dialogs} />
+           <Route exact path="/" component={() => <Main posts={props.posts} />} />
+           <Route path="/prof" component={() => <Main posts={props.posts} />} />
+           <Route path="/message" component={() => <Dialogs users={props.userData} dialog={props.userDialog} />} />
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
            <Route path="/setting" component={Settings} />
