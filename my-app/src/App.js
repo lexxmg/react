@@ -1,5 +1,5 @@
 import './css/main.css';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Header from './components/header/Header';
 import Nav from './components/aside/Nav';
 import Main from './components/main/Main';
