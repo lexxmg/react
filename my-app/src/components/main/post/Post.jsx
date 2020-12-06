@@ -6,8 +6,12 @@ const Post = (props) => {
   return (
     <div className={s.container}>
       <div className={s.post}>
-        <div className={s.post__ava}>
-          <img  className={s.img} src={props.img} alt="аватарка"/>
+        <div className="">
+          <div className={s.post__ava}>
+            <img  className={s.img} src={props.img} alt="аватарка"/>
+          </div>
+
+          <span className={s.name}>{props.name}</span>
         </div>
 
         <p className={s.post__text}>{props.text}</p>
