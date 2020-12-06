@@ -44,3 +44,14 @@
 .main__top {
 
 }
+
+.aside {
+  grid-area: aside;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 5px;
+
+  background-color: green;
+}

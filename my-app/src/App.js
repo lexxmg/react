@@ -1,20 +1,28 @@
 import './css/main.css';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import Header from './components/header/Header';
-import Aside from './components/aside/Aside';
+import Nav from './components/aside/Nav';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
 import Dialogs from './components/dialogs/Dialogs';
 
 function App() {
   return (
-    <div className="wrapper fixed-container">
-      <Header />
-      <Aside />
-      <main className="main">
-         <Main />
-      </main>
-      <Footer name="lexxmg" />
-    </div>
+    <BrowserRouter>
+      <div className="wrapper fixed-container">
+        <Header />
+
+        <aside className="aside">
+          <Nav />
+        </aside>
+
+        <main className="main">
+           <Route path="/prof" component={Main} />
+           <Route path="/message" component={Dialogs} />
+        </main>
+        <Footer name="lexxmg" />
+      </div>
+    </BrowserRouter>
   );
 }
 
