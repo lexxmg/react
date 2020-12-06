@@ -8,7 +8,7 @@ const Nav = () => {
           <a href="/prof" className="nav-list__link">Профиль</a>
         </li>
         <li className="nav-list__item">
-          <a href="/mtssage" className="nav-list__link">Сщщбщения</a>
+          <a href="/message" className="nav-list__link">Сщщбщения</a>
         </li>
         <li className="nav-list__item">
           <a href="/news" className="nav-list__link">Новости</a>
