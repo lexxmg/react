@@ -21,9 +21,9 @@ function App(props) {
         </aside>
 
         <main className="main">
-           <Route exact path="/" component={() => <Main posts={props.posts} />} />
-           <Route path="/prof" component={() => <Main posts={props.posts} />} />
-           <Route path="/message" component={() => <Dialogs users={props.userData} dialog={props.userDialog} />} />
+           <Route exact path="/" render={() => <Main posts={props.posts} />} />
+           <Route path="/prof" render={() => <Main posts={props.posts} />} />
+           <Route path="/message" render={() => <Dialogs users={props.userData} dialog={props.userDialog} />} />
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
            <Route path="/setting" component={Settings} />
