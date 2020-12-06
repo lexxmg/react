@@ -15,8 +15,6 @@
 .dialogs__user {
  flex: 1 1 30%;
 
- height: 100%;
-
  padding: 10px;
 
  border-right: 1px solid #000;
