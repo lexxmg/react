@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import './nav.css';
 
 const Nav = () => {
@@ -8,16 +9,16 @@ const Nav = () => {
           <a href="/prof" className="nav-list__link">Профиль</a>
         </li>
         <li className="nav-list__item">
-          <a href="/message" className="nav-list__link">Сщщбщения</a>
+          <NavLink to="/message" className="nav-list__link">Сщщбщения</NavLink>
         </li>
         <li className="nav-list__item">
-          <a href="/news" className="nav-list__link">Новости</a>
+          <NavLink to="/news" className="nav-list__link">Новости</NavLink>
         </li>
         <li className="nav-list__item">
-          <a href="/music" className="nav-list__link">Музыка</a>
+          <NavLink to="/music" className="nav-list__link">Музыка</NavLink>
         </li>
         <li className="nav-list__item">
-          <a href="/setting" className="nav-list__link">Настройки</a>
+          <NavLink to="/setting" className="nav-list__link">Настройки</NavLink>
         </li>
       </ul>
     </nav>

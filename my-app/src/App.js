@@ -20,11 +20,12 @@ function App() {
         </aside>
 
         <main className="main">
+           <Route exact path="/" component={Main} />
            <Route path="/prof" component={Main} />
            <Route path="/message" component={Dialogs} />
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
-           <Route path="/setting" component={Settings} />     
+           <Route path="/setting" component={Settings} />
         </main>
         <Footer name="lexxmg" />
       </div>

@@ -20,7 +20,30 @@
 }
 
 .nav-list__link {
+  position: relative;
+
   color: white;
+}
+
+.nav-list__link.active {
+  color: gold;
+}
+
+.nav-list__link.active::after {
+  content: "";
+
+  position: absolute;
+  top: calc(50% - 5px);
+  right: -13px;
+
+  display: block;
+
+  width: 10px;
+  height: 10px;
+
+  background-color: tomato;
+
+  border-radius: 5px;
 }
 
 @media (max-width: 720px) {
