@@ -32,7 +32,10 @@ const Dialogs = (props) => {
         <div className="dialogs__message">
           { dialogArr }
 
-          <SendMessage sendMessage={props.sendMessage}/>
+          <SendMessage
+            sendMessage={props.sendMessage}
+            valueMessage={props.valueMessage}
+            setValueMessage={props.setValueMessage}/>
         </div>
       </div>
     </div>

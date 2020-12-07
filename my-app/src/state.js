@@ -26,7 +26,9 @@ const state = {
       {name: 'Вася', post: 'werhwgng', avatar: '', id: '2'},
       {name: 'Даша', post: 'werhwgng', avatar: avatar, id: '3'}
     ]
-  }
+  },
+  valuePost: 'Напишите текст',
+  valueMessage: ''
 }
 
 export const sendMessage = (text) => {
@@ -46,6 +48,12 @@ export const addPost = (text) => {
   state.prof.posts.push(obj);
 
   console.log(state.prof.posts);
+  render(state);
+}
+
+export const setValueMessage = (text) => {
+  state.valueMessage = text;
+  console.log(state.valueMessage);
   render(state);
 }
 
