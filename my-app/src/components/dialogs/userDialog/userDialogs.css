@@ -1,0 +1,38 @@
+.dialogs-mess {
+  display: flex;
+}
+
+.dialogs-mess__avatar {
+  border-radius: 50px;
+}
+
+.dialogs-mess__img {
+  display: block;
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50px;
+
+  background-color: green;
+}
+
+.dialogs-mess__user-name {
+  margin: 10px 0 0 0;
+}
+
+.dialogs-mess__posts {
+  width: 300px;
+  min-height: 20px;
+
+  margin: 0 0 0 20px;
+  padding: 10px;
+
+  border-radius: 10px;
+
+  background-color: #fff;
+}
+
+.dialogs-mess__text {
+
+}

@@ -1,40 +1,7 @@
-import { NavLink } from 'react-router-dom';
+
 import './dialogs.css';
-
-
-
-const UserLink = (props) => {
-  let path = '';
-  const id = props.id;
-
-  if ( props.path ) {
-    path = props.path;
-  } else {
-    path = '/message';
-  }
-
-  return (
-    <li className="dialogs-list__item">
-      <NavLink to={path + '/' + id} className="dialogs-list__link">{props.userName}</NavLink>
-    </li>
-  );
-}
-
-const Dialog = props => {
-  return (
-    <div className="dialogs__mess dialogs-mess">
-      <div className="dialogs-mess__avatar">
-        <img src="" alt="аватар" className="dialogs-mess__img"/>
-
-        <span className="dialogs-mess__user-name">{props.name}</span>
-      </div>
-
-      <div className="dialogs-mess__posts">
-        <p className="dialogs-mess__text">{props.text}</p>
-      </div>
-    </div>
-  )
-}
+import UserList from './userList/UserList';
+import UserDialog from './userDialog/UserDialog';
 
 const Dialogs = (props) => {
   return (
@@ -47,7 +14,7 @@ const Dialogs = (props) => {
           {
             props.users.map((obj) => {
               return (
-                <UserLink key={obj.id} id={obj.id} userName={obj.name} />
+                <UserList key={obj.id} id={obj.id} userName={obj.name} avatar={obj.avatar} />
               )
             })
           }
@@ -58,7 +25,7 @@ const Dialogs = (props) => {
         {
           props.dialog.map((obj) => {
             return (
-              <Dialog key={obj.id} name={obj.name} text={obj.post} />
+              <UserDialog key={obj.id} name={obj.name} text={obj.post} />
             )
           })
         }

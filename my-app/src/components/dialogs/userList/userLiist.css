@@ -1,0 +1,33 @@
+
+
+.dialogs-list__item {
+  display: flex;
+
+ margin: 0 0 10px 0;
+}
+
+.dialogs-list__item:last-child {
+  margin: 0 0 0 0;
+}
+
+.dialogs-list__img {
+  display: block;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 20px;
+
+  background-color: blue;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.dialogs-list__link {
+  margin: 0 0 0 10px;
+}
+
+.dialogs-list__link.active {
+  font-weight: bold;
+}

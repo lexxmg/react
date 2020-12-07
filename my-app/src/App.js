@@ -11,6 +11,10 @@ import Settings from './components/settings/Settings';
 
 
 function App(props) {
+  const posts = props.state.prof.posts,
+        users = props.state.dialogs.userData,
+        dialog = props.state.dialogs.userDialog;
+
   return (
     <BrowserRouter>
       <div className="wrapper fixed-container">
@@ -21,9 +25,9 @@ function App(props) {
         </aside>
 
         <main className="main">
-           <Route exact path="/" render={() => <Main posts={props.posts} />} />
-           <Route path="/prof" render={() => <Main posts={props.posts} />} />
-           <Route path="/message" render={() => <Dialogs users={props.userData} dialog={props.userDialog} />} />
+           <Route exact path="/" render={() => <Main posts={posts} />} />
+           <Route path="/prof" render={() => <Main posts={posts} />} />
+           <Route path="/message" render={() => <Dialogs users={users} dialog={dialog} />} />
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
            <Route path="/setting" component={Settings} />
