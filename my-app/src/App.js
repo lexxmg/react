@@ -13,7 +13,9 @@ import Settings from './components/settings/Settings';
 function App(props) {
   const posts = props.state.prof.posts,
         users = props.state.dialogs.userData,
-        dialog = props.state.dialogs.userDialog;
+        dialog = props.state.dialogs.userDialog,
+        sendMessage = props.sendMessage,
+        addPost = props.addPost;
 
   return (
     <BrowserRouter>
@@ -25,9 +27,9 @@ function App(props) {
         </aside>
 
         <main className="main">
-           <Route exact path="/" render={() => <Main posts={posts} />} />
-           <Route path="/prof" render={() => <Main posts={posts} />} />
-           <Route path="/message" render={() => <Dialogs users={users} dialog={dialog} />} />
+           <Route exact path="/" render={() => <Main posts={posts} addPost={addPost} />} />
+           <Route path="/prof" render={() => <Main posts={posts} addPost={addPost} />} />
+           <Route path="/message" render={() => <Dialogs users={users} dialog={dialog} sendMessage={sendMessage} />} />
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
            <Route path="/setting" component={Settings} />

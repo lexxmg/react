@@ -14,15 +14,15 @@ const SendMessage = (props) => {
       </form>
     </div>
   );
-}
 
-function sendMessage(e) {
-  e.preventDefault();
+  function sendMessage(e) {
+    e.preventDefault();
 
-  const text = newPostElement.current.value;
+    const text = newPostElement.current.value;
 
-  alert(text);
-  newPostElement.current.value = '';
+    props.sendMessage(text);
+    newPostElement.current.value = '';
+  }
 }
 
 export default SendMessage;

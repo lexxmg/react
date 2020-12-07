@@ -28,4 +28,22 @@ const state = {
   }
 }
 
+export const sendMessage = (text) => {
+  const id = (+new Date() + 1).toString(16);
+  const obj = {name: 'Вася', avatar: '', post: text, id: id};
+
+  state.dialogs.userDialog.push(obj);
+
+  console.log(state.dialogs.userDialog);
+}
+
+export const addPost = (text) => {
+  const id = (+new Date() + 1).toString(16);
+  const obj = {name: 'Вася', avatar: '', post: text, id: id};
+
+  state.prof.posts.push(obj);
+
+  console.log(state.prof.posts);
+}
+
 export default state;

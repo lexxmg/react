@@ -5,10 +5,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import state from './state';
+import { sendMessage, addPost } from './state';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App state={state} />
+    <App state={state} sendMessage={sendMessage} addPost={addPost}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
