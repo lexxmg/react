@@ -1,4 +1,5 @@
 'use strict';
+import render from './render';
 
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
 
@@ -35,6 +36,7 @@ export const sendMessage = (text) => {
   state.dialogs.userDialog.push(obj);
 
   console.log(state.dialogs.userDialog);
+  render(state);
 }
 
 export const addPost = (text) => {
@@ -44,6 +46,7 @@ export const addPost = (text) => {
   state.prof.posts.push(obj);
 
   console.log(state.prof.posts);
+  render(state);
 }
 
 export default state;
