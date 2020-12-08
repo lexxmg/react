@@ -25,7 +25,7 @@ const SendMessage = (props) => {
     const text = newPostElement.current.value;
 
     props.sendMessage(text);
-    props.setValueMessage('');
+    //props.setValueMessage('');
   }
 
   function setValue() {

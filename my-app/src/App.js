@@ -16,9 +16,10 @@ function App(props) {
         dialog = props.state.dialogs.userDialog,
         sendMessage = props.sendMessage,
         addPost = props.addPost,
-        valuePost = props.valuePost,
+        valuePost = props.state.valuePost,
         setValueMessage = props.setValueMessage,
-        valueMessage = props.state.valueMessage;
+        valueMessage = props.state.valueMessage,
+        setValuePost = props.setValuePost;
 
   return (
     <BrowserRouter>
@@ -30,8 +31,8 @@ function App(props) {
         </aside>
 
         <main className="main">
-           <Route exact path="/" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost}/>} />
-           <Route path="/prof" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost}/>} />
+           <Route exact path="/" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost} setValuePost={setValuePost} />} />
+           <Route path="/prof" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost} setValuePost={setValuePost} />} />
            <Route path="/message" render={() => {
              return (
                 <Dialogs users={users}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'normalize.css';
 import './index.css';
 import App from './App';
-import { sendMessage, addPost, setValueMessage } from './state';
+import { sendMessage, addPost, setValueMessage, setValuePost } from './state';
 
 const render = (state) => {
   ReactDOM.render(
@@ -12,6 +12,7 @@ const render = (state) => {
            sendMessage={sendMessage}
            addPost={addPost}
            setValueMessage={setValueMessage}
+           setValuePost={setValuePost}
            />
     </React.StrictMode>,
     document.getElementById('root')

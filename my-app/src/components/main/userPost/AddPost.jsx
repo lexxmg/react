@@ -9,7 +9,12 @@ const UserPost = (props) => {
       <h2 className={s.post__title}>My posts</h2>
 
       <form className={s.post__form} onSubmit={ (event) => addPost(event) }>
-        <textarea name="text" className={s.post__textarea} ref={ profPost }></textarea>
+        <textarea name="text" className={s.post__textarea}
+          ref={ profPost }
+          onChange={ setValuePost }
+          value={ props.valuePost }
+          >
+        </textarea>
 
         <button className={s.post__btn}>send</button>
       </form>
@@ -23,7 +28,13 @@ const UserPost = (props) => {
 
     props.addPost(text);
 
-    profPost.current.value = '';
+    //profPost.current.value = '';
+  }
+
+  function setValuePost() {
+    const text = profPost.current.value;
+    console.log(text);
+    props.setValuePost(text);
   }
 }
 

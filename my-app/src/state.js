@@ -36,8 +36,8 @@ export const sendMessage = (text) => {
   const obj = {name: 'Вася', avatar: '', post: text, id: id};
 
   state.dialogs.userDialog.push(obj);
-
-  console.log(state.dialogs.userDialog);
+  state.valueMessage = '';
+  //console.log(state.dialogs.userDialog);
   render(state);
 }
 
@@ -46,6 +46,7 @@ export const addPost = (text) => {
   const obj = {name: 'Вася', avatar: '', post: text, id: id};
 
   state.prof.posts.push(obj);
+  state.valuePost = '';
 
   console.log(state.prof.posts);
   render(state);
@@ -54,6 +55,12 @@ export const addPost = (text) => {
 export const setValueMessage = (text) => {
   state.valueMessage = text;
   console.log(state.valueMessage);
+  render(state);
+}
+
+export const setValuePost = text => {
+  state.valuePost = text;
+
   render(state);
 }
 
