@@ -1,5 +1,7 @@
-'use strict';
-import render from './render';
+//'use strict';
+
+let render = () => {};
+
 
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
 
@@ -28,7 +30,7 @@ const state = {
     ]
   },
   valuePost: 'Напишите текст',
-  valueMessage: ''
+  valueMessage: 'Новое сообщение'
 }
 
 export const sendMessage = (text) => {
@@ -38,7 +40,7 @@ export const sendMessage = (text) => {
   state.dialogs.userDialog.push(obj);
   state.valueMessage = '';
   //console.log(state.dialogs.userDialog);
-  render(state);
+  render();
 }
 
 export const addPost = (text) => {
@@ -49,19 +51,30 @@ export const addPost = (text) => {
   state.valuePost = '';
 
   console.log(state.prof.posts);
-  render(state);
+  render();
 }
 
 export const setValueMessage = (text) => {
   state.valueMessage = text;
-  console.log(state.valueMessage);
-  render(state);
+  //console.log(state.valueMessage);
+  render();
+}
+
+export const getFocusMessege = () => {
+  state.valueMessage = '';
+  console.log('фокус');
+
+  render();
 }
 
 export const setValuePost = text => {
   state.valuePost = text;
 
-  render(state);
+  render();
+}
+
+export const subscribe = (observer) => {
+  render = observer;
 }
 
 export default state;

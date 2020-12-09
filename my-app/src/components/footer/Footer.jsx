@@ -1,9 +1,9 @@
-import s from './footer.modele.css';
+import s from './footer.module.css';
 
 const Footer = (props) => {
   return (
-    <footer className="footer">
-      <small className="text">{props.name}</small>
+    <footer className={s.footer}>
+      <small className={s.text}>{props.name}</small>
     </footer>
   )
 }

@@ -35,7 +35,8 @@ const Dialogs = (props) => {
           <SendMessage
             sendMessage={props.sendMessage}
             valueMessage={props.valueMessage}
-            setValueMessage={props.setValueMessage}/>
+            setValueMessage={props.setValueMessage}
+            getFocusMessege={props.getFocusMessege}/>
         </div>
       </div>
     </div>

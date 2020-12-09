@@ -1,8 +1,29 @@
 import reportWebVitals from './reportWebVitals';
-import render from './render';
-import state from './state';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'normalize.css';
+import './index.css';
+import App from './App';
+import state, { sendMessage, addPost, setValueMessage, setValuePost, subscribe ,getFocusMessege } from './state';
+
+const render = () => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App state={state}
+           sendMessage={sendMessage}
+           addPost={addPost}
+           setValueMessage={setValueMessage}
+           setValuePost={setValuePost}
+           getFocusMessege={getFocusMessege}
+           />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
 render(state);
+
+subscribe(render);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

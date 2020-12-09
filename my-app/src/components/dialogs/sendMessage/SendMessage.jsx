@@ -9,9 +9,11 @@ const SendMessage = (props) => {
     <div className="dialogs__send dialogs-send">
       <form className="dialogs-send__form" onSubmit={ event => sendMessage(event) }>
         <textarea className="dialogs-send__text"
+          cols="30" wrap="hard"
           value={ props.valueMessage }
           ref={ newPostElement }
-          onChange={ setValue }>
+          onChange={ setValue }
+          onFocus={ () => props.getFocusMessege() }>
         </textarea>
 
         <button className="dialogs-send__btn"></button>

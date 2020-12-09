@@ -19,7 +19,8 @@ function App(props) {
         valuePost = props.state.valuePost,
         setValueMessage = props.setValueMessage,
         valueMessage = props.state.valueMessage,
-        setValuePost = props.setValuePost;
+        setValuePost = props.setValuePost,
+        getFocusMessege = props.getFocusMessege;
 
   return (
     <BrowserRouter>
@@ -39,7 +40,8 @@ function App(props) {
                 dialog={dialog}
                 sendMessage={sendMessage}
                 valueMessage={valueMessage}
-                setValueMessage={setValueMessage} />
+                setValueMessage={setValueMessage}
+                getFocusMessege={getFocusMessege} />
               )
              }
            } />
