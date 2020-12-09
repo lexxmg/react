@@ -11,17 +11,6 @@ import Settings from './components/settings/Settings';
 
 
 function App(props) {
-  const posts = props.state.prof.posts,
-        users = props.state.dialogs.userData,
-        dialog = props.state.dialogs.userDialog,
-        sendMessage = props.sendMessage,
-        addPost = props.addPost,
-        valuePost = props.state.valuePost,
-        setValueMessage = props.setValueMessage,
-        valueMessage = props.state.valueMessage,
-        setValuePost = props.setValuePost,
-        getFocusMessege = props.getFocusMessege;
-
   return (
     <BrowserRouter>
       <div className="wrapper fixed-container">
@@ -32,16 +21,11 @@ function App(props) {
         </aside>
 
         <main className="main">
-           <Route exact path="/" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost} setValuePost={setValuePost} />} />
-           <Route path="/prof" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost} setValuePost={setValuePost} />} />
+           <Route exact path="/" render={() => <Main store={props.store} />} />
+           <Route path="/prof" render={() => <Main store={props.store} />} />
            <Route path="/message" render={() => {
              return (
-                <Dialogs users={users}
-                dialog={dialog}
-                sendMessage={sendMessage}
-                valueMessage={valueMessage}
-                setValueMessage={setValueMessage}
-                getFocusMessege={getFocusMessege} />
+                <Dialogs store={props.store} />
               )
              }
            } />

@@ -10,10 +10,10 @@ const SendMessage = (props) => {
       <form className="dialogs-send__form" onSubmit={ event => sendMessage(event) }>
         <textarea className="dialogs-send__text"
           cols="30" wrap="hard"
-          value={ props.valueMessage }
+          value={ props.store.state.valueMessage }
           ref={ newPostElement }
           onChange={ setValue }
-          onFocus={ () => props.getFocusMessege() }>
+          onFocus={ () => props.store.getFocusMessege() }>
         </textarea>
 
         <button className="dialogs-send__btn"></button>
@@ -26,12 +26,12 @@ const SendMessage = (props) => {
 
     const text = newPostElement.current.value;
 
-    props.sendMessage(text);
+    props.store.sendMessage(text);
     //props.setValueMessage('');
   }
 
   function setValue() {
-    props.setValueMessage(newPostElement.current.value);
+    props.store.setValueMessage(newPostElement.current.value);
   }
 }
 

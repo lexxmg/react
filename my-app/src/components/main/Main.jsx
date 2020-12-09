@@ -14,10 +14,10 @@ const Main = (props) => {
     <div className="">
       <Top />
       <User />
-      <UserPost addPost={props.addPost} valuePost={props.valuePost} setValuePost={props.setValuePost}/>
+      <UserPost store={props.store} />
 
       {
-        props.posts.map((obj) => {
+        props.store.state.prof.posts.map((obj) => {
           return (
             <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
           )
