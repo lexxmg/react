@@ -14,7 +14,11 @@ const Main = (props) => {
     <div className="">
       <Top />
       <User />
-      <UserPost addPost={props.addPost} valuePost={props.valuePost} setValuePost={props.setValuePost}/>
+      <UserPost addPost={props.addPost}
+        valuePost={props.valuePost}
+        setValuePost={props.setValuePost}
+        getFocusPost = {props.getFocusPost}
+        />
 
       {
         props.posts.map((obj) => {

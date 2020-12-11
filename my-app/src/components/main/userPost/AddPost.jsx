@@ -13,6 +13,7 @@ const UserPost = (props) => {
           ref={ profPost }
           onChange={ setValuePost }
           value={ props.valuePost }
+          onFocus={() => props.getFocusPost()}
           >
         </textarea>
 
@@ -33,7 +34,7 @@ const UserPost = (props) => {
 
   function setValuePost() {
     const text = profPost.current.value;
-    console.log(text);
+    //console.log(text);
     props.setValuePost(text);
   }
 }

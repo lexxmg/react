@@ -16,12 +16,13 @@ function App(props) {
         dialog = props.state.dialogs.userDialog,
         sendMessage = props.sendMessage,
         addPost = props.addPost,
-        valuePost = props.state.valuePost,
+        valuePost = props.state.prof.valuePost,
         setValueMessage = props.setValueMessage,
-        valueMessage = props.state.valueMessage,
+        valueMessage = props.state.dialogs.valueMessage,
         setValuePost = props.setValuePost,
-        getFocusMessege = props.getFocusMessege;
-
+        getFocusMessege = props.getFocusMessege,
+        getFocusPost = props.getFocusPost;
+//debugger;
   return (
     <BrowserRouter>
       <div className="wrapper fixed-container">
@@ -32,8 +33,26 @@ function App(props) {
         </aside>
 
         <main className="main">
-           <Route exact path="/" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost} setValuePost={setValuePost} />} />
-           <Route path="/prof" render={() => <Main posts={posts} addPost={addPost} valuePost={valuePost} setValuePost={setValuePost} />} />
+           <Route exact path="/"
+            render={() => {
+              return (
+              <Main posts={posts}
+                addPost={addPost}
+                valuePost={valuePost}
+                setValuePost={setValuePost}
+                getFocusPost={getFocusPost}
+              />) } }
+           />
+           <Route path="/prof"
+            render={() => {
+              return (
+              <Main posts={posts}
+                addPost={addPost}
+                valuePost={valuePost}
+                setValuePost={setValuePost}
+                getFocusPost={getFocusPost}
+             /> )} }
+           />
            <Route path="/message" render={() => {
              return (
                 <Dialogs users={users}
@@ -44,7 +63,8 @@ function App(props) {
                 getFocusMessege={getFocusMessege} />
               )
              }
-           } />
+           }
+           />
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
            <Route path="/setting" component={Settings} />
