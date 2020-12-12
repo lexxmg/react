@@ -12,8 +12,8 @@ const UserPost = (props) => {
         <textarea name="text" className={s.post__textarea}
           ref={ profPost }
           onChange={ setValuePost }
-          value={ props.valuePost }
-          onFocus={ props.getFocusPost }
+          value={ props.prof.valuePost }
+          onFocus={ () => props.dispatch({type: 'GET-FOCUS-POST'}) }
           >
         </textarea>
 
@@ -27,7 +27,8 @@ const UserPost = (props) => {
 
     const text = profPost.current.value;
 
-    props.addPost(text);
+    //props.addPost(text);
+    props.dispatch({type: 'ADD-POST', message: text});
 
     //profPost.current.value = '';
   }
@@ -35,7 +36,8 @@ const UserPost = (props) => {
   function setValuePost() {
     const text = profPost.current.value;
     //console.log(text);
-    props.setValuePost(text);
+    //props.setValuePost(text);
+    props.dispatch({type: 'SET-VALUE-POST', message: text});
   }
 }
 

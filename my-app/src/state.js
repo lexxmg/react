@@ -28,21 +28,18 @@ const store = {
       valuePost: 'Напишите текст'
     }
   },
-_callSubscriber() {
+  _callSubscriber() {
     console.log('State changet');
   },
+
   getState() {
     return this._state;
   },
-  sendMessage(text) {
-    const id = (+new Date() + 1).toString(16);
-    const obj = {name: 'Вася', avatar: '', post: text, id: id};
-
-    this._state.dialogs.userDialog.push(obj);
-    this._state.dialogs.valueMessage = '';
-    //console.log(state.dialogs.userDialog);
-    this._callSubscriber();
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
+
+
   addPost(text) {
     const id = (+new Date() + 1).toString(16);
     const obj = {name: 'Вася', avatar: '', post: text, id: id};
@@ -51,17 +48,6 @@ _callSubscriber() {
     this._state.prof.valuePost = '';
 
     //console.log(this._state.prof.posts);
-    this._callSubscriber();
-  },
-  setValueMessage(text) {
-    this._state.dialogs.valueMessage = text;
-    //console.log(state.valueMessage);
-    this._callSubscriber();
-  },
-  getFocusMessege() {
-    this._state.dialogs.valueMessage = '';
-    console.log('фокус');
-
     this._callSubscriber();
   },
   setValuePost(text) {
@@ -75,8 +61,64 @@ _callSubscriber() {
 
     this._callSubscriber();
   },
-  subscribe(observer) {
-    this._callSubscriber = observer;
+  sendMessage(text) {
+    const id = (+new Date() + 1).toString(16);
+    const obj = {name: 'Вася', avatar: '', post: text, id: id};
+
+    this._state.dialogs.userDialog.push(obj);
+    this._state.dialogs.valueMessage = '';
+    //console.log(state.dialogs.userDialog);
+    this._callSubscriber();
+  },
+  setValueMessage(text) {
+    this._state.dialogs.valueMessage = text;
+    //console.log(state.valueMessage);
+    this._callSubscriber();
+  },
+  getFocusMessege() {
+    this._state.dialogs.valueMessage = '';
+    console.log('фокус');
+
+    this._callSubscriber();
+  },
+
+  dispatch(action) {  // { type: 'SEND-MESSAGE', message: 'text' }
+    if (action.type === 'ADD-POST') {
+      const id = (+new Date() + 1).toString(16);
+      const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
+
+      this._state.prof.posts.push(obj);
+      this._state.prof.valuePost = '';
+
+      //console.log(this._state.prof.posts);
+      this._callSubscriber();
+    } else if (action.type === 'SET-VALUE-POST') {
+      this._state.prof.valuePost = action.message;
+
+      this._callSubscriber();
+    } else if (action.type === 'GET-FOCUS-POST') {
+      this._state.prof.valuePost = '';
+      console.log('фокус');
+
+      this._callSubscriber();
+    } else if (action.type === 'SEND-MESSAGE') {
+      const id = (+new Date() + 1).toString(16);
+      const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
+
+      this._state.dialogs.userDialog.push(obj);
+      this._state.dialogs.valueMessage = '';
+      //console.log(state.dialogs.userDialog);
+      this._callSubscriber();
+    } else if (action.type === 'SET-VALUE-MESSAGE') {
+      this._state.dialogs.valueMessage = action.message;
+      //console.log(state.valueMessage);
+      this._callSubscriber();
+    } else if (action.type === 'GET-FOCUS-MESSAGE') {
+      this._state.dialogs.valueMessage = '';
+      console.log('фокус');
+
+      this._callSubscriber();
+    }
   }
 }
 

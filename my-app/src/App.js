@@ -11,18 +11,10 @@ import Settings from './components/settings/Settings';
 
 
 function App(props) {
-  const posts = props.state.prof.posts,
-        users = props.state.dialogs.userData,
-        dialog = props.state.dialogs.userDialog,
-        sendMessage = props.sendMessage,
-        addPost = props.addPost,
-        valuePost = props.state.prof.valuePost,
-        setValueMessage = props.setValueMessage,
-        valueMessage = props.state.dialogs.valueMessage,
-        setValuePost = props.setValuePost,
-        getFocusMessege = props.getFocusMessege,
-        getFocusPost = props.getFocusPost;
-//debugger;
+  const prof = props.state.prof,
+        dialogs = props.state.dialogs,
+        dispatch = props.dispatch;
+        
   return (
     <BrowserRouter>
       <div className="wrapper fixed-container">
@@ -36,31 +28,22 @@ function App(props) {
            <Route exact path="/"
             render={() => {
               return (
-              <Main posts={posts}
-                addPost={addPost}
-                valuePost={valuePost}
-                setValuePost={setValuePost}
-                getFocusPost={getFocusPost}
+              <Main prof={prof}
+                dispatch={dispatch}
               />) } }
            />
            <Route path="/prof"
             render={() => {
               return (
-              <Main posts={posts}
-                addPost={addPost}
-                valuePost={valuePost}
-                setValuePost={setValuePost}
-                getFocusPost={getFocusPost}
+              <Main prof={prof}
+                dispatch={dispatch}
              /> )} }
            />
            <Route path="/message" render={() => {
              return (
-                <Dialogs users={users}
-                dialog={dialog}
-                sendMessage={sendMessage}
-                valueMessage={valueMessage}
-                setValueMessage={setValueMessage}
-                getFocusMessege={getFocusMessege} />
+                <Dialogs dialogs={dialogs}
+                  dispatch={dispatch}
+                />
               )
              }
            }

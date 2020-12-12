@@ -13,7 +13,7 @@ const SendMessage = (props) => {
           value={ props.valueMessage }
           ref={ newPostElement }
           onChange={ setValue }
-          onFocus={ () => props.getFocusMessege() }>
+          onFocus={ () => props.dispatch({type: 'GET-FOCUS-MESSAGE'}) }>
         </textarea>
 
         <button className="dialogs-send__btn"></button>
@@ -26,12 +26,15 @@ const SendMessage = (props) => {
 
     const text = newPostElement.current.value;
 
-    props.sendMessage(text);
+    //props.sendMessage(text);
+    props.dispatch({type: 'SEND-MESSAGE', message: text});
     //props.setValueMessage('');
   }
 
   function setValue() {
-    props.setValueMessage(newPostElement.current.value);
+    const text = newPostElement.current.value;
+    //props.setValueMessage(newPostElement.current.value);
+    props.dispatch({type: 'SET-VALUE-MESSAGE', message: text});
   }
 }
 

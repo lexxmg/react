@@ -10,18 +10,17 @@ import Post from './post/Post';
 // });
 
 const Main = (props) => {
+  //debugger;
   return (
     <div className="">
       <Top />
       <User />
-      <UserPost addPost={props.addPost}
-        valuePost={props.valuePost}
-        setValuePost={props.setValuePost}
-        getFocusPost = {props.getFocusPost}
-        />
+      <UserPost prof={props.prof}
+        dispatch={props.dispatch}
+      />
 
       {
-        props.posts.map((obj) => {
+        props.prof.posts.map((obj) => {
           return (
             <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
           )

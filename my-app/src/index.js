@@ -10,12 +10,7 @@ const render = () => {
   ReactDOM.render(
     <React.StrictMode>
       <App state={store.getState()}
-           sendMessage={store.sendMessage.bind(store)}
-           addPost={store.addPost.bind(store)}
-           setValueMessage={store.setValueMessage.bind(store)}
-           setValuePost={store.setValuePost.bind(store)}
-           getFocusMessege={store.getFocusMessege.bind(store)}
-           getFocusPost={store.getFocusPost.bind(store)}
+           dispatch={store.dispatch.bind(store)}
            />
     </React.StrictMode>,
     document.getElementById('root')
