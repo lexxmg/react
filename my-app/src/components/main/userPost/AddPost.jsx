@@ -13,7 +13,7 @@ const UserPost = (props) => {
           ref={ profPost }
           onChange={ setValuePost }
           value={ props.valuePost }
-          onFocus={() => props.getFocusPost()}
+          onFocus={ props.getFocusPost }
           >
         </textarea>
 
