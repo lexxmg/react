@@ -1,5 +1,10 @@
 import React from 'react';
 import s from './userPost.module.css';
+import {
+        actionCreatorAddPost,
+        actionCreatorSetValuePost,
+        actionCreatorGetFocusPost
+      } from '../../../state';
 
 const profPost = React.createRef();
 
@@ -13,7 +18,7 @@ const UserPost = (props) => {
           ref={ profPost }
           onChange={ setValuePost }
           value={ props.prof.valuePost }
-          onFocus={ () => props.dispatch({type: 'GET-FOCUS-POST'}) }
+          onFocus={ () => props.dispatch(actionCreatorGetFocusPost()) }
           >
         </textarea>
 
@@ -28,7 +33,7 @@ const UserPost = (props) => {
     const text = profPost.current.value;
 
     //props.addPost(text);
-    props.dispatch({type: 'ADD-POST', message: text});
+    props.dispatch(actionCreatorAddPost(text));
 
     //profPost.current.value = '';
   }
@@ -37,7 +42,7 @@ const UserPost = (props) => {
     const text = profPost.current.value;
     //console.log(text);
     //props.setValuePost(text);
-    props.dispatch({type: 'SET-VALUE-POST', message: text});
+    props.dispatch(actionCreatorSetValuePost(text));
   }
 }
 

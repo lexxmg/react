@@ -33,13 +33,13 @@
   content: "";
 
   position: absolute;
-  top: calc(50% - 5px);
+  top: calc(50% - 3px);
   right: -13px;
 
   display: block;
 
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 
   background-color: tomato;
 

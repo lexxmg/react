@@ -1,6 +1,11 @@
 
 import React from 'react';
 import './send.css';
+import {
+  actionCreatorSendMessage,
+  actionCreatorSetValueMessage,
+  actionCreatorGetFocusMessege
+} from '../../../state';
 
 const newPostElement = React.createRef();
 
@@ -13,7 +18,7 @@ const SendMessage = (props) => {
           value={ props.valueMessage }
           ref={ newPostElement }
           onChange={ setValue }
-          onFocus={ () => props.dispatch({type: 'GET-FOCUS-MESSAGE'}) }>
+          onFocus={ () => props.dispatch( actionCreatorGetFocusMessege() ) }>
         </textarea>
 
         <button className="dialogs-send__btn"></button>
@@ -27,14 +32,14 @@ const SendMessage = (props) => {
     const text = newPostElement.current.value;
 
     //props.sendMessage(text);
-    props.dispatch({type: 'SEND-MESSAGE', message: text});
+    props.dispatch( actionCreatorSendMessage(text) );
     //props.setValueMessage('');
   }
 
   function setValue() {
     const text = newPostElement.current.value;
     //props.setValueMessage(newPostElement.current.value);
-    props.dispatch({type: 'SET-VALUE-MESSAGE', message: text});
+    props.dispatch( actionCreatorSetValueMessage(text) );
   }
 }
 
