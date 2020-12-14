@@ -5,18 +5,16 @@ import {
   actionCreatorSendMessage,
   actionCreatorSetValueMessage,
   actionCreatorGetFocusMessege
-} from '../../../state';
+} from '../../../redux/dialogs-reducer';
 
-const newPostElement = React.createRef();
 
 const SendMessage = (props) => {
   return (
     <div className="dialogs__send dialogs-send">
-      <form className="dialogs-send__form" onSubmit={ event => sendMessage(event) }>
-        <textarea className="dialogs-send__text"
+      <form className="dialogs-send__form" onSubmit={ sendMessage }>
+        <textarea className="dialogs-send__text" name="text"
           cols="30" wrap="hard"
           value={ props.valueMessage }
-          ref={ newPostElement }
           onChange={ setValue }
           onFocus={ () => props.dispatch( actionCreatorGetFocusMessege() ) }>
         </textarea>
@@ -29,15 +27,15 @@ const SendMessage = (props) => {
   function sendMessage(e) {
     e.preventDefault();
 
-    const text = newPostElement.current.value;
+    const text = e.target.text.value;
 
     //props.sendMessage(text);
     props.dispatch( actionCreatorSendMessage(text) );
     //props.setValueMessage('');
   }
 
-  function setValue() {
-    const text = newPostElement.current.value;
+  function setValue(e) {
+    const text = e.target.value;
     //props.setValueMessage(newPostElement.current.value);
     props.dispatch( actionCreatorSetValueMessage(text) );
   }

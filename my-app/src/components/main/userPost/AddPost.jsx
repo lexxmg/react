@@ -4,21 +4,19 @@ import {
         actionCreatorAddPost,
         actionCreatorSetValuePost,
         actionCreatorGetFocusPost
-      } from '../../../state';
+      } from '../../../redux/prof-reducer';
 
-const profPost = React.createRef();
 
 const UserPost = (props) => {
   return (
     <div className={s.post}>
       <h2 className={s.post__title}>My posts</h2>
 
-      <form className={s.post__form} onSubmit={ (event) => addPost(event) }>
+      <form className={s.post__form} onSubmit={ addPost }>
         <textarea name="text" className={s.post__textarea}
-          ref={ profPost }
           onChange={ setValuePost }
           value={ props.prof.valuePost }
-          onFocus={ () => props.dispatch(actionCreatorGetFocusPost()) }
+          onFocus={ () => props.dispatch( actionCreatorGetFocusPost() ) }
           >
         </textarea>
 
@@ -30,16 +28,14 @@ const UserPost = (props) => {
   function addPost(event) {
     event.preventDefault();
 
-    const text = profPost.current.value;
+    const text = event.target.text.value;
 
     //props.addPost(text);
     props.dispatch(actionCreatorAddPost(text));
-
-    //profPost.current.value = '';
   }
 
-  function setValuePost() {
-    const text = profPost.current.value;
+  function setValuePost(e) {
+    const text = e.target.value;
     //console.log(text);
     //props.setValuePost(text);
     props.dispatch(actionCreatorSetValuePost(text));
