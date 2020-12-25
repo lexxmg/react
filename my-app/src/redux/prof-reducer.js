@@ -14,22 +14,34 @@ export const actionCreatorGetFocusPost = () => {
   return {type: GET_FOCUS_POST};
 }
 
-const profReducer = (state, action) => {
+const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
+
+const initialState = {
+  posts: [
+    {name: 'Петя', post: 'werhwgng', avatar: avatar, id: '1'},
+    {name: 'Вася', post: 'werhwgng', avatar: '', id: '2'},
+    {name: 'Даша', post: 'werhwgng', avatar: avatar, id: '3'}
+  ],
+  valuePost: 'Напишите текст'
+}
+
+const profReducer = (state = initialState, action) => {
+  const newState = {...state};
   switch (action.type) {
     case ADD_POST:
       const id = (+new Date() + 1).toString(16);
       const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
 
-      state.posts.push(obj);
-      state.valuePost = '';
-      return state;
+      newState.posts = [...state.posts, obj];
+      newState.valuePost = '';
+      return newState;
     case  SET_VALUE_POST:
-      state.valuePost = action.message;
-      return state;
+      newState.valuePost = action.message;
+      return newState;
     case  GET_FOCUS_POST:
-      state.valuePost = '';
+      newState.valuePost = '';
       console.log('фокус');
-      return state;
+      return newState;
     default:
       return state;
   }

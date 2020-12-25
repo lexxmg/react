@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import 'normalize.css';
 import './index.css';
 import App from './App';
-import store from './redux/state';
+import store from './redux/redux-store';
 
 const render = () => {
   ReactDOM.render(
