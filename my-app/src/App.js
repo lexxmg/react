@@ -2,18 +2,18 @@ import './css/main.css';
 import { Route } from "react-router-dom";
 import Header from './components/header/Header';
 import Nav from './components/aside/Nav';
-import Main from './components/main/Main';
+import MainContainer from './components/main/main-container';
 import Footer from './components/footer/Footer';
-import Dialogs from './components/dialogs/Dialogs';
+import DialogsContainer from './components/dialogs/dialogs-container';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
 
 
 function App(props) {
-  const prof = props.state.prof,
-        dialogs = props.state.dialogs,
-        dispatch = props.dispatch;
+  // const prof = props.state.prof,
+  //       dialogs = props.state.dialogs,
+  //       dispatch = props.state.dispatch;
 
   return (
     <div className="wrapper fixed-container">
@@ -27,22 +27,18 @@ function App(props) {
          <Route exact path="/"
           render={() => {
             return (
-            <Main prof={prof}
-              dispatch={dispatch}
-            />) } }
+              <MainContainer store={props.store} />
+            ) } }
          />
          <Route path="/prof"
           render={() => {
             return (
-            <Main prof={prof}
-              dispatch={dispatch}
-           /> )} }
+              <MainContainer store={props.store} />
+            ) } }
          />
          <Route path="/message" render={() => {
            return (
-              <Dialogs dialogs={dialogs}
-                dispatch={dispatch}
-              />
+              <DialogsContainer store={props.store} />
             )
            }
          }
