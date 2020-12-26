@@ -27,18 +27,18 @@ function App(props) {
          <Route exact path="/"
           render={() => {
             return (
-              <MainContainer store={props.store} />
+              <MainContainer />
             ) } }
          />
          <Route path="/prof"
           render={() => {
             return (
-              <MainContainer store={props.store} />
+              <MainContainer />
             ) } }
          />
          <Route path="/message" render={() => {
            return (
-              <DialogsContainer store={props.store} />
+              <DialogsContainer />
             )
            }
          }

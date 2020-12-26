@@ -7,6 +7,7 @@ import {
         actionCreatorSetValuePost,
         actionCreatorGetFocusPost
       } from '../../redux/prof-reducer';
+import StoreContext from '../../StoreContext';
 
 
 // const postsMap = posts.map((obj) => {
@@ -16,48 +17,55 @@ import {
 // });
 
 const MainContainer = (props) => {
-  const state = props.store.getState();
   return (
     <div className="">
       <Top />
       <User />
-      <UserPost
-        addPost={addPost}
-        setValuePost={setValuePost}
-        textValue={ state.prof.valuePost }
-        focus={focus}
-      />
+      <StoreContext.Consumer>
+        {
+          (value) => {
+            function addPost(event) {
+              event.preventDefault();
 
-      {
-        state.prof.posts.map((obj) => {
-          return (
-            <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
-          )
-        })
-      }
+              const text = event.target.text.value;
+              value.dispatch(actionCreatorAddPost(text));
+            }
+
+            function setValuePost(e) {
+              const text = e.target.value;
+              value.dispatch(actionCreatorSetValuePost(text));
+            }
+
+            function focus() {
+              value.dispatch( actionCreatorGetFocusPost() );
+            }
+
+            return (
+              <UserPost
+                addPost={addPost}
+                setValuePost={setValuePost}
+                textValue={ value.getState().prof.valuePost }
+                focus={focus}
+              />
+            )
+          }
+        }
+      </StoreContext.Consumer>
+
+      <StoreContext.Consumer>
+        {
+          (value) => {
+            return ( value.getState().prof.posts.map((obj) => {
+              return (
+                  <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
+                )
+              })
+            )
+          }
+        }
+      </StoreContext.Consumer>
     </div>
   )
-
-
-  function addPost(event) {
-    event.preventDefault();
-
-    const text = event.target.text.value;
-
-    //props.addPost(text);
-    props.store.dispatch(actionCreatorAddPost(text));
-  }
-
-  function setValuePost(e) {
-    const text = e.target.value;
-    //console.log(text);
-    //props.setValuePost(text);
-    props.store.dispatch(actionCreatorSetValuePost(text));
-  }
-
-  function focus() {
-    props.store.dispatch( actionCreatorGetFocusPost() );
-  }
 }
 
 export default MainContainer;

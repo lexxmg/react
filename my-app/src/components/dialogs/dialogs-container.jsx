@@ -8,23 +8,10 @@ import {
   actionCreatorSetValueMessage,
   actionCreatorGetFocusMessege
 } from '../../redux/dialogs-reducer';
+import StoreContext from '../../StoreContext';
+
 
 const DialogsContainer = (props) => {
-  const state = props.store.getState();
-
-  const dialogArr = state.dialogs.userDialog.map((obj) => {
-    return (
-      <UserDialog key={obj.id} name={obj.name} text={obj.post} />
-    )
-  });
-
-  const userArr = state.dialogs.userData.map((obj) => {
-    return (
-      <UserList key={obj.id} id={obj.id} userName={obj.name} avatar={obj.avatar} />
-    )
-  });
-
-
   return (
     <div className="doalogs">
       <h2 className="dialogs__title">Диалоги</h2>
@@ -32,43 +19,71 @@ const DialogsContainer = (props) => {
       <div className="dialogs__container">
         <div className="dialogs__user">
           <ul className="dialogs__list dialogs-list">
-            { userArr }
+            <StoreContext.Consumer>
+              {
+                (value) => {
+                  return (
+                    value.getState().dialogs.userData.map((obj) => {
+                      return (
+                        <UserList key={obj.id} id={obj.id} userName={obj.name} avatar={obj.avatar} />
+                      )
+                    })
+                  )
+                }
+              }
+            </StoreContext.Consumer>
           </ul>
         </div>
 
         <div className="dialogs__message">
-          { dialogArr }
+          <StoreContext.Consumer>
+            {
+              (value) => {
+                return (
+                  value.getState().dialogs.userDialog.map((obj) => {
+                    return (
+                      <UserDialog key={obj.id} name={obj.name} text={obj.post} />
+                    )
+                  })
+                )
+              }
+            }
+          </StoreContext.Consumer>
 
-          <SendMessage
-            valueMessage={state.dialogs.valueMessage}
-            sendMessage={sendMessage}
-            setValue={setValue}
-            focus={focus}
-            />
+          <StoreContext.Consumer>
+            {
+              (value) => {
+                function sendMessage(e) {
+                  e.preventDefault();
+
+                  const text = e.target.text.value;
+                  value.dispatch( actionCreatorSendMessage(text) );
+                }
+
+                function setValue(e) {
+                  const text = e.target.value;
+                  value.dispatch( actionCreatorSetValueMessage(text) );
+                }
+
+                function focus() {
+                  value.dispatch( actionCreatorGetFocusMessege() );
+                }
+
+                return (
+                  <SendMessage
+                    valueMessage={value.getState().dialogs.valueMessage}
+                    sendMessage={sendMessage}
+                    setValue={setValue}
+                    focus={focus}
+                  />
+                )
+              }
+            }
+          </StoreContext.Consumer>
         </div>
       </div>
     </div>
   );
-
-  function sendMessage(e) {
-    e.preventDefault();
-
-    const text = e.target.text.value;
-
-    //props.sendMessage(text);
-    props.store.dispatch( actionCreatorSendMessage(text) );
-    //props.setValueMessage('');
-  }
-
-  function setValue(e) {
-    const text = e.target.value;
-    //props.setValueMessage(newPostElement.current.value);
-    props.store.dispatch( actionCreatorSetValueMessage(text) );
-  }
-
-  function focus() {
-    props.store.dispatch( actionCreatorGetFocusMessege() );
-  }
 }
 
 export default DialogsContainer;
