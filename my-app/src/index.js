@@ -6,15 +6,15 @@ import 'normalize.css';
 import './index.css';
 import App from './App';
 import store from './redux/redux-store';
-import StoreContext from './StoreContext';
+import { Provider } from './StoreContext';
 
 const render = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <StoreContext.Provider value={store}>
+        <Provider store={store}>
           <App />
-        </StoreContext.Provider>
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')

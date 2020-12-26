@@ -23,28 +23,28 @@ const MainContainer = (props) => {
       <User />
       <StoreContext.Consumer>
         {
-          (value) => {
+          (store) => {
             function addPost(event) {
               event.preventDefault();
 
               const text = event.target.text.value;
-              value.dispatch(actionCreatorAddPost(text));
+              store.dispatch(actionCreatorAddPost(text));
             }
 
             function setValuePost(e) {
               const text = e.target.value;
-              value.dispatch(actionCreatorSetValuePost(text));
+              store.dispatch(actionCreatorSetValuePost(text));
             }
 
             function focus() {
-              value.dispatch( actionCreatorGetFocusPost() );
+              store.dispatch( actionCreatorGetFocusPost() );
             }
 
             return (
               <UserPost
                 addPost={addPost}
                 setValuePost={setValuePost}
-                textValue={ value.getState().prof.valuePost }
+                textValue={ store.getState().prof.valuePost }
                 focus={focus}
               />
             )
@@ -54,8 +54,8 @@ const MainContainer = (props) => {
 
       <StoreContext.Consumer>
         {
-          (value) => {
-            return ( value.getState().prof.posts.map((obj) => {
+          (store) => {
+            return ( store.getState().prof.posts.map((obj) => {
               return (
                   <Post key={obj.id} name={obj.name} text={obj.post} img={obj.avatar}/>
                 )

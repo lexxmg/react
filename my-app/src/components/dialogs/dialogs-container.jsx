@@ -21,9 +21,9 @@ const DialogsContainer = (props) => {
           <ul className="dialogs__list dialogs-list">
             <StoreContext.Consumer>
               {
-                (value) => {
+                (store) => {
                   return (
-                    value.getState().dialogs.userData.map((obj) => {
+                    store.getState().dialogs.userData.map((obj) => {
                       return (
                         <UserList key={obj.id} id={obj.id} userName={obj.name} avatar={obj.avatar} />
                       )
@@ -38,9 +38,9 @@ const DialogsContainer = (props) => {
         <div className="dialogs__message">
           <StoreContext.Consumer>
             {
-              (value) => {
+              (store) => {
                 return (
-                  value.getState().dialogs.userDialog.map((obj) => {
+                  store.getState().dialogs.userDialog.map((obj) => {
                     return (
                       <UserDialog key={obj.id} name={obj.name} text={obj.post} />
                     )
@@ -52,26 +52,26 @@ const DialogsContainer = (props) => {
 
           <StoreContext.Consumer>
             {
-              (value) => {
+              (store) => {
                 function sendMessage(e) {
                   e.preventDefault();
 
                   const text = e.target.text.value;
-                  value.dispatch( actionCreatorSendMessage(text) );
+                  store.dispatch( actionCreatorSendMessage(text) );
                 }
 
                 function setValue(e) {
                   const text = e.target.value;
-                  value.dispatch( actionCreatorSetValueMessage(text) );
+                  store.dispatch( actionCreatorSetValueMessage(text) );
                 }
 
                 function focus() {
-                  value.dispatch( actionCreatorGetFocusMessege() );
+                  store.dispatch( actionCreatorGetFocusMessege() );
                 }
 
                 return (
                   <SendMessage
-                    valueMessage={value.getState().dialogs.valueMessage}
+                    valueMessage={store.getState().dialogs.valueMessage}
                     sendMessage={sendMessage}
                     setValue={setValue}
                     focus={focus}
