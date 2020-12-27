@@ -1,4 +1,4 @@
-import s from './top.module.css'
+import s from './top.module.css';
 
 const Top = () => {
   return (
