@@ -26,22 +26,16 @@ const initialState = {
 }
 
 const profReducer = (state = initialState, action) => {
-  const newState = {...state};
   switch (action.type) {
     case ADD_POST:
       const id = (+new Date() + 1).toString(16);
       const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
 
-      newState.posts = [...state.posts, obj];
-      newState.valuePost = '';
-      return newState;
+      return {...state, posts: [...state.posts, obj], valuePost: ''};
     case  SET_VALUE_POST:
-      newState.valuePost = action.message;
-      return newState;
+      return {...state, valuePost: action.message};
     case  GET_FOCUS_POST:
-      newState.valuePost = '';
-      console.log('фокус');
-      return newState;
+      return {...state, valuePost: ''};
     default:
       return state;
   }

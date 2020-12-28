@@ -42,7 +42,7 @@ const store = {
     this._callSubscriber = observer;
   },
 
-  dispatch(action) {  // { type: 'SEND-MESSAGE', message: 'text' };
+  dispatch(action) {  //action - { type: 'SEND-MESSAGE', message: 'text' };
     this._state.dialogs = dialogsReducer(this._state.dialogs, action);
     this._state.prof = profReducer(this._state.prof, action);
 

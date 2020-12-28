@@ -37,22 +37,16 @@ const initialState =  {
 }
 
 const dialogsReducer =  (state = initialState, action) => {
-  const newState = {...state};
   switch (action.type) {
     case SEND_MESSAGE:
       const id = (+new Date() + 1).toString(16);
       const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
 
-      newState.userDialog = [...state.userDialog, obj];
-      newState.valueMessage = '';
-      return newState ;
+      return {...state, userDialog: [...state.userDialog, obj], valueMessage: ''};
     case  SET_VALUE_MESSAGE:
-      newState.valueMessage = action.message;
-      return newState;
+      return {...state, valueMessage: action.message};
     case GET_FOCUS_MESSAGE:
-      newState.valueMessage = '';
-      console.log('фокус');
-      return newState;
+      return {...state, valueMessage: ''};
     default:
       return state;
   }
