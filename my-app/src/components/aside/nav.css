@@ -49,6 +49,8 @@
 @media (max-width: 720px) {
   .aside {
     flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 
     padding: 5px;
 
@@ -61,7 +63,22 @@
     justify-content: space-between;
   }
 
+  .nav-list__item {
+    margin: 0 10px 0 0;
+  }
+
+  .nav-list__item:last-child {
+    margin: 0 0 0 0;
+  }
+
+  .nav-list__link.active::after {
+    top: 1.3em;
+    right: calc(50% - 4px);
+  }
+
   .nav {
-  width: 100%;
+   width: 100%;
+
+   padding: 0 10px;
   }
 }
