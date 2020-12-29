@@ -21,8 +21,8 @@ const Users = ({
         </div>
 
         {
-          follow ? <button className="user-card__btn" onClick={UnFollow}>Подписаться</button> :
-            <button className="user-card__btn" onClick={Follow}>Отписаться</button>
+          follow ? <button className="user-card__btn" onClick={() => UnFollow(id)}>Подписаться</button> :
+            <button className="user-card__btn" onClick={() => Follow(id)}>Отписаться</button>
         }
       </div>
 

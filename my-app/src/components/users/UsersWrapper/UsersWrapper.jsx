@@ -9,19 +9,20 @@ const UserWrrapper = (props) => {
 
       <div className="users-wrapper__content">
         {
-          props.users.map(users => {
+          props.users.map(user => {
             return (
               <Users
-                key={users.id}
-                avatar={users.avatar}
-                follow={users.follow}
-                name={users.name}
-                lastName={users.lastName}
-                status={users.status}
-                city={users.location.city}
-                country={users.location.country}
-                Follow={() => props.Follow(users.id)}
-                UnFollow={() => props.UnFollow(users.id)}
+                key={user.id}
+                avatar={user.avatar}
+                follow={user.follow}
+                name={user.name}
+                lastName={user.lastName}
+                status={user.status}
+                city={user.location.city}
+                country={user.location.country}
+                id={user.id}
+                Follow={props.Follow}
+                UnFollow={props.UnFollow}
               />
             )
           })
