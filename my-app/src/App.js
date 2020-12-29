@@ -8,6 +8,7 @@ import DialogsContainer from './components/dialogs/dialogs-container';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
+import UserWrrapper from './components/users/UsersContainer';
 
 
 function App(props) {
@@ -45,6 +46,7 @@ function App(props) {
          />
          <Route path="/news" component={News} />
          <Route path="/music" component={Music} />
+         <Route path="/users" component={UserWrrapper} />
          <Route path="/setting" component={Settings} />
       </main>
       <Footer name="lexxmg" />

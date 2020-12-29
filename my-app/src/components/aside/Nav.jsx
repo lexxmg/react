@@ -18,6 +18,9 @@ const Nav = () => {
           <NavLink to="/music" className="nav-list__link">Музыка</NavLink>
         </li>
         <li className="nav-list__item">
+          <NavLink to="/users" className="nav-list__link">Пользователи</NavLink>
+        </li>
+        <li className="nav-list__item">
           <NavLink to="/setting" className="nav-list__link">Настройки</NavLink>
         </li>
       </ul>
