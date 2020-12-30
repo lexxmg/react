@@ -1,9 +1,10 @@
 import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
-import { followAC, unFollowAC } from '../../redux/users-reducer';
+import { followAC, unFollowAC, setUsersAC } from '../../redux/users-reducer';
 
 const mapStateToProps = (state) => {
+  console.log(state.users.users);
   return {
     users: state.users.users
   }
@@ -16,6 +17,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     UnFollow: (id) => {
       return dispatch(unFollowAC(id));
+    },
+    setUsers: (users) => {
+      // console.log('container');
+      // console.log(users);
+      return dispatch(setUsersAC(users));
     }
   }
 }
