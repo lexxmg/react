@@ -1,26 +1,32 @@
 import React from 'react';
 import './usersWrapper.css';
 import Users from '../UsersComponent/Users';
+import * as axios from 'axios';
 
 
-const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
-
-const usersA = [
-  {
-    avatar: avatar, follow: true, name: 'Вася', lastName: 'иванов', status: 'Super Man',
-    location: {city: 'Moscov', country: 'Russia'}, id: '1'
-  },
-  {
-    avatar: avatar, follow: false, name: 'Петя', lastName: '', status: 'Super star',
-    location: {city: 'Moscov', country: 'Russia'}, id: '2'
-  }
-];
+// const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
+//
+// const usersA = [
+//   {
+//     avatar: avatar, follow: true, name: 'Вася', lastName: 'иванов', status: 'Super Man',
+//     location: {city: 'Moscov', country: 'Russia'}, id: '1'
+//   },
+//   {
+//     avatar: avatar, follow: false, name: 'Петя', lastName: '', status: 'Super star',
+//     location: {city: 'Moscov', country: 'Russia'}, id: '2'
+//   }
+// ];
 
 const UserWrrapper = (props) => {
 
-  if (props.users.length === 0) {
-    props.setUsers(usersA);
-  }
+  // if (props.users.length === 0) {
+  //   props.setUsers(usersA);
+  // }
+
+  console.log('запрос');
+  axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    .then( (res) => console.log(res.data.items) );
+  console.log('запрос');
 
   return (
     <div className="users-wrapper">
