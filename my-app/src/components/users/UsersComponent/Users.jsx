@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './users.css';
 
@@ -24,11 +25,11 @@ const Users = ({
           follow ?
             <button
               className="user-card__btn"
-              onClick={() => UnFollow(id)}>Подписаться
+              onClick={() => UnFollow(id)}>Отписаться
             </button> :
-            <button 
+            <button
               className="user-card__btn"
-              onClick={() => Follow(id)}>Отписаться
+              onClick={() => Follow(id)}>Подписаться
             </button>
         }
       </div>

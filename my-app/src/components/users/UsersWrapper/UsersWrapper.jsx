@@ -24,9 +24,10 @@ class UserWrrapper extends React.Component {
 
   componentDidMount() {
     //this.props.setUsers(usersA);
-
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-      .then( (res) => this.props.setUsers(res.data.items) );
+    if (this.props.users.length === 0) {
+      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        .then( (res) => this.props.setUsers(res.data.items) );
+    }
   }
 
   render() {
