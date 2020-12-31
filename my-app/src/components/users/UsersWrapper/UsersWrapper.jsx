@@ -1,11 +1,10 @@
+
 import React from 'react';
 import './usersWrapper.css';
 import Users from '../UsersComponent/Users';
 import * as axios from 'axios';
+import avatar from '../../../assets/images/happy-birthday.png';
 
-
-// const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
-//
 // const usersA = [
 //   {
 //     avatar: avatar, follow: true, name: 'Вася', lastName: 'иванов', status: 'Super Man',
@@ -17,45 +16,48 @@ import * as axios from 'axios';
 //   }
 // ];
 
-const UserWrrapper = (props) => {
-
-  // if (props.users.length === 0) {
-  //   props.setUsers(usersA);
+class UserWrrapper extends React.Component {
+  // constructor(props) {
+  //   super(props);
   // }
 
-  console.log('запрос');
-  axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    .then( (res) => console.log(res.data.items) );
-  console.log('запрос');
+  componentDidMount() {
+    //this.props.setUsers(usersA);
 
-  return (
-    <div className="users-wrapper">
-      <h2 className="users-wrapper__tirle">Пользователи</h2>
+    axios.get('https://social-network.samuraijs.com/api/1.0/users')
+      .then( (res) => this.props.setUsers(res.data.items) );
+  }
 
-      <div className="users-wrapper__content">
-        {
-          props.users.map(user => {
-            console.log('map');
-            return (
-              <Users
-                key={user.id}
-                avatar={user.avatar}
-                follow={user.follow}
-                name={user.name}
-                lastName={user.lastName}
-                status={user.status}
-                city={user.location.city}
-                country={user.location.country}
-                id={user.id}
-                Follow={props.Follow}
-                UnFollow={props.UnFollow}
-              />
-            )
-          })
-        }
+  render() {
+    return (
+      <div className="users-wrapper">
+        <h2 className="users-wrapper__tirle">Пользователи</h2>
+
+        <div className="users-wrapper__content">
+          {
+            this.props.users.map(user => {
+              console.log('map');
+              return (
+                <Users
+                  key={user.id}
+                  avatar={user.photos.small ? user.photos.small : avatar}
+                  follow={user.followed}
+                  name={user.name}
+                  lastName={'user.lastName'}
+                  status={user.status}
+                  city={'user.location.city'}
+                  country={'user.location.country'}
+                  id={user.id}
+                  Follow={this.props.Follow}
+                  UnFollow={this.props.UnFollow}
+                />
+              )
+            })
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default UserWrrapper;

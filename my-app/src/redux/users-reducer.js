@@ -1,3 +1,4 @@
+
 const FOLLOW = 'FOLLOW',
       UNFOLLOW = 'UNFOLLOW',
       SHOW_MORE = 'SHOW-MORE',
@@ -20,8 +21,6 @@ export const setUsersAC = (users) => {
   return {type: SET_USERS, users};
 }
 
-const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
-
 const initialState =  {
   users: []
 }
@@ -32,7 +31,7 @@ const usersReducer =  (state = initialState, action) => {
     console.log('UnFollow');
       return {...state, users: state.users.map(user => {
           if (user.id === action.id) {
-            return {...user, follow: true};
+            return {...user, followed: true};
           } else {
             return user;
           }
@@ -42,7 +41,7 @@ const usersReducer =  (state = initialState, action) => {
     console.log('unfollow');
     return {...state, users: state.users.map(user => {
         if (user.id === action.id) {
-          return {...user, follow: false};
+          return {...user, followed: false};
         } else {
           return user;
         }
