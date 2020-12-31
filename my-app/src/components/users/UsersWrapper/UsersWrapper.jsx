@@ -3,7 +3,8 @@ import React from 'react';
 import './usersWrapper.css';
 import Users from '../UsersComponent/Users';
 import * as axios from 'axios';
-import avatar from '../../../assets/images/happy-birthday.png';
+//import avatar from '../../../assets/images/happy-birthday.png';
+import noFoto from '../../../assets/images/images.jpeg';
 
 // const usersA = [
 //   {
@@ -40,7 +41,7 @@ class UserWrrapper extends React.Component {
               return (
                 <Users
                   key={user.id}
-                  avatar={user.photos.small ? user.photos.small : avatar}
+                  avatar={user.photos.small ? user.photos.small : noFoto}
                   follow={user.followed}
                   name={user.name}
                   lastName={'user.lastName'}
