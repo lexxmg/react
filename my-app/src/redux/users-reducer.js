@@ -2,7 +2,9 @@
 const FOLLOW = 'FOLLOW',
       UNFOLLOW = 'UNFOLLOW',
       SHOW_MORE = 'SHOW-MORE',
-      SET_USERS = 'SET-USERS';
+      SET_USERS = 'SET-USERS',
+      CURENT_PAGE = 'CURENT-PAGE',
+      SET_START_PAGE = 'SET-START-PAGE';
 
 
 export const followAC = (id) => {
@@ -17,12 +19,24 @@ export const showMoreAC = (count) => {
   return {type: SHOW_MORE, count};
 }
 
-export const setUsersAC = (users) => {
-  return {type: SET_USERS, users};
+export const currentPageAC = (page) => {
+  return {type: CURENT_PAGE, page};
+}
+
+export const setStartPageAC = (page) => {
+  return {type: SET_START_PAGE, page};
+}
+
+export const setUsersAC = (users, count) => {
+  return {type: SET_USERS, users, count};
 }
 
 const initialState =  {
-  users: []
+  users: [],
+  startPage: 1,
+  userCount: 5,
+  usersAllCount: 0,
+  currentPage: 1
 }
 
 const usersReducer =  (state = initialState, action) => {
@@ -50,12 +64,11 @@ const usersReducer =  (state = initialState, action) => {
     case SHOW_MORE:
       return {...state};
     case SET_USERS:
-    console.log('>>>>>>>>>>>>>>>>>>>>');
-    console.log(state);
-    console.log(action.users);
-    console.log({...state, users: [...state.users, ...action.users]});
-    console.log('>>>>>>>>>>>>>>>>>>>>');
-      return {...state, users: [...state.users, ...action.users]};
+      return {...state, users: action.users, usersAllCount: action.count};
+    case CURENT_PAGE:
+      return {...state, currentPage: action.page};
+    case SET_START_PAGE:
+        return {...state, startPage: action.page};
     default:
       return state;
   }

@@ -9,3 +9,26 @@
 .users-wrapper__content {
 
 }
+
+.users-wrapper__list {
+
+}
+
+.wrapper-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrapper-list__item {
+  margin: 0 7px 0 0;
+
+  cursor: pointer;
+}
+
+.wrapper-list__item:last-child {
+  margin: 0;
+}
+
+.wrapper-list__item--acive {
+  font-weight: 700;
+}
