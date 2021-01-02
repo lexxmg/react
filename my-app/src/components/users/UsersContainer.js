@@ -56,7 +56,6 @@ const mapStateToProps = (state) => {
   return {
     users: state.users.users,
     userCount: state.users.userCount,
-    page: state.users.page,
     usersAllCount: state.users.usersAllCount,
     currentPage: state.users.currentPage,
     startPage: state.users.startPage,
