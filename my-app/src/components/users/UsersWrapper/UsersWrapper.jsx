@@ -3,6 +3,7 @@ import React from 'react';
 import './usersWrapper.css';
 import Users from '../UsersComponent/Users';
 import noFoto from '../../../assets/images/images.jpeg';
+import Preloader from '../../common/Preloader/Preloader';
 
 const UserWrrapper = (props) => {
 
@@ -22,6 +23,9 @@ const UserWrrapper = (props) => {
 
   return (
     <div className="users-wrapper">
+
+      {props.preload ? <Preloader /> : ''}
+
       <h2 className="users-wrapper__tirle">Пользователи</h2>
 
       <ul className="users-wrapper__list wrapper-list">

@@ -4,7 +4,8 @@ const FOLLOW = 'FOLLOW',
       SHOW_MORE = 'SHOW-MORE',
       SET_USERS = 'SET-USERS',
       CURENT_PAGE = 'CURENT-PAGE',
-      SET_START_PAGE = 'SET-START-PAGE';
+      SET_START_PAGE = 'SET-START-PAGE',
+      PRELOADER = 'PRELOADER';
 
 
 export const followAC = (id) => {
@@ -31,12 +32,18 @@ export const setUsersAC = (users, count) => {
   return {type: SET_USERS, users, count};
 }
 
+export const preloaderAC = (load) => {
+  return {type: PRELOADER, load};
+}
+
+
 const initialState =  {
   users: [],
   startPage: 1,
   userCount: 5,
   usersAllCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  preload: false
 }
 
 const usersReducer =  (state = initialState, action) => {
@@ -68,7 +75,9 @@ const usersReducer =  (state = initialState, action) => {
     case CURENT_PAGE:
       return {...state, currentPage: action.page};
     case SET_START_PAGE:
-        return {...state, startPage: action.page};
+      return {...state, startPage: action.page};
+    case PRELOADER:
+      return {...state, preload: action.load};
     default:
       return state;
   }
