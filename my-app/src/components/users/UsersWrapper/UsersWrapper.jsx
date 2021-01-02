@@ -24,7 +24,7 @@ const UserWrrapper = (props) => {
   return (
     <div className="users-wrapper">
 
-      {props.preload ? <Preloader /> : ''}
+      {props.preload ? <Preloader /> : null}
 
       <h2 className="users-wrapper__tirle">Пользователи</h2>
 
