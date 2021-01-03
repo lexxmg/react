@@ -1,44 +1,45 @@
 
 const FOLLOW = 'FOLLOW',
       UNFOLLOW = 'UNFOLLOW',
-      SHOW_MORE = 'SHOW-MORE',
-      SET_USERS = 'SET-USERS',
-      CURENT_PAGE = 'CURENT-PAGE',
-      SET_START_PAGE = 'SET-START-PAGE',
-      PRELOADER = 'PRELOADER';
+      SHOW_MORE = 'SHOW_MORE',
+      SET_USERS = 'SET_USERS',
+      SET_CURENT_PAGE = 'SET_CURENT_PAGE',
+      SET_START_PAGE = 'SET_START_PAGE',
+      TOGGLE_PRELOADER = 'TOGGLE_PRELOADER';
 
 
-export const followAC = (id) => {
+export const follow = (id) => {
   return {type: FOLLOW, id};
 }
 
-export const unFollowAC = (id) => {
+export const unFollow = (id) => {
   return {type: UNFOLLOW, id};
 }
 
-export const showMoreAC = (count) => {
+export const showMore = (count) => {
   return {type: SHOW_MORE, count};
 }
 
-export const currentPageAC = (page) => {
-  return {type: CURENT_PAGE, page};
+export const setCurrentPage = (page) => {
+  return {type: SET_CURENT_PAGE, page};
 }
 
-export const setStartPageAC = (page) => {
+export const setStartPage = (page) => {
   return {type: SET_START_PAGE, page};
 }
 
-export const setUsersAC = (users, count) => {
+export const setUsers = (users, count) => {
   return {type: SET_USERS, users, count};
 }
 
-export const preloaderAC = (load) => {
-  return {type: PRELOADER, load};
+export const togglePreload = (load) => {
+  return {type: TOGGLE_PRELOADER, load};
 }
 
 
 const initialState =  {
   users: [],
+  followed: false,
   startPage: 1,
   userCount: 5,
   usersAllCount: 0,
@@ -72,11 +73,11 @@ const usersReducer =  (state = initialState, action) => {
       return {...state};
     case SET_USERS:
       return {...state, users: action.users, usersAllCount: action.count};
-    case CURENT_PAGE:
+    case SET_CURENT_PAGE:
       return {...state, currentPage: action.page};
     case SET_START_PAGE:
       return {...state, startPage: action.page};
-    case PRELOADER:
+    case TOGGLE_PRELOADER:
       return {...state, preload: action.load};
     default:
       return state;

@@ -2,7 +2,7 @@
 import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
-import { followAC, unFollowAC, setUsersAC, currentPageAC, setStartPageAC, preloaderAC } from '../../redux/users-reducer';
+import { follow, unFollow, setUsers, setCurrentPage, setStartPage, togglePreload } from '../../redux/users-reducer';
 import * as axios from 'axios';
 
 class UsersContainer extends React.Component {
@@ -43,8 +43,8 @@ class UsersContainer extends React.Component {
         userCount={this.props.userCount}
         currentPage={this.props.currentPage}
         users={this.props.users}
-        Follow={this.props.Follow}
-        UnFollow={this.props.UnFollow}
+        follow={this.props.follow}
+        unFollow={this.props.unFollow}
         getUsers={this.getUsers}
         preload={this.props.preload}
       />
@@ -63,29 +63,13 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    Follow: (id) => {
-      return dispatch(followAC(id));
-    },
-    UnFollow: (id) => {
-      return dispatch(unFollowAC(id));
-    },
-    setUsers: (users, count) => {
-      // console.log('container');
-      // console.log(users);
-      return dispatch(setUsersAC(users, count));
-    },
-    setCurrentPage: (page) => {
-      return dispatch(currentPageAC(page));
-    },
-    setStartPage: (page) => {
-      return dispatch(setStartPageAC(page));
-    },
-    togglePreload: (load) => {
-      dispatch(preloaderAC(load));
-    }
-  }
+const mapDispatchToProps = {
+  follow,
+  unFollow,
+  setUsers,
+  setCurrentPage,
+  setStartPage,
+  togglePreload
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

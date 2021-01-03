@@ -58,20 +58,20 @@ const UserWrrapper = (props) => {
       <div className="users-wrapper__content">
         {
           props.users.map(user => {
-            console.log('map');
+            //console.log('map');
             return (
               <Users
                 key={user.id}
                 avatar={user.photos.small ? user.photos.small : noFoto}
-                follow={user.followed}
+                followed={user.followed}
                 name={user.name}
                 lastName={'user.lastName'}
                 status={user.status}
                 city={'user.location.city'}
                 country={'user.location.country'}
                 id={user.id}
-                Follow={props.Follow}
-                UnFollow={props.UnFollow}
+                follow={props.follow}
+                unFollow={props.unFollow}
               />
             )
           })

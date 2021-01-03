@@ -2,18 +2,11 @@
 import React from 'react';
 import './users.css';
 
-const Users = ({
-                avatar,
-                follow,
-                name,
-                lastName,
-                status,
-                city,
-                country,
-                Follow,
-                UnFollow,
-                id
-              }) => {
+const Users = (props) => {
+  const  { avatar, followed, name, lastName,
+          status, city, country, follow,
+          unFollow, id } = props;
+
   return (
     <div className="user-card">
       <div className="user-card__img-container">
@@ -22,14 +15,14 @@ const Users = ({
         </div>
 
         {
-          follow ?
+          followed ?
             <button
               className="user-card__btn"
-              onClick={() => UnFollow(id)}>Отписаться
+              onClick={() => unFollow(id)}>Отписаться
             </button> :
             <button
               className="user-card__btn"
-              onClick={() => Follow(id)}>Подписаться
+              onClick={() => follow(id)}>Подписаться
             </button>
         }
       </div>
