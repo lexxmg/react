@@ -2,7 +2,7 @@ import './css/main.css';
 import { Route } from "react-router-dom";
 import Header from './components/header/Header';
 import Nav from './components/aside/Nav';
-import MainContainer from './components/main/main-container';
+import MainContainer from './components/main/MainContainer';
 import Footer from './components/footer/Footer';
 import DialogsContainer from './components/dialogs/dialogs-container';
 import News from './components/news/News';
@@ -25,18 +25,9 @@ function App(props) {
       </aside>
 
       <main className="main">
-         <Route exact path="/"
-          render={() => {
-            return (
-              <MainContainer />
-            ) } }
-         />
-         <Route path="/prof"
-          render={() => {
-            return (
-              <MainContainer />
-            ) } }
-         />
+         <Route exact path="/" component={MainContainer} />
+         <Route path="/prof" component={MainContainer} />
+
          <Route path="/message" render={() => {
            return (
               <DialogsContainer />

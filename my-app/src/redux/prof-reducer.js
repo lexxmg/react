@@ -1,6 +1,7 @@
 const ADD_POST = 'ADD-POST',
       SET_VALUE_POST = 'SET-VALUE-POST',
-      GET_FOCUS_POST = 'GET-FOCUS-POST';
+      GET_FOCUS_POST = 'GET-FOCUS-POST',
+      SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const actionCreatorAddPost = (text) => {
   return {type: ADD_POST, message: text};
@@ -14,9 +15,14 @@ export const actionCreatorGetFocusPost = () => {
   return {type: GET_FOCUS_POST};
 }
 
+export const setUsersProfile = (profile) => {
+  return {type: SET_USER_PROFILE, profile};
+}
+
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
 
 const initialState = {
+  profile: null,
   posts: [
     {name: 'Петя', post: 'werhwgng', avatar: avatar, id: '1'},
     {name: 'Вася', post: 'werhwgng', avatar: '', id: '2'},
@@ -36,6 +42,8 @@ const profReducer = (state = initialState, action) => {
       return {...state, valuePost: action.message};
     case  GET_FOCUS_POST:
       return {...state, valuePost: ''};
+      case  SET_USER_PROFILE:
+        return { ...state, profile: action.profile };
     default:
       return state;
   }

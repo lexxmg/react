@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './users.css';
 
 const Users = (props) => {
@@ -11,7 +12,9 @@ const Users = (props) => {
     <div className="user-card">
       <div className="user-card__img-container">
         <div className="user-card__ava">
-          <img className="user-card__img" src={avatar} alt="аватарка"/>
+          <NavLink to={'/prof/' + props.id}>
+            <img className="user-card__img" src={avatar} alt="аватарка"/>
+          </NavLink>
         </div>
 
         {
