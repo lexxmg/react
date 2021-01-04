@@ -26,7 +26,7 @@ function App(props) {
 
       <main className="main">
          <Route exact path="/" component={MainContainer} />
-         <Route path="/prof" component={MainContainer} />
+         <Route path="/prof/:userId?" component={MainContainer} />
 
          <Route path="/message" render={() => {
            return (

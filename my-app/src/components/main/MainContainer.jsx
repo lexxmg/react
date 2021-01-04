@@ -12,7 +12,7 @@ import {
         setUsersProfile
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
-
+import { withRouter } from 'react-router-dom';
 
 // const postsMap = posts.map((obj) => {
 //   return (
@@ -24,7 +24,8 @@ class MainContainer extends React.Component {
 
   componentDidMount() {
     //this.props.togglePreload(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/13684`)
+    const userId = this.props.match.params.userId;
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
       .then( (res) => {
         console.log(res.data);
         this.props.setUsersProfile(res.data);
@@ -86,4 +87,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+const WithUrlDataContainerComponent = withRouter(MainContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent);
