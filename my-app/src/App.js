@@ -1,6 +1,7 @@
+
 import './css/main.css';
 import { Route } from "react-router-dom";
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/HeaderContainer';
 import Nav from './components/aside/Nav';
 import MainContainer from './components/main/MainContainer';
 import Footer from './components/footer/Footer';
@@ -20,7 +21,7 @@ function App(props) {
 
   return (
     <div className="wrapper fixed-container">
-      <Header />
+      <HeaderContainer />
 
       <aside className="aside">
         <Nav />

@@ -26,10 +26,10 @@ class MainContainer extends React.Component {
     //this.props.togglePreload(true);
     let userId = this.props.match.params.userId;
 
-    if (!userId) { userId = 2 };
+    if (!userId) { userId = this.props.autch || 2};
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
       .then( (res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.props.setUsersProfile(res.data);
         // this.props.togglePreload(false);
       });
@@ -64,7 +64,8 @@ const mapStateToProps = (state) => {
   return {
     textValue: state.prof.valuePost,
     posts: state.prof.posts,
-    profile: state.prof.profile
+    profile: state.prof.profile,
+    autch: state.autch.id
   }
 }
 

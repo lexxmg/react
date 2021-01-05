@@ -1,0 +1,38 @@
+.header {
+  grid-area: header;
+
+  background-color: green;
+}
+
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.img {
+
+}
+
+.login_container {
+  display: flex;
+  align-items: center;
+
+  padding: 0 10px;
+}
+
+.user_name {
+
+}
+
+.login_btn {
+
+}
