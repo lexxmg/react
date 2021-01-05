@@ -2,7 +2,6 @@
 import React from 'react';
 import './usersWrapper.css';
 import Users from '../UsersComponent/Users';
-import noFoto from '../../../assets/images/images.jpeg';
 import Preloader from '../../common/Preloader/Preloader';
 
 const UserWrrapper = (props) => {
@@ -62,7 +61,7 @@ const UserWrrapper = (props) => {
             return (
               <Users
                 key={user.id}
-                avatar={user.photos.small ? user.photos.small : noFoto}
+                photos={user.photos}
                 followed={user.followed}
                 name={user.name}
                 lastName={'user.lastName'}

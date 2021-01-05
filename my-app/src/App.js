@@ -11,6 +11,8 @@ import Settings from './components/settings/Settings';
 import UsersContainer from './components/users/UsersContainer';
 
 
+//<Route exact path="/" component={MainContainer} />
+
 function App(props) {
   // const prof = props.state.prof,
   //       dialogs = props.state.dialogs,
@@ -25,7 +27,6 @@ function App(props) {
       </aside>
 
       <main className="main">
-         <Route exact path="/" component={MainContainer} />
          <Route path="/prof/:userId?" component={MainContainer} />
 
          <Route path="/message" render={() => {

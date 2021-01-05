@@ -1,10 +1,11 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import noFoto from '../../../assets/images/images.jpeg';
 import './users.css';
 
 const Users = (props) => {
-  const  { avatar, followed, name, lastName,
+  const  { photos, followed, name, lastName,
           status, city, country, follow,
           unFollow, id } = props;
 
@@ -13,7 +14,7 @@ const Users = (props) => {
       <div className="user-card__img-container">
         <div className="user-card__ava">
           <NavLink to={'/prof/' + props.id}>
-            <img className="user-card__img" src={avatar} alt="аватарка"/>
+            <img className="user-card__img" src={photos.small ? photos.small : noFoto} alt="аватарка"/>
           </NavLink>
         </div>
 
