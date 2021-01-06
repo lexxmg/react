@@ -8,7 +8,9 @@ import * as axios from 'axios';
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.togglePreload(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.userCount}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.userCount}`,
+      {withCredentials: true}
+    )
       .then( (res) => {
         this.props.setUsers(res.data.items, res.data.totalCount);
         this.props.togglePreload(false);
@@ -17,7 +19,9 @@ class UsersContainer extends React.Component {
 
   getUsers = (pages) => {
     this.props.togglePreload(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pages}&count=${this.props.userCount}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pages}&count=${this.props.userCount}`,
+      {withCredentials: true}
+    )
       .then( (res) => {
         this.props.setUsers(res.data.items, res.data.totalCount);
         this.props.togglePreload(false);

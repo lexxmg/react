@@ -50,7 +50,7 @@ const initialState =  {
 const usersReducer =  (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
-    console.log('UnFollow');
+    console.log('follow');
       return {...state, users: state.users.map(user => {
           if (user.id === action.id) {
             return {...user, followed: true};

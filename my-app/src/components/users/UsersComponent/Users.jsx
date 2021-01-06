@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import noFoto from '../../../assets/images/images.jpeg';
 import './users.css';
+import * as axios from 'axios';
 
 const Users = (props) => {
   const  { photos, followed, name, lastName,
@@ -22,11 +23,36 @@ const Users = (props) => {
           followed ?
             <button
               className="user-card__btn"
-              onClick={() => unFollow(id)}>Отписаться
+              onClick={() => {
+                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+                  {
+                    withCredentials: true,
+                    headers: {"API-KEY": "bc973d19-d75d-4ead-a819-8d63c27b31bc"}
+                  }
+                ).then( (res) => {
+                    if (res.data.resultCode === 0) {
+                      unFollow(id);
+                    }
+                  });
+                }
+              }>Отписаться
             </button> :
+
             <button
               className="user-card__btn"
-              onClick={() => follow(id)}>Подписаться
+              onClick={() => {
+                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
+                  {
+                    withCredentials: true,
+                    headers: {"API-KEY": "bc973d19-d75d-4ead-a819-8d63c27b31bc"}
+                  }
+                ).then( (res) => {
+                    if (res.data.resultCode === 0) {
+                      follow(id);
+                    }
+                  });
+              }
+              }>Подписаться
             </button>
         }
       </div>
