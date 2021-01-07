@@ -19,6 +19,7 @@ export const setAuthProfile = (profile) => {
 
 const initialState = {
   authProfile: {},
+  profile: false,
   id: null,
   email: null,
   login: null,
@@ -30,7 +31,7 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {...state, ...action.data, isAuth: true};
     case SET_AUTH_PROFILE:
-      return {...state, authProfile: {...action.profile}};
+      return {...state, authProfile: {...action.profile}, profile: true};
     default:
       return state;
   }

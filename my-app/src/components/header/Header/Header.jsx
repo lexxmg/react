@@ -1,5 +1,6 @@
 
 import s from './style.module.css';
+import noFoto from '../../../assets/images/images.jpeg';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
@@ -13,10 +14,14 @@ const Header = (props) => {
 
         <div className={s.login_container}>
           {
-            (props.isAuth && props.autch.authProfile.userId)?
+            (props.isAuth) ?
             <div className={s.login_container_inner}>
               <div className={s.images}>
-                <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/>
+                {
+                  props.autch.profile && props.autch.authProfile.photos.small ?
+                  <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/> :
+                  <img src={noFoto} alt="моя-фотка" className={s.images__img}/>
+                }
               </div>
 
               <NavLink to={'/prof/' + props.autch.id}>

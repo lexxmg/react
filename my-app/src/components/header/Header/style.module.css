@@ -19,7 +19,7 @@
 }
 
 .img {
-
+  display: block;
 }
 
 .login_container {
@@ -48,7 +48,9 @@
 }
 
 .images__img {
+  display: block;
 
+  border-radius: 70px;
 }
 
 .user_name {
