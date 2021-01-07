@@ -29,6 +29,28 @@
   padding: 0 10px;
 }
 
+.login_container_inner {
+  display: flex;
+  align-items: center;
+}
+
+.images {
+  height: 40px;
+  width: 40px;
+
+  margin: 0 20px 0 0;
+
+  border: 1px solid #000;
+  border-radius: 70px;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.images__img {
+
+}
+
 .user_name {
 
 }

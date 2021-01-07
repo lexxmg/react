@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './Header/Header';
 import * as axios from 'axios';
 import { connect } from 'react-redux';
-import { setUserData } from '../../redux/auth-reducer';
+import { setUserData, setAuthProfile } from '../../redux/auth-reducer';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
@@ -13,10 +13,15 @@ class HeaderContainer extends React.Component {
         if (res.data.resultCode === 0) {
           const {id, email, login} = res.data.data;
           this.props.setUserData(id, email, login);
-          return id;
+          //return id;
+
+          axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + id, {withCredentials: true})
+            .then(res => {
+              this.props.setAuthProfile(res.data);
+            })
         }
       })
-      .then(id => console.log(id))
+      //.then(id => console.log(id))
   }
 
   render() {
@@ -34,4 +39,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setUserData})(HeaderContainer);
+export default connect(mapStateToProps, {setUserData, setAuthProfile})(HeaderContainer);

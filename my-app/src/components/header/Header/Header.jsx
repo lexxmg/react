@@ -13,10 +13,16 @@ const Header = (props) => {
 
         <div className={s.login_container}>
           {
-            props.isAuth ?
-            <NavLink to={'/prof/' + props.autch.id}>
-              <span className={s.user_name}>{props.autch.login}</span>
-            </NavLink> :
+            (props.isAuth && props.autch.authProfile.userId)?
+            <div className={s.login_container_inner}>
+              <div className={s.images}>
+                <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/>
+              </div>
+
+              <NavLink to={'/prof/' + props.autch.id}>
+                <span className={s.user_name}>{props.autch.login}</span>
+              </NavLink>
+            </div>:
 
             <NavLink to="/login">
               <button className={s.login_btn}>Войти</button>

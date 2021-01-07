@@ -1,5 +1,6 @@
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = 'SET_USER_DATA',
+      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
 
 export const setUserData = (id, email, login) => {
   return {
@@ -12,7 +13,12 @@ export const setUserData = (id, email, login) => {
   }
 }
 
+export const setAuthProfile = (profile) => {
+  return {type: SET_AUTH_PROFILE, profile}
+}
+
 const initialState = {
+  authProfile: {},
   id: null,
   email: null,
   login: null,
@@ -23,6 +29,8 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
       return {...state, ...action.data, isAuth: true};
+    case SET_AUTH_PROFILE:
+      return {...state, authProfile: {...action.profile}};
     default:
       return state;
   }
