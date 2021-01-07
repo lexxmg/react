@@ -4,7 +4,7 @@ import Top from './top/Top';
 import User from './user/User';
 import UserPost from './userPost/AddPost';
 import Post from './post/Post';
-import * as axios from 'axios';
+import { getProfileApi } from '../../api/api';
 import {
         actionCreatorAddPost,
         actionCreatorSetValuePost,
@@ -26,13 +26,15 @@ class MainContainer extends React.Component {
     //this.props.togglePreload(true);
     let userId = this.props.match.params.userId;
 
-    if (!userId) { userId = this.props.autch || 2};
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-      .then( (res) => {
-        //console.log(res.data);
-        this.props.setUsersProfile(res.data);
-        // this.props.togglePreload(false);
-      });
+    if (!userId) {
+      userId = this.props.autch || 2
+    };
+
+    getProfileApi(userId).then( data => {
+      //console.log(res.data);
+      this.props.setUsersProfile(data);
+      // this.props.togglePreload(false);
+    });
   }
 
   render() {

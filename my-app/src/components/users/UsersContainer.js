@@ -3,28 +3,24 @@ import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
 import { follow, unFollow, setUsers, setCurrentPage, setStartPage, togglePreload } from '../../redux/users-reducer';
-import * as axios from 'axios';
+import { getUsersApi } from '../../api/api';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.togglePreload(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.userCount}`,
-      {withCredentials: true}
-    )
-      .then( (res) => {
-        this.props.setUsers(res.data.items, res.data.totalCount);
-        this.props.togglePreload(false);
-      });
+
+    getUsersApi(this.props.currentPage, this.props.userCount).then( data => {
+      this.props.setUsers(data.items, data.totalCount);
+      this.props.togglePreload(false);
+    });
   }
 
   getUsers = (pages) => {
     this.props.togglePreload(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pages}&count=${this.props.userCount}`,
-      {withCredentials: true}
-    )
-      .then( (res) => {
-        this.props.setUsers(res.data.items, res.data.totalCount);
-        this.props.togglePreload(false);
+
+    getUsersApi(pages, this.props.userCount).then( data => {
+      this.props.setUsers(data.items, data.totalCount);
+      this.props.togglePreload(false);
     });
 
     this.props.setCurrentPage(pages);
