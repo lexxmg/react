@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import noFoto from '../../../assets/images/images.jpeg';
 import './users.css';
-import * as axios from 'axios';
+import { followAPI } from '../../../api/api';
 
 const Users = (props) => {
   const  { photos, followed, name, lastName,
@@ -24,13 +24,8 @@ const Users = (props) => {
             <button
               className="user-card__btn"
               onClick={() => {
-                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-                  {
-                    withCredentials: true,
-                    headers: {"API-KEY": "bc973d19-d75d-4ead-a819-8d63c27b31bc"}
-                  }
-                ).then( (res) => {
-                    if (res.data.resultCode === 0) {
+                followAPI.unfollow(id).then( data => {
+                    if (data.resultCode === 0) {
                       unFollow(id);
                     }
                   });
@@ -41,16 +36,11 @@ const Users = (props) => {
             <button
               className="user-card__btn"
               onClick={() => {
-                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
-                  {
-                    withCredentials: true,
-                    headers: {"API-KEY": "bc973d19-d75d-4ead-a819-8d63c27b31bc"}
+                followAPI.follow(id).then( data => {
+                  if (data.resultCode === 0) {
+                    follow(id);
                   }
-                ).then( (res) => {
-                    if (res.data.resultCode === 0) {
-                      follow(id);
-                    }
-                  });
+                });
               }
               }>Подписаться
             </button>

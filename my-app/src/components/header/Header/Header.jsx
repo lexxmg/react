@@ -4,7 +4,7 @@ import noFoto from '../../../assets/images/images.jpeg';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
-  console.log(props.autch);
+  //console.log(props.autch);
   return (
     <header className={s.header}>
       <div className={s.inner}>
