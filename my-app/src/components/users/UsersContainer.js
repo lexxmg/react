@@ -3,13 +3,13 @@ import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
 import { follow, unFollow, setUsers, setCurrentPage, setStartPage, togglePreload } from '../../redux/users-reducer';
-import { getUsersApi } from '../../api/api';
+import { usersAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.togglePreload(true);
 
-    getUsersApi(this.props.currentPage, this.props.userCount).then( data => {
+    usersAPI.getUsers(this.props.currentPage, this.props.userCount).then( data => {
       this.props.setUsers(data.items, data.totalCount);
       this.props.togglePreload(false);
     });
@@ -18,7 +18,7 @@ class UsersContainer extends React.Component {
   getUsers = (pages) => {
     this.props.togglePreload(true);
 
-    getUsersApi(pages, this.props.userCount).then( data => {
+    usersAPI.getUsers(pages, this.props.userCount).then( data => {
       this.props.setUsers(data.items, data.totalCount);
       this.props.togglePreload(false);
     });

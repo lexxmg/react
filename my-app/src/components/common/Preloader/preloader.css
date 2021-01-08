@@ -12,10 +12,23 @@
 }
 
 .preloader__image {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
+
+  border-radius: 70px;
+
+  object-fit: cover;
+  object-position: center;
 }
 
 .preloader__img {
+  display: block;
 
+  width: 80px;
+  height: 70px;
+
+  border-radius: 70px;
+
+  object-fit: cover;
+  object-position: center;
 }
