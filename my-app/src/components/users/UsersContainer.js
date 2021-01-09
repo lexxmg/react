@@ -39,6 +39,7 @@ class UsersContainer extends React.Component {
   render() {
     return (
       <UserWrrapper
+        followingInProgress={this.props.followingInProgress}
         startPage={this.props.startPage}
         userCount={this.props.userCount}
         currentPage={this.props.currentPage}
@@ -59,7 +60,8 @@ const mapStateToProps = (state) => {
     usersAllCount: state.users.usersAllCount,
     currentPage: state.users.currentPage,
     startPage: state.users.startPage,
-    preload: state.users.preload
+    preload: state.users.preload,
+    followingInProgress: state.users.followingInProgress
   }
 }
 

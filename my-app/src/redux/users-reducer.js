@@ -44,7 +44,8 @@ const initialState =  {
   userCount: 5,
   usersAllCount: 0,
   currentPage: 1,
-  preload: false
+  preload: false,
+  followingInProgress: [1, 3, 2]
 }
 
 const usersReducer =  (state = initialState, action) => {

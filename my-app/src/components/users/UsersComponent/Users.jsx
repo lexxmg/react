@@ -8,7 +8,7 @@ import { followAPI } from '../../../api/api';
 const Users = (props) => {
   const  { photos, followed, name, lastName,
           status, city, country, follow,
-          unFollow, id } = props;
+          unFollow, id, followingInProgress } = props;
 
   return (
     <div className="user-card">
@@ -22,6 +22,7 @@ const Users = (props) => {
         {
           followed ?
             <button
+              disabled={followingInProgress.some(Uid => Uid === 2)}
               className="user-card__btn"
               onClick={() => {
                 followAPI.unfollow(id).then( data => {
@@ -35,6 +36,7 @@ const Users = (props) => {
 
             <button
               className="user-card__btn"
+              disabled={followingInProgress.some(Uid => Uid === 2)}
               onClick={() => {
                 followAPI.follow(id).then( data => {
                   if (data.resultCode === 0) {

@@ -69,6 +69,7 @@ const UserWrrapper = (props) => {
                 city={'user.location.city'}
                 country={'user.location.country'}
                 id={user.id}
+                followingInProgress={props.followingInProgress}
                 follow={props.follow}
                 unFollow={props.unFollow}
               />
