@@ -2,7 +2,7 @@
 import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
-import { follow, unFollow, setUsers, setCurrentPage, setStartPage, togglePreload } from '../../redux/users-reducer';
+import { follow, unFollow, setUsers, setCurrentPage, setStartPage, togglePreload, toggleIsFolllowingProgress } from '../../redux/users-reducer';
 import { usersAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
@@ -40,6 +40,7 @@ class UsersContainer extends React.Component {
     return (
       <UserWrrapper
         followingInProgress={this.props.followingInProgress}
+        toggleIsFolllowingProgress={this.props.toggleIsFolllowingProgress}
         startPage={this.props.startPage}
         userCount={this.props.userCount}
         currentPage={this.props.currentPage}
@@ -71,7 +72,8 @@ const mapDispatchToProps = {
   setUsers,
   setCurrentPage,
   setStartPage,
-  togglePreload
+  togglePreload,
+  toggleIsFolllowingProgress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

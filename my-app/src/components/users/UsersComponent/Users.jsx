@@ -8,8 +8,8 @@ import { followAPI } from '../../../api/api';
 const Users = (props) => {
   const  { photos, followed, name, lastName,
           status, city, country, follow,
-          unFollow, id, followingInProgress } = props;
-
+          unFollow, id, followingInProgress, toggleIsFolllowingProgress } = props;
+console.log(followingInProgress);
   return (
     <div className="user-card">
       <div className="user-card__img-container">
@@ -22,13 +22,15 @@ const Users = (props) => {
         {
           followed ?
             <button
-              disabled={followingInProgress.some(Uid => Uid === 2)}
+              disabled={followingInProgress.some(Uid => Uid === id)}
               className="user-card__btn"
               onClick={() => {
+                toggleIsFolllowingProgress(id, true);
                 followAPI.unfollow(id).then( data => {
                     if (data.resultCode === 0) {
                       unFollow(id);
                     }
+                    toggleIsFolllowingProgress(id, false);
                   });
                 }
               }>Отписаться
@@ -36,12 +38,14 @@ const Users = (props) => {
 
             <button
               className="user-card__btn"
-              disabled={followingInProgress.some(Uid => Uid === 2)}
+              disabled={followingInProgress.some(Uid => Uid === id)}
               onClick={() => {
+                toggleIsFolllowingProgress(id, true);
                 followAPI.follow(id).then( data => {
                   if (data.resultCode === 0) {
                     follow(id);
                   }
+                  toggleIsFolllowingProgress(id, false);
                 });
               }
               }>Подписаться

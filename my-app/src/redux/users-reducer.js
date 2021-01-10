@@ -5,7 +5,8 @@ const FOLLOW = 'FOLLOW',
       SET_USERS = 'SET_USERS',
       SET_CURENT_PAGE = 'SET_CURENT_PAGE',
       SET_START_PAGE = 'SET_START_PAGE',
-      TOGGLE_PRELOADER = 'TOGGLE_PRELOADER';
+      TOGGLE_PRELOADER = 'TOGGLE_PRELOADER',
+      TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
 export const follow = (id) => {
@@ -14,6 +15,12 @@ export const follow = (id) => {
 
 export const unFollow = (id) => {
   return {type: UNFOLLOW, id};
+}
+
+export const toggleIsFolllowingProgress = (id, isFetching) => {
+  return {
+    type: TOGGLE_IS_FOLLOWING_PROGRESS, id, isFetching
+  }
 }
 
 export const showMore = (count) => {
@@ -45,7 +52,7 @@ const initialState =  {
   usersAllCount: 0,
   currentPage: 1,
   preload: false,
-  followingInProgress: [1, 3, 2]
+  followingInProgress: []
 }
 
 const usersReducer =  (state = initialState, action) => {
@@ -80,6 +87,13 @@ const usersReducer =  (state = initialState, action) => {
       return {...state, startPage: action.page};
     case TOGGLE_PRELOADER:
       return {...state, preload: action.load};
+    case TOGGLE_IS_FOLLOWING_PROGRESS:
+      return {
+        ...state,
+        followingInProgress: action.isFetching
+          ? [...state.followingInProgress, action.id]
+          : state.followingInProgress.filter(id => id !== action.id)
+      }
     default:
       return state;
   }
