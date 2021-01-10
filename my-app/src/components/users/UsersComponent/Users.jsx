@@ -22,7 +22,7 @@ console.log(followingInProgress);
         {
           followed ?
             <button
-              disabled={followingInProgress.some(Uid => Uid === id)}
+              disabled={followingInProgress.some(userId => userId === id)}
               className="user-card__btn"
               onClick={() => {
                 toggleIsFolllowingProgress(id, true);
@@ -38,7 +38,7 @@ console.log(followingInProgress);
 
             <button
               className="user-card__btn"
-              disabled={followingInProgress.some(Uid => Uid === id)}
+              disabled={followingInProgress.some(userId => userId === id)}
               onClick={() => {
                 toggleIsFolllowingProgress(id, true);
                 followAPI.follow(id).then( data => {
