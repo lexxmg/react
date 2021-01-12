@@ -3,13 +3,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import noFoto from '../../../assets/images/images.jpeg';
 import './users.css';
-import { followAPI } from '../../../api/api';
 
 const Users = (props) => {
   const  { photos, followed, name, lastName,
           status, city, country, follow,
-          unFollow, id, followingInProgress, toggleIsFolllowingProgress } = props;
-console.log(followingInProgress);
+          unFollow, id, followingInProgress, } = props;
+
   return (
     <div className="user-card">
       <div className="user-card__img-container">
@@ -24,31 +23,13 @@ console.log(followingInProgress);
             <button
               disabled={followingInProgress.some(userId => userId === id)}
               className="user-card__btn"
-              onClick={() => {
-                toggleIsFolllowingProgress(id, true);
-                followAPI.unfollow(id).then( data => {
-                    if (data.resultCode === 0) {
-                      unFollow(id);
-                    }
-                    toggleIsFolllowingProgress(id, false);
-                  });
-                }
-              }>Отписаться
+              onClick={() => { unFollow(id) }}>Отписаться
             </button> :
 
             <button
               className="user-card__btn"
               disabled={followingInProgress.some(userId => userId === id)}
-              onClick={() => {
-                toggleIsFolllowingProgress(id, true);
-                followAPI.follow(id).then( data => {
-                  if (data.resultCode === 0) {
-                    follow(id);
-                  }
-                  toggleIsFolllowingProgress(id, false);
-                });
-              }
-              }>Подписаться
+              onClick={() => { follow(id) }}>Подписаться
             </button>
         }
       </div>

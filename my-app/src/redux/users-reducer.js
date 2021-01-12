@@ -1,4 +1,6 @@
 
+import { usersAPI, followAPI } from '../api/api';
+
 const FOLLOW = 'FOLLOW',
       UNFOLLOW = 'UNFOLLOW',
       SHOW_MORE = 'SHOW_MORE',
@@ -17,7 +19,7 @@ export const unFollow = (id) => {
   return {type: UNFOLLOW, id};
 }
 
-export const toggleIsFolllowingProgress = (id, isFetching) => {
+export const toggleIsFollowingProgress = (id, isFetching) => {
   return {
     type: TOGGLE_IS_FOLLOWING_PROGRESS, id, isFetching
   }
@@ -41,6 +43,43 @@ export const setUsers = (users, count) => {
 
 export const togglePreload = (load) => {
   return {type: TOGGLE_PRELOADER, load};
+}
+
+export const getUsersThunk = (currentPage, userCount) => {
+  return (dispatch) => {
+    dispatch( togglePreload(true) );
+    usersAPI.getUsers(currentPage, userCount)
+      .then(data => {
+        dispatch( setUsers(data.items, data.totalCount) );
+        dispatch( togglePreload(false) );
+      })
+    }
+}
+
+export const followThunk = (userId) => {
+  return (dispatch) => {
+    dispatch( toggleIsFollowingProgress(userId, true) );
+
+    followAPI.follow(userId).then( data => {
+      if (data.resultCode === 0) {
+        dispatch( follow(userId) );
+      }
+      dispatch( toggleIsFollowingProgress(userId, false) );
+    })
+  }
+}
+
+export const unfollowThunk = (userId) => {
+  return (dispatch) => {
+    dispatch( toggleIsFollowingProgress(userId, true) );
+
+    followAPI.unfollow(userId).then( data => {
+      if (data.resultCode === 0) {
+        dispatch( unFollow(userId) );
+      }
+      dispatch( toggleIsFollowingProgress(userId, false) );
+    })
+  }
 }
 
 

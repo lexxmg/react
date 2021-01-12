@@ -2,26 +2,15 @@
 import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
-import { follow, unFollow, setUsers, setCurrentPage, setStartPage, togglePreload, toggleIsFolllowingProgress } from '../../redux/users-reducer';
-import { usersAPI } from '../../api/api';
+import { followThunk, unfollowThunk, setCurrentPage, setStartPage, getUsersThunk } from '../../redux/users-reducer';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.togglePreload(true);
-
-    usersAPI.getUsers(this.props.currentPage, this.props.userCount).then( data => {
-      this.props.setUsers(data.items, data.totalCount);
-      this.props.togglePreload(false);
-    });
-  }
+    this.props.getUsersThunk(this.props.currentPage, this.props.userCount);
+  }Thunk
 
   getUsers = (pages) => {
-    this.props.togglePreload(true);
-
-    usersAPI.getUsers(pages, this.props.userCount).then( data => {
-      this.props.setUsers(data.items, data.totalCount);
-      this.props.togglePreload(false);
-    });
+    this.props.getUsersThunk(pages, this.props.userCount);
 
     this.props.setCurrentPage(pages);
 
@@ -40,13 +29,12 @@ class UsersContainer extends React.Component {
     return (
       <UserWrrapper
         followingInProgress={this.props.followingInProgress}
-        toggleIsFolllowingProgress={this.props.toggleIsFolllowingProgress}
         startPage={this.props.startPage}
         userCount={this.props.userCount}
         currentPage={this.props.currentPage}
         users={this.props.users}
-        follow={this.props.follow}
-        unFollow={this.props.unFollow}
+        follow={this.props.followThunk}
+        unFollow={this.props.unfollowThunk}
         getUsers={this.getUsers}
         preload={this.props.preload}
       />
@@ -67,13 +55,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  follow,
-  unFollow,
-  setUsers,
+  followThunk,
+  unfollowThunk,
   setCurrentPage,
   setStartPage,
-  togglePreload,
-  toggleIsFolllowingProgress
+  getUsersThunk
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
