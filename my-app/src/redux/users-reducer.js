@@ -46,7 +46,6 @@ export const togglePreload = (load) => {
 
 const initialState =  {
   users: [],
-  followed: false,
   startPage: 1,
   userCount: 5,
   usersAllCount: 0,
