@@ -1,3 +1,6 @@
+
+import { profileAPI } from '../api/api';
+
 const ADD_POST = 'ADD-POST',
       SET_VALUE_POST = 'SET-VALUE-POST',
       GET_FOCUS_POST = 'GET-FOCUS-POST',
@@ -17,6 +20,14 @@ export const actionCreatorGetFocusPost = () => {
 
 export const setUsersProfile = (profile) => {
   return {type: SET_USER_PROFILE, profile};
+}
+
+export const getProfile = (userId) => {
+  return (dispatch) => {
+    profileAPI.getProfile(userId).then(data => {
+      dispatch( setUsersProfile(data) );
+    })
+  }
 }
 
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';

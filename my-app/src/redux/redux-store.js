@@ -1,3 +1,4 @@
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import dialogsReducer from './dialogs-reducer';

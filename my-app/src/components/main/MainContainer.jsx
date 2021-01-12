@@ -4,12 +4,12 @@ import Top from './top/Top';
 import User from './user/User';
 import UserPost from './userPost/AddPost';
 import Post from './post/Post';
-import { profileAPI } from '../../api/api';
+//import { profileAPI } from '../../api/api';
 import {
         actionCreatorAddPost,
         actionCreatorSetValuePost,
         actionCreatorGetFocusPost,
-        setUsersProfile
+        getProfile
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -28,13 +28,9 @@ class MainContainer extends React.Component {
 
     if (!userId) {
       userId = this.props.autch || 2
-    };
-
-    profileAPI.getProfile(userId).then( data => {
-      //console.log(res.data);
-      this.props.setUsersProfile(data);
-      // this.props.togglePreload(false);
-    });
+    }
+    
+    this.props.getProfile(userId);
   }
 
   render() {
@@ -86,8 +82,8 @@ const mapDispatchToProps = (dispatch) => {
     focus: () => {
       dispatch( actionCreatorGetFocusPost() );
     },
-    setUsersProfile: (profile) => {
-      dispatch(setUsersProfile(profile));
+    getProfile: (userId) => {
+      dispatch(getProfile(userId));
     }
   }
 }
