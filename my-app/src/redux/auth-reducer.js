@@ -30,10 +30,16 @@ export const getAuthUser = () => {
       }
     })
     .then(id => {
-      profileAPI.getProfile(id).then(data => {
-        dispatch(setAuthProfile(data));
-      })
+      return profileAPI.getProfile(id);
     })
+    .then(data => {
+      dispatch(setAuthProfile(data));
+    })
+    // .then(id => {
+    //   profileAPI.getProfile(id).then(data => {
+    //     dispatch(setAuthProfile(data));
+    //   })
+    // })
   }
 }
 
