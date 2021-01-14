@@ -1,4 +1,6 @@
 
+import { authAPI, profileAPI } from '../api/api';
+
 const SET_USER_DATA = 'SET_USER_DATA',
       SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
 
@@ -15,6 +17,24 @@ export const setUserData = (id, email, login) => {
 
 export const setAuthProfile = (profile) => {
   return {type: SET_AUTH_PROFILE, profile}
+}
+
+export const getAuthUser = () => {
+  return (dispatch) => {
+    authAPI.getAuthUser()
+    .then(data => {
+      if (data.resultCode === 0) {
+        const {id, email, login} = data.data;
+        dispatch(setUserData(id, email, login));
+        return id;
+      }
+    })
+    .then(id => {
+      profileAPI.getProfile(id).then(data => {
+        dispatch(setAuthProfile(data));
+      })
+    })
+  }
 }
 
 const initialState = {

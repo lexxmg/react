@@ -1,6 +1,7 @@
 
 import s from './user.module.css';
 import Preload from '../../common/Preloader/Preloader';
+import noFoto from '../../../assets/images/images.jpeg';
 
 // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnkXX1msb3FcwUKdveOb4VJ_8dlsezqUlqEQ&usqp=CAU
 
@@ -14,7 +15,7 @@ const User = ({ profile, photos, fullName, aboutMe }) => {
   return (
     <div className={s.user}>
       <div className={s.image}>
-        <img src={photos.small} alt="дрын" className={s.img}/>
+        <img src={photos.small ? photos.small : noFoto} alt="дрын" className={s.img}/>
       </div>
 
       <div className={s.info}>
