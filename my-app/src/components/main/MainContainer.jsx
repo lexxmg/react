@@ -12,7 +12,7 @@ import {
         getProfile
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 // const postsMap = posts.map((obj) => {
 //   return (
@@ -29,11 +29,15 @@ class MainContainer extends React.Component {
     if (!userId) {
       userId = this.props.autch || 2
     }
-    
+
     this.props.getProfile(userId);
   }
 
   render() {
+    if (!this.props.isAuth) {
+      return <Redirect to="/login" />
+    }
+
     return (
       <div className="">
         <Top />
@@ -63,7 +67,8 @@ const mapStateToProps = (state) => {
     textValue: state.prof.valuePost,
     posts: state.prof.posts,
     profile: state.prof.profile,
-    autch: state.autch.id
+    autch: state.autch.id,
+    isAuth: state.autch.isAuth
   }
 }
 
