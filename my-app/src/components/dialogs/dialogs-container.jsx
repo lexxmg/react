@@ -8,14 +8,10 @@ import {
   actionCreatorGetFocusMessege
 } from '../../redux/dialogs-reducer';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { WithAuthRedirect } from '../../hoc/AuthRedirect';
 
 
 let DialogsContainer = (props) => {
-  if(!props.isAuth) {
-      return <Redirect to="/login" />
-  }
-
   return (
     <div className="doalogs">
       <h2 className="dialogs__title">Диалоги</h2>
@@ -61,8 +57,7 @@ const mapStateToProps = (state) => {
   return {
     userData: state.dialogs.userData,
     userDialog: state.dialogs.userDialog,
-    valueMessage: state.dialogs.valueMessage,
-    isAuth: state.autch.isAuth
+    valueMessage: state.dialogs.valueMessage
   }
 }
 
@@ -84,6 +79,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);
+DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithAuthRedirect(DialogsContainer));
 
 export default DialogsContainer;

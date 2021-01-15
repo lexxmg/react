@@ -12,7 +12,8 @@ import {
         getProfile
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { WithAuthRedirect } from '../../hoc/AuthRedirect'
 
 // const postsMap = posts.map((obj) => {
 //   return (
@@ -34,10 +35,6 @@ class MainContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuth) {
-      return <Redirect to="/login" />
-    }
-
     return (
       <div className="">
         <Top />
@@ -67,8 +64,7 @@ const mapStateToProps = (state) => {
     textValue: state.prof.valuePost,
     posts: state.prof.posts,
     profile: state.prof.profile,
-    autch: state.autch.id,
-    isAuth: state.autch.isAuth
+    autch: state.autch.id
   }
 }
 
@@ -93,6 +89,28 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+
+
+// const hoc = (Component) => {
+//   let Wrapper = (props) => {
+//     if (!props.isAuth) {
+//       return <Redirect to="/login" />
+//     }
+//     return <Component {...props} />
+//   }
+//   const mapStateToProps = (state) => {
+//     return {isAuth: state.autch.isAuth}
+//   }
+//
+//   return connect(mapStateToProps)(Wrapper);
+// }
+
+//const hocComponent = hoc(MainContainer);
+
+
+
 const WithUrlDataContainerComponent = withRouter(MainContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent);
+const WithAuth = WithAuthRedirect(WithUrlDataContainerComponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithAuth);
