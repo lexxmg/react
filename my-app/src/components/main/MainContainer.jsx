@@ -12,6 +12,7 @@ import {
         getProfile
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect'
 
@@ -89,28 +90,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
-
-// const hoc = (Component) => {
-//   let Wrapper = (props) => {
-//     if (!props.isAuth) {
-//       return <Redirect to="/login" />
-//     }
-//     return <Component {...props} />
-//   }
-//   const mapStateToProps = (state) => {
-//     return {isAuth: state.autch.isAuth}
-//   }
-//
-//   return connect(mapStateToProps)(Wrapper);
-// }
-
-//const hocComponent = hoc(MainContainer);
-
-
-
-const WithUrlDataContainerComponent = withRouter(MainContainer);
-
-const WithAuth = WithAuthRedirect(WithUrlDataContainerComponent);
-
-export default connect(mapStateToProps, mapDispatchToProps)(WithAuth);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  WithAuthRedirect
+)(MainContainer);

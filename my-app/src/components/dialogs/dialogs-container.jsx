@@ -7,6 +7,7 @@ import {
   actionCreatorSetValueMessage,
   actionCreatorGetFocusMessege
 } from '../../redux/dialogs-reducer';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect';
 
@@ -79,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithAuthRedirect(DialogsContainer));
-
-export default DialogsContainer;
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  WithAuthRedirect
+)(DialogsContainer);
