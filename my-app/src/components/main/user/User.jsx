@@ -13,11 +13,19 @@ class User extends React.Component {
     //{ profile, photos, fullName, aboutMe } = this.props;
     this.state = {
       status: 'какой то статус',
-      edit: false
+      edit: false,
+      inputValue: ''
     };
 
     this.editOn = this.editOn.bind(this);
     this.editOff = this.editOff.bind(this);
+  }
+
+  setValue(event) {
+    event.preventDefault();
+    const value = event.target.value;
+
+    this.setState({inputValue: value});
   }
 
   editOn() {
@@ -25,7 +33,11 @@ class User extends React.Component {
   }
 
   editOff() {
-    this.setState({edit: false});
+    const status = this.state.inputValue;
+    this.setState({
+      edit: false,
+      status: status
+    });
   }
 
   render() {
@@ -43,7 +55,12 @@ class User extends React.Component {
           <div className={s.wrapper_staus}>
             {
               this.state.edit
-              ? <input type="text" className={s.wrapper_staus__input} value={this.state.status} onBlur={this.editOff}/>
+              ? <input type="text"
+                  className={s.wrapper_staus__input}
+                  value={this.state.inputValue}
+                  onBlur={this.editOff}
+                  onChange={(event) => this.setValue(event)}
+                />
               : <span className={s.wrapper_staus__text} onClick={this.editOn}>{this.state.status}</span>
             }
           </div>
