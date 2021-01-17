@@ -2,10 +2,6 @@
   display: flex;
 }
 
-.wrapper_image {
-
-}
-
 .image {
   width: 200px;
   height: 200px;
@@ -18,18 +14,6 @@
   height: 100%;
 
   object-fit: cover;
-}
-
-.wrapper_staus {
-  margin: 5px 0 0 0;
-}
-
-.wrapper_staus__text {
-
-}
-
-.wrapper_staus__input {
-
 }
 
 .info {

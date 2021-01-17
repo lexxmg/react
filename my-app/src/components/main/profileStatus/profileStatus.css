@@ -1,0 +1,17 @@
+.profileStatus {
+  margin: 5px 0 0 0;
+}
+
+.profileStatus__input {
+  width: 200px;
+
+  padding: 0 5px;
+
+  border: 0;
+
+  outline: none;
+}
+
+.profileStatus__status {
+  padding: 0 5px;
+}

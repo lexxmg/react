@@ -4,6 +4,7 @@ import Top from './top/Top';
 import User from './user/User';
 import UserPost from './userPost/AddPost';
 import Post from './post/Post';
+import ProfileStatus from './profileStatus/ProfileStatus';
 //import { profileAPI } from '../../api/api';
 import {
         actionCreatorAddPost,
@@ -40,6 +41,8 @@ class MainContainer extends React.Component {
       <div className="">
         <Top />
         <User {...this.props.profile} profile={this.props.profile}/>
+
+        <ProfileStatus />
 
         <UserPost
           addPost={this.props.addPost}
