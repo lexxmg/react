@@ -1,6 +1,6 @@
 
 import './preloader.css';
-import preload from '../../../assets/images/DIqU.gif';
+//import preload from '../../../assets/images/DIqU.gif';
 import preloadBall from '../../../assets/images/preloader.gif';
 
 const Preload = (props) => {

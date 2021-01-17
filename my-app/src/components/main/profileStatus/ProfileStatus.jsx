@@ -7,24 +7,41 @@ class ProfileStatus extends React.Component {
     super(props);
 
     this.state = {
-      edit: false,
+      select: true,
+      editMode: false,
       status: 'Статус',
       inputValue: ''
     }
   }
 
-  editOn = () => {
+  componentDidUpdate() {
+    const input = document.querySelector('.profileStatus__input');
+
+    if (input) {
+      console.log(input);
+      if (this.state.select) {
+        input.focus();
+        input.select();
+        this.setState({
+          select: false
+        })  
+      }
+    }
+  }
+
+  activateEditMode = () => {
     this.setState({
-      edit: true
+      editMode: true
     });
   }
 
-  editOff = () => {
+  deactivateEditMode = () => {
     const status = this.state.inputValue;
 
     this.setState({
-      edit: false,
-      status: status
+      editMode: false,
+      status: status,
+      select: true
     });
   }
 
@@ -41,15 +58,15 @@ class ProfileStatus extends React.Component {
     return (
       <div className="profileStatus">
         {
-          this.state.edit
+          this.state.editMode
           ? <input type="text"
               className="profileStatus__input"
               value={this.state.inputValue}
               onChange={(event) => this.setValue(event)}
-              onBlur={this.editOff}
+              onBlur={this.deactivateEditMode}
           />
           : <span className="profileStatus__status"
-              onClick={this.editOn}
+              onClick={this.activateEditMode}
             >{this.state.status}
           </span>
         }
