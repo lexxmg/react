@@ -9,22 +9,22 @@ class ProfileStatus extends React.Component {
     this.state = {
       select: true,
       editMode: false,
-      status: 'Статус',
+      status: this.props.userStatus || 'Нет статуса',
       inputValue: ''
     }
   }
 
   componentDidUpdate() {
     const input = document.querySelector('.profileStatus__input');
-
+    
     if (input) {
-      console.log(input);
+      //console.log(input);
       if (this.state.select) {
         input.focus();
         input.select();
         this.setState({
           select: false
-        })  
+        })
       }
     }
   }
@@ -43,6 +43,8 @@ class ProfileStatus extends React.Component {
       status: status,
       select: true
     });
+
+    this.props.updateUserStatus(status);
   }
 
   setValue(event) {
