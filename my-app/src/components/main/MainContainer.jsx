@@ -40,7 +40,6 @@ class MainContainer extends React.Component {
   }
 
   render() {
-  debugger;
     return (
       <div className="">
         <Top />
@@ -110,5 +109,5 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
-  //WithAuthRedirect
+  WithAuthRedirect
 )(MainContainer);

@@ -9,14 +9,13 @@ class ProfileStatus extends React.Component {
     this.state = {
       select: true,
       editMode: false,
-      status: this.props.userStatus || 'Нет статуса',
       inputValue: ''
     }
   }
 
   componentDidUpdate() {
     const input = document.querySelector('.profileStatus__input');
-    
+
     if (input) {
       //console.log(input);
       if (this.state.select) {
@@ -27,6 +26,7 @@ class ProfileStatus extends React.Component {
         })
       }
     }
+    this.state.inputValue = this.props.userStatus;
   }
 
   activateEditMode = () => {
@@ -35,12 +35,11 @@ class ProfileStatus extends React.Component {
     });
   }
 
-  deactivateEditMode = () => {
-    const status = this.state.inputValue;
+  deactivateEditMode = (event) => {
+    const status = event.target.value;
 
     this.setState({
       editMode: false,
-      status: status,
       select: true
     });
 
@@ -69,7 +68,7 @@ class ProfileStatus extends React.Component {
           />
           : <span className="profileStatus__status"
               onClick={this.activateEditMode}
-            >{this.state.status}
+            >{this.props.userStatus || 'Нет статуса'}
           </span>
         }
       </div>
