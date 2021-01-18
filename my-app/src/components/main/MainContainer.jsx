@@ -48,6 +48,8 @@ class MainContainer extends React.Component {
         <ProfileStatus
           userStatus={this.props.userStatus}
           updateUserStatus={this.props.updateUserStatus}
+          currentProfile={this.props.profile}
+          authId={this.props.autch}
         />
 
         <UserPost
