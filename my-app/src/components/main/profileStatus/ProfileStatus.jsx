@@ -13,7 +13,9 @@ class ProfileStatus extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevStste) {
+    // console.log(prevProps.userStatus + 'prevProps');
+    // console.log(this.props.userStatus + 'props');
     const input = document.querySelector('.profileStatus__input');
 
     if (input) {
@@ -26,7 +28,11 @@ class ProfileStatus extends React.Component {
         })
       }
     }
-    this.state.inputValue = this.props.userStatus;
+    if (prevProps.userStatus !== this.props.userStatus) {
+      this.setState({
+        inputValue: this.props.userStatus
+      });
+    }
   }
 
   activateEditMode = () => {
