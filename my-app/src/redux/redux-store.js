@@ -1,5 +1,6 @@
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import dialogsReducer from './dialogs-reducer';
 import profReducer from './prof-reducer';
@@ -11,7 +12,8 @@ const reducers = combineReducers({
   dialogs: dialogsReducer,
   prof: profReducer,
   users: usersReducer,
-  autch: authReducer
+  autch: authReducer,
+  form: formReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

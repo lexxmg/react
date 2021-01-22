@@ -1,5 +1,7 @@
 
 import './login-form.css';
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 const LoginForm = (props) => {
   return (
@@ -22,4 +24,4 @@ const LoginForm = (props) => {
   )
 }
 
-export default LoginForm;
+export default reduxForm({ form: 'formLogin' })(LoginForm);

@@ -18,7 +18,6 @@ function App(props) {
   // const prof = props.state.prof,
   //       dialogs = props.state.dialogs,
   //       dispatch = props.state.dispatch;
-
   return (
     <div className="wrapper fixed-container">
       <HeaderContainer />
