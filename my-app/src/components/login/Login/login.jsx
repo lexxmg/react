@@ -8,7 +8,7 @@ const Login = (props) => {
       <h2 className="login__title">Логин</h2>
 
       <div className="login-form__wrapper">
-        <LoginForm />
+        <LoginForm classPosition="login__login-form" />
       </div>
     </div>
   )

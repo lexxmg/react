@@ -7,7 +7,9 @@
 }
 
 .login-form__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+}
+
+.login__login-form {
+  margin: 100px auto 0;
 }

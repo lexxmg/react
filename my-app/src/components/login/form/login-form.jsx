@@ -3,7 +3,7 @@ import './login-form.css';
 
 const LoginForm = (props) => {
   return (
-    <form className="login-form">
+    <form className={`login-form ${props.classPosition}`}>
       <div className="login-form__input-wrapper">
         <input className="login-form__input" name="email" type="text" placeholder="email"/>
       </div>
