@@ -9,40 +9,49 @@ class ProfileStatus extends React.Component {
     this.state = {
       select: true,
       editMode: false,
-      status: 'Статус',
       inputValue: ''
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevStste) {
+    // console.log(prevProps.userStatus + 'prevProps');
+    // console.log(this.props.userStatus + 'props');
     const input = document.querySelector('.profileStatus__input');
 
     if (input) {
-      console.log(input);
+      //console.log(input);
       if (this.state.select) {
         input.focus();
         input.select();
         this.setState({
           select: false
-        })  
+        })
       }
+    }
+    if (prevProps.userStatus !== this.props.userStatus) {
+      this.setState({
+        inputValue: this.props.userStatus
+      });
     }
   }
 
   activateEditMode = () => {
-    this.setState({
-      editMode: true
-    });
+    if ( this.props.currentProfile.userId === this.props.authId ) {
+      this.setState({
+        editMode: true
+      });
+    }
   }
 
-  deactivateEditMode = () => {
-    const status = this.state.inputValue;
+  deactivateEditMode = (event) => {
+    const status = event.target.value;
 
     this.setState({
       editMode: false,
-      status: status,
       select: true
     });
+
+    this.props.updateUserStatus(status);
   }
 
   setValue(event) {
@@ -67,7 +76,7 @@ class ProfileStatus extends React.Component {
           />
           : <span className="profileStatus__status"
               onClick={this.activateEditMode}
-            >{this.state.status}
+            >{this.props.userStatus || 'Нет статуса'}
           </span>
         }
       </div>

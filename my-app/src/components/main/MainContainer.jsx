@@ -10,7 +10,9 @@ import {
         actionCreatorAddPost,
         actionCreatorSetValuePost,
         actionCreatorGetFocusPost,
-        getProfile
+        getProfile,
+        getUserStatus,
+        updateUserStatus
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -34,6 +36,7 @@ class MainContainer extends React.Component {
     }
 
     this.props.getProfile(userId);
+    this.props.getUserStatus(userId);
   }
 
   render() {
@@ -42,7 +45,12 @@ class MainContainer extends React.Component {
         <Top />
         <User {...this.props.profile} profile={this.props.profile}/>
 
-        <ProfileStatus />
+        <ProfileStatus
+          userStatus={this.props.userStatus}
+          updateUserStatus={this.props.updateUserStatus}
+          currentProfile={this.props.profile}
+          authId={this.props.autch}
+        />
 
         <UserPost
           addPost={this.props.addPost}
@@ -68,6 +76,7 @@ const mapStateToProps = (state) => {
     textValue: state.prof.valuePost,
     posts: state.prof.posts,
     profile: state.prof.profile,
+    userStatus: state.prof.userStatus,
     autch: state.autch.id
   }
 }
@@ -89,6 +98,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     getProfile: (userId) => {
       dispatch(getProfile(userId));
+    },
+    getUserStatus: (userId) => {
+      dispatch(getUserStatus(userId));
+    },
+    updateUserStatus: (status) => {
+      dispatch(updateUserStatus(status));
     }
   }
 }

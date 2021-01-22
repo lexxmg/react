@@ -20,6 +20,12 @@ export const usersAPI = {
 export const profileAPI = {
   getProfile(userId) {
     return instance.get(`profile/${userId}`).then(res => res.data);
+  },
+  getUserStatus(userId) {
+    return instance.get('/profile/status/' + userId).then(res => res.data);
+  },
+  updateUserStatus(status) {
+    return instance.put('/profile/status', {status: status}).then(res => res.data);
   }
 }
 
