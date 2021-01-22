@@ -14,24 +14,26 @@ const Header = (props) => {
 
         <div className={s.login_container}>
           {
-            (props.isAuth) ?
-            <div className={s.login_container_inner}>
-              <div className={s.images}>
-                {
-                  props.autch.profile && props.autch.authProfile.photos.small ?
-                  <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/> :
-                  <img src={noFoto} alt="моя-фотка" className={s.images__img}/>
-                }
+            (props.isAuth)
+            ? <div className={s.login_container_inner}>
+                <div className={s.images}>
+                  {
+                    props.autch.profile && props.autch.authProfile.photos.small ?
+                    <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/> :
+                    <img src={noFoto} alt="моя-фотка" className={s.images__img}/>
+                  }
+                </div>
+
+                <NavLink to={'/prof/' + props.autch.id}>
+                  <span className={s.user_name}>{props.autch.login}</span>
+                </NavLink>
+
+                <button onClick={props.userLogout}>logout</button>
               </div>
 
-              <NavLink to={'/prof/' + props.autch.id}>
-                <span className={s.user_name}>{props.autch.login}</span>
+            : <NavLink to="/login">
+                <button className={s.login_btn}>Войти</button>
               </NavLink>
-            </div>:
-
-            <NavLink to="/login">
-              <button className={s.login_btn}>Войти</button>
-            </NavLink>
           }
         </div>
       </div>
