@@ -7,7 +7,9 @@ const Login = (props) => {
     <div className="login">
       <h2 className="login__title">Логин</h2>
 
-      <LoginForm />
+      <div className="login-form__wrapper">
+        <LoginForm />
+      </div>
     </div>
   )
 }
