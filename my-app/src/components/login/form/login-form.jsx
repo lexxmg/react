@@ -7,15 +7,15 @@ const LoginForm = (props) => {
   return (
     <form className={`login-form ${props.classPosition}`}>
       <div className="login-form__input-wrapper">
-        <input className="login-form__input" name="email" type="text" placeholder="email"/>
+        <Field className="login-form__input" name="email" component="input" type="text" placeholder="email"/>
       </div>
 
       <div className="login-form__input-wrapper">
-        <input className="login-form__input" name="pass" type="text" placeholder="pass"/>
+        <Field className="login-form__input" name="pass" component="input" type="text" placeholder="pass"/>
       </div>
 
       <div className="login-form__input-wrapper">
-        <input className="login-form__input" name="loginCeck" id="check"type="checkbox" />
+        <Field className="login-form__input" name="loginCeck" component="input" id="check" type="checkbox" />
         <label htmlFor="check" className="login-form__label">Запомнить?</label>
       </div>
 

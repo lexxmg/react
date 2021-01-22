@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Header from './Header/Header';
-import { profileAPI, authAPI } from '../../api/api';
+//import { profileAPI, authAPI } from '../../api/api';
 import { connect } from 'react-redux';
 import { getAuthUser, userLogout } from '../../redux/auth-reducer';
 
