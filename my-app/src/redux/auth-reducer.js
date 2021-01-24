@@ -25,8 +25,8 @@ export const setUserLogin = () => {
   return {type: USER_LOGIN}
 }
 
-export const setUserLogout = () => {
-  return {type: USER_LOGOUT}
+export const setUserLogout = (userId) => {
+  return {type: USER_LOGOUT, userId}
 }
 
 export const getAuthUser = () => {
@@ -68,7 +68,7 @@ export const getUserLogin = (email, password, rememberMe, captcha) => {
     authAPI.userLogin(email, password, rememberMe, captcha).then(data => {
       console.log(data);
       if (data.resultCode === 0) {
-        dispatch(setUserLogin());
+        dispatch(setUserLogin(data.data.userId));
         dispatch(getAuthUser());
       }
     })
@@ -91,7 +91,7 @@ const authReducer = (state = initialState, action) => {
     case SET_AUTH_PROFILE:
       return {...state, authProfile: {...action.profile}, profile: true};
     case USER_LOGIN:
-      return {...state, isAuth: true}
+      return {...state, isAuth: true, id: action.iserId}
     case USER_LOGOUT:
       return {...state, isAuth: false}
     default:
