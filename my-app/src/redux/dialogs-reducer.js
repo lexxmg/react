@@ -1,5 +1,5 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
 
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 export const sendMessage = (text) => {
   return {type: SEND_MESSAGE, message: text};
