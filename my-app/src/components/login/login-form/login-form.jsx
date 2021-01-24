@@ -11,7 +11,7 @@ const validate = (res) => {
 
 const LoginForm = (props) => {
   return (
-    <Form onSubmit={props.setForm} validate={validate} render={({ handleSubmit }) => {
+    <Form onSubmit={props.getUserLogin} validate={validate} render={({ handleSubmit }) => {
         return (
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form__input-wrapper">
