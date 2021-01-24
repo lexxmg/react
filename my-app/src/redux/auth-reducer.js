@@ -63,6 +63,18 @@ export const getUserLogout = () => {
   }
 }
 
+export const getUserLogin = (email, password, rememberMe, captcha) => {
+  return (dispatch) => {
+    authAPI.userLogin(email, password, rememberMe, captcha).then(data => {
+      console.log(data);
+      if (data.resultCode === 0) {
+        dispatch(setUserLogin());
+        dispatch(getAuthUser());
+      }
+    })
+  }
+}
+
 const initialState = {
   authProfile: {},
   profile: false,
