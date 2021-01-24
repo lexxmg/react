@@ -1,12 +1,9 @@
+
 import './dialogs.css';
 import UserList from './userList/UserList';
 import UserDialog from './userDialog/UserDialog';
 import SendMessage from './sendMessage/SendMessage';
-import {
-  actionCreatorSendMessage,
-  actionCreatorSetValueMessage,
-  actionCreatorGetFocusMessege
-} from '../../redux/dialogs-reducer';
+import { sendMessage } from '../../redux/dialogs-reducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect';
@@ -42,12 +39,7 @@ let DialogsContainer = (props) => {
             })
           }
 
-          <SendMessage
-            valueMessage={props.valueMessage}
-            sendMessage={props.sendMessage}
-            setValue={props.setValue}
-            focus={props.focus}
-          />
+          <SendMessage sendMessage={props.sendMessage} />
         </div>
       </div>
     </div>
@@ -58,29 +50,18 @@ const mapStateToProps = (state) => {
   return {
     userData: state.dialogs.userData,
     userDialog: state.dialogs.userDialog,
-    valueMessage: state.dialogs.valueMessage
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispathToProps = (dispatch) => {
   return {
-    sendMessage: (e) => {
-      e.preventDefault();
-
-      const text = e.target.text.value;
-      dispatch( actionCreatorSendMessage(text) );
-    },
-    setValue: (e) => {
-      const text = e.target.value;
-      dispatch( actionCreatorSetValueMessage(text) );
-    },
-    focus: () => {
-      dispatch( actionCreatorGetFocusMessege() );
+    sendMessage: (formData) => {
+      dispatch(sendMessage(formData.text))
     }
   }
 }
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, mapDispathToProps),
   WithAuthRedirect
 )(DialogsContainer);

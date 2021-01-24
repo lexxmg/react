@@ -1,18 +1,8 @@
-const SEND_MESSAGE = 'SEND-MESSAGE',
-      SET_VALUE_MESSAGE = 'SET-VALUE-MESSAGE',
-      GET_FOCUS_MESSAGE = 'GET-FOCUS-MESSAGE';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 
-export const actionCreatorSendMessage = (text) => {
+export const sendMessage = (text) => {
   return {type: SEND_MESSAGE, message: text};
-}
-
-export const actionCreatorSetValueMessage = (text) => {
-  return {type: SET_VALUE_MESSAGE, message: text};
-}
-
-export const actionCreatorGetFocusMessege = () => {
-  return {type: GET_FOCUS_MESSAGE};
 }
 
 
@@ -32,8 +22,7 @@ const initialState =  {
     {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '5'},
     {name: 'Вася', avatar: '', post: 'qwetwerhr', id: '6'},
     {name: 'Петя', avatar: '', post: 'qwetwerhr', id: '7'}
-  ],
-  valueMessage: 'Новое сообщение'
+  ]
 }
 
 const dialogsReducer =  (state = initialState, action) => {
@@ -42,11 +31,7 @@ const dialogsReducer =  (state = initialState, action) => {
       const id = (+new Date() + 1).toString(16);
       const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
 
-      return {...state, userDialog: [...state.userDialog, obj], valueMessage: ''};
-    case  SET_VALUE_MESSAGE:
-      return {...state, valueMessage: action.message};
-    case GET_FOCUS_MESSAGE:
-      return {...state, valueMessage: ''};
+      return {...state, userDialog: [...state.userDialog, obj]};
     default:
       return state;
   }
