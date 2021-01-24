@@ -2,7 +2,9 @@
 import { authAPI, profileAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA',
-      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
+      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE',
+      USER_LOGIN = 'USER_LOGIN',
+      USER_LOGOUT = 'USER_LOGOUT';
 
 export const setUserData = (id, email, login) => {
   return {
@@ -17,6 +19,14 @@ export const setUserData = (id, email, login) => {
 
 export const setAuthProfile = (profile) => {
   return {type: SET_AUTH_PROFILE, profile}
+}
+
+export const setUserLogin = () => {
+  return {type: USER_LOGIN}
+}
+
+export const setUserLogout = () => {
+  return {type: USER_LOGOUT}
 }
 
 export const getAuthUser = () => {
@@ -43,6 +53,16 @@ export const getAuthUser = () => {
   }
 }
 
+export const getUserLogout = () => {
+  return (dispatch) => {
+    authAPI.userLogout().then(data => {
+      if (data.resultCode === 0) {
+        dispatch(setUserLogout());
+      }
+    })
+  }
+}
+
 const initialState = {
   authProfile: {},
   profile: false,
@@ -58,6 +78,10 @@ const authReducer = (state = initialState, action) => {
       return {...state, ...action.data, isAuth: true};
     case SET_AUTH_PROFILE:
       return {...state, authProfile: {...action.profile}, profile: true};
+    case USER_LOGIN:
+      return {...state, isAuth: true}
+    case USER_LOGOUT:
+      return {...state, isAuth: false}
     default:
       return state;
   }

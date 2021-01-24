@@ -27,6 +27,8 @@ const Header = (props) => {
               <NavLink to={'/prof/' + props.autch.id}>
                 <span className={s.user_name}>{props.autch.login}</span>
               </NavLink>
+
+              <button style={{marginLeft: '10px'}} onClick={props.getUserLogout}>выйти</button>
             </div>:
 
             <NavLink to="/login">

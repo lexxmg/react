@@ -10,7 +10,7 @@ import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
 import UsersContainer from './components/users/UsersContainer';
-import Login from './components/login/Login/login';
+import LoginContainer from './components/login/LoginContainer';
 
 //<Route exact path="/" component={MainContainer} />
 
@@ -41,7 +41,7 @@ function App(props) {
          <Route path="/music" component={Music} />
          <Route path="/users" component={UsersContainer} />
          <Route path="/setting" component={Settings} />
-         <Route path="/login" component={Login} />
+         <Route path="/login" component={LoginContainer} />
       </main>
       <Footer name="lexxmg" />
     </div>

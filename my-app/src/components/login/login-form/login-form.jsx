@@ -2,17 +2,16 @@
 import './login-form.css';
 import { Form, Field } from 'react-final-form';
 
-const onSubmit = (res) => {
-  console.log(res);
-}
 
 const validate = (res) => {
+  console.log('__________validate_________');
   console.log(res);
+  console.log('___________________________');
 }
 
 const LoginForm = (props) => {
   return (
-    <Form onSubmit={onSubmit} validate={validate} render={({ handleSubmit }) => {
+    <Form onSubmit={props.setForm} validate={validate} render={({ handleSubmit }) => {
         return (
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form__input-wrapper">
