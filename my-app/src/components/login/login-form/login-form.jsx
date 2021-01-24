@@ -4,9 +4,9 @@ import { Form, Field } from 'react-final-form';
 
 
 const validate = (res) => {
-  console.log('__________validate_________');
-  console.log(res);
-  console.log('___________________________');
+  // console.log('__________validate_________');
+  // console.log(res);
+  // console.log('___________________________');
 }
 
 const LoginForm = (props) => {

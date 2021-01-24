@@ -1,5 +1,7 @@
+
 import React from 'react';
 import s from './userPost.module.css';
+import { Form, Field } from 'react-final-form';
 
 
 const UserPost = (props) => {
@@ -7,16 +9,19 @@ const UserPost = (props) => {
     <div className={s.post}>
       <h2 className={s.post__title}>My posts</h2>
 
-      <form className={s.post__form} onSubmit={ props.addPost }>
-        <textarea name="text" className={s.post__textarea}
-          onChange={ props.setValuePost }
-          value={ props.textValue }
-          onFocus={ props.focus }
-          >
-        </textarea>
+      <Form onSubmit={props.addPost} render={({ handleSubmit }) => {
+        return (
+          <form className={s.post__form} onSubmit={handleSubmit}>
+            <Field
+              className={s.post__textarea}
+              name="text"
+              component="textarea"
+              />
 
-        <button className={s.post__btn}>send</button>
-      </form>
+            <button className={s.post__btn}>send</button>
+          </form>
+        )
+      }}/>
     </div>
   );
 }

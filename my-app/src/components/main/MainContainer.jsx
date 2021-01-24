@@ -8,8 +8,6 @@ import ProfileStatus from './profileStatus/ProfileStatus';
 //import { profileAPI } from '../../api/api';
 import {
         actionCreatorAddPost,
-        actionCreatorSetValuePost,
-        actionCreatorGetFocusPost,
         getProfile,
         getUserStatus,
         updateUserStatus
@@ -52,12 +50,7 @@ class MainContainer extends React.Component {
           authId={this.props.autch}
         />
 
-        <UserPost
-          addPost={this.props.addPost}
-          setValuePost={this.props.setValuePost}
-          textValue={this.props.textValue}
-          focus={this.props.focus}
-        />
+        <UserPost addPost={this.props.addPost} />
 
         {
           this.props.posts.map((obj) => {
@@ -73,7 +66,6 @@ class MainContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    textValue: state.prof.valuePost,
     posts: state.prof.posts,
     profile: state.prof.profile,
     userStatus: state.prof.userStatus,
@@ -83,18 +75,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPost: (event) => {
-      event.preventDefault();
-
-      const text = event.target.text.value;
-      dispatch(actionCreatorAddPost(text));
-    },
-    setValuePost: (e) => {
-      const text = e.target.value;
-      dispatch(actionCreatorSetValuePost(text));
-    },
-    focus: () => {
-      dispatch( actionCreatorGetFocusPost() );
+    addPost: (formData) => {
+      //console.log(formData.text);
+      dispatch(actionCreatorAddPost(formData.text));
     },
     getProfile: (userId) => {
       dispatch(getProfile(userId));
