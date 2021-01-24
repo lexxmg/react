@@ -7,7 +7,7 @@ import { followThunk, unfollowThunk, setCurrentPage, setStartPage, getUsersThunk
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.getUsersThunk(this.props.currentPage, this.props.userCount);
-  }Thunk
+  }
 
   getUsers = (pages) => {
     this.props.getUsersThunk(pages, this.props.userCount);
