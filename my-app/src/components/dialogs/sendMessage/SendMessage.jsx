@@ -3,16 +3,20 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import './send.css';
 
+const Textarea = (props) => {
+  const { input, meta } = props;
+
+  return (
+    <textarea className="dialogs-send__text" {...input}></textarea>
+  )
+}
+
 const FormSendMessage = (props) => {
   return (
     <Form onSubmit={props.sendMessage} render={({ handleSubmit }) => {
       return (
         <form className="dialogs-send__form" onSubmit={ handleSubmit }>
-          <Field
-            className="dialogs-send__text" name="text"
-            component="textarea"
-            cols="30" wrap="hard"
-          />
+          <Field name="text" component={Textarea} />
 
           <button className="dialogs-send__btn"></button>
         </form>

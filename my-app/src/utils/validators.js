@@ -1,4 +1,12 @@
 
+export const composeValidators = (...validators) => {
+  return value => {
+    return validators.reduce((error, validator) => {
+      return error || validator(value)
+    }, undefined);
+  }
+}
+
 export const maxLength = (max) => (value) => {
   if (value && value.length > max) {
     return `Максимальное колличество ${max} символа`;
