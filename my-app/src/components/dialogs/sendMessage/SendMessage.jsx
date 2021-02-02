@@ -2,21 +2,26 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 import './send.css';
-
-const Textarea = (props) => {
-  const { input, meta } = props;
-
-  return (
-    <textarea className="dialogs-send__text" {...input}></textarea>
-  )
-}
+import { Textarea } from '../../common/FormsControls/FormsElement';
+import { maxLength, composeValidators } from '../../../utils/validators';
+// const Textarea = (props) => {
+//   const { input, meta } = props;
+//
+//   return (
+//     <textarea className="dialogs-send__text" {...input}></textarea>
+//   )
+// }
 
 const FormSendMessage = (props) => {
   return (
     <Form onSubmit={props.sendMessage} render={({ handleSubmit }) => {
       return (
         <form className="dialogs-send__form" onSubmit={ handleSubmit }>
-          <Field name="text" component={Textarea} />
+          <Field
+            className="dialogs-send__text"
+            name="text" validate={composeValidators(maxLength(5))}
+            component={Textarea}
+          />
 
           <button className="dialogs-send__btn"></button>
         </form>

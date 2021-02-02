@@ -1,3 +1,4 @@
+
 import s from './post.module.css';
 
 const Post = (props) => {
