@@ -3,7 +3,7 @@ import React from 'react';
 import s from './userPost.module.css';
 import { Form, Field } from 'react-final-form';
 import { maxLength, required, composeValidators } from '../../../utils/validators';
-import { Textarea } from '../../common/FormsControls/FormsElement';
+import { Textarea } from '../../common/FormsControls/Textarea/Textarea';
 
 
 // const Textarea = (props) => {

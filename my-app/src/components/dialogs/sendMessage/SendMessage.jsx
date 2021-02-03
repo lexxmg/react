@@ -2,7 +2,7 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 import './send.css';
-import { Textarea } from '../../common/FormsControls/FormsElement';
+import { Textarea } from '../../common/FormsControls/Textarea/Textarea';
 import { maxLength, composeValidators } from '../../../utils/validators';
 // const Textarea = (props) => {
 //   const { input, meta } = props;

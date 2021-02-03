@@ -1,0 +1,28 @@
+
+.textarea {
+  display: block;
+}
+
+.textarea__wrapper {
+  position: relative;
+
+  display: block;
+}
+
+.textarea__wrapper--err {
+  border: 2px solid red;
+}
+
+.textarea__span {
+  position: absolute;
+  top: -32px;
+  left: 17px;
+
+  padding: 3px;
+
+  background: tomato;
+
+  border-radius: 5px;
+
+  color: white;
+}
