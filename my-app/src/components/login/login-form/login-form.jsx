@@ -1,6 +1,8 @@
 
 import './login-form.css';
 import { Form, Field } from 'react-final-form';
+import { Input } from '../../common/FormsControls/Input/Input';
+import { required } from '../../../utils/validators';
 
 
 const validate = (res) => {
@@ -15,11 +17,24 @@ const LoginForm = (props) => {
         return (
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form__input-wrapper">
-              <Field className="login-form__input" name="email" type="text" component="input" placeholder="имя" />
+              <Field
+                className="login-form__input"
+                name="email"
+                type="text"
+                component={Input}
+                validate={required}
+                placeholder="имя"
+              />
             </div>
 
             <div className="login-form__input-wrapper">
-              <Field className="login-form__input" name="pass" type="text" component="input" placeholder="пароль" />
+              <Field
+                className="login-form__input"
+                name="pass"
+                type="text"
+                component={Input}
+                validate={required}
+                placeholder="пароль" />
             </div>
 
             <div className="login-form__input-wrapper">

@@ -1,0 +1,16 @@
+
+.form-input {
+
+}
+
+.form-input__input {
+  outline: none;
+}
+
+.form-input__input--err {
+  border: 1px solid red;
+}
+
+.form-input__text {
+
+}

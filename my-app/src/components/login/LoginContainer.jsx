@@ -23,6 +23,7 @@ class LoginContainer extends React.Component {
 const mapDispathToProps = (dispatch) => {
   return {
     getUserLogin: (formData) => {
+      console.log(formData);
       const {email, pass, check, captcha} = formData;
       dispatch( getUserLogin(email, pass, check, captcha) );
     }
