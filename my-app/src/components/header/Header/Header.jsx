@@ -18,9 +18,9 @@ const Header = (props) => {
             <div className={s.login_container_inner}>
               <div className={s.images}>
                 {
-                  props.autch.profile && props.autch.authProfile.photos.small ?
-                  <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/> :
-                  <img src={noFoto} alt="моя-фотка" className={s.images__img}/>
+                  props.autch.profile && props.autch.authProfile.photos.small
+                  ? <img src={props.autch.authProfile.photos.small} alt="моя-фотка" className={s.images__img}/>
+                  : <img src={noFoto} alt="моя-фотка" className={s.images__img}/>
                 }
               </div>
 
