@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { connect } from 'react-redux'
-import { getUserLogin } from '../../redux/auth-reducer'
-import Login from './Login/login'
+import { connect } from 'react-redux';
+import { getUserLogin } from '../../redux/auth-reducer';
+import Login from './Login/login';
+import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends React.Component {
 
@@ -14,9 +15,19 @@ class LoginContainer extends React.Component {
   // }
 
   render() {
+    if (this.props.isAuth) {
+      return <Redirect to="/prof" />
+    }
+
     return (
       <Login getUserLogin={this.props.getUserLogin} />
     )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.autch.isAuth
   }
 }
 
@@ -30,4 +41,4 @@ const mapDispathToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispathToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispathToProps)(LoginContainer);

@@ -31,7 +31,7 @@ const LoginForm = (props) => {
               <Field
                 className="login-form__input"
                 name="pass"
-                type="text"
+                type="password"
                 component={Input}
                 validate={required}
                 placeholder="пароль" />
