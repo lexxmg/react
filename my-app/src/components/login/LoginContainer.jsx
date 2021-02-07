@@ -20,14 +20,15 @@ class LoginContainer extends React.Component {
     }
 
     return (
-      <Login getUserLogin={this.props.getUserLogin} />
+      <Login getUserLogin={this.props.getUserLogin} serverError={this.props.serverError} />
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.autch.isAuth
+    isAuth: state.autch.isAuth,
+    serverError: state.autch.serverError
   }
 }
 

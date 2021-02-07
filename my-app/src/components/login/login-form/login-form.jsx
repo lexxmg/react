@@ -43,6 +43,7 @@ const LoginForm = (props) => {
             </div>
 
             <button type="submit">Submit</button>
+            {props.serverError && <span>{props.serverError[0]}</span>}
           </form>
         )
       }}

@@ -2,7 +2,8 @@
 import { authAPI, profileAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA',
-      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
+      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE',
+      SET_SERVER_ERROR = 'SET_SERVER_ERROR';
       // USER_LOGIN = 'USER_LOGIN',
       // USER_LOGOUT = 'USER_LOGOUT';
 
@@ -72,9 +73,15 @@ export const getUserLogin = (email, password, rememberMe, captcha) => {
       if (data.resultCode === 0) {
         //dispatch(setUserLogin(data.data.userId));
         dispatch(getAuthUser());
+      } else {
+        dispatch(setServerError(data.messages));
       }
     })
   }
+}
+
+const setServerError = (err) => {
+  return {type: 'SET_SERVER_ERROR', err }
 }
 
 const initialState = {
@@ -83,15 +90,18 @@ const initialState = {
   id: null,
   email: null,
   login: null,
-  isAuth: false
+  isAuth: false,
+  serverError: undefined
 }
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
-      return {...state, ...action.data};
+      return {...state, ...action.data, serverError: undefined};
     case SET_AUTH_PROFILE:
        return {...state, authProfile: {...action.profile}, profile: action.isProfile};
+    case SET_SERVER_ERROR:
+       return {...state, serverError: [...action.err]}
     // case USER_LOGIN:
     //   return {...state, isAuth: true, id: action.iserId}
     // case USER_LOGOUT:
