@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUserLogin } from '../../redux/auth-reducer';
 import Login from './Login/login';
 import { Redirect } from 'react-router-dom';
+import { FORM_ERROR } from 'final-form';
 
 class LoginContainer extends React.Component {
 
@@ -33,10 +34,14 @@ const mapStateToProps = (state) => {
 
 const mapDispathToProps = (dispatch) => {
   return {
-    getUserLogin: (formData) => {
+    getUserLogin: async (formData) => {
       console.log(formData);
       const {email, pass, check, captcha} = formData;
-      dispatch( getUserLogin(email, pass, check, captcha) );
+      const p = getUserLogin(email, pass, check, captcha)//.then(() => console.log('err'))
+      await p(dispatch)//.then(() => console.log('err'))
+      return { [FORM_ERROR]: 'submit error' };
+      console.log(p);
+      //dispatch( getUserLogin(email, pass, check, captcha) );
     }
   }
 }

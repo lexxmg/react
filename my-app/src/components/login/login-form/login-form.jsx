@@ -13,7 +13,7 @@ const validate = (res) => {
 
 const LoginForm = (props) => {
   return (
-    <Form onSubmit={props.getUserLogin} validate={validate} render={({ handleSubmit }) => {
+    <Form onSubmit={props.getUserLogin} validate={validate} render={({ handleSubmit, submitError }) => {
         return (
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form__input-wrapper">
@@ -43,6 +43,7 @@ const LoginForm = (props) => {
             </div>
 
             <button type="submit">Submit</button>
+            <span>{submitError}</span>
           </form>
         )
       }}

@@ -1,5 +1,6 @@
 
 import { authAPI, profileAPI } from '../api/api';
+import { FORM_ERROR } from 'final-form';
 
 const SET_USER_DATA = 'SET_USER_DATA',
       SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
@@ -72,6 +73,8 @@ export const getUserLogin = (email, password, rememberMe, captcha) => {
       if (data.resultCode === 0) {
         //dispatch(setUserLogin(data.data.userId));
         dispatch(getAuthUser());
+      } else {
+        return { [FORM_ERROR]: 'submit error' };
       }
     })
   }
