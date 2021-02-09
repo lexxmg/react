@@ -34,14 +34,14 @@ const mapStateToProps = (state) => {
 
 const mapDispathToProps = (dispatch) => {
   return {
-    getUserLogin: async (formData) => {
+    getUserLogin: (formData) => {
       console.log(formData);
       const {email, pass, check, captcha} = formData;
-      const p = getUserLogin(email, pass, check, captcha)//.then(() => console.log('err'))
-      await p(dispatch)//.then(() => console.log('err'))
-      return { [FORM_ERROR]: 'submit error' };
-      console.log(p);
-      //dispatch( getUserLogin(email, pass, check, captcha) );
+      //console.log( getUserLogin(email, pass, check, captcha) )
+      // console.log('p');
+      // return { [FORM_ERROR]: 'submit error' };
+
+      dispatch( getUserLogin(email, pass, check, captcha) );
     }
   }
 }

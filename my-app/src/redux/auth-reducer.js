@@ -2,6 +2,7 @@
 import { authAPI, profileAPI } from '../api/api';
 import { FORM_ERROR } from 'final-form';
 
+
 const SET_USER_DATA = 'SET_USER_DATA',
       SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
       // USER_LOGIN = 'USER_LOGIN',
@@ -69,12 +70,12 @@ export const getUserLogout = () => {
 export const getUserLogin = (email, password, rememberMe, captcha) => {
   return (dispatch) => {
     authAPI.userLogin(email, password, rememberMe, captcha).then(data => {
-      console.log(data);
+      //console.log(data);
       if (data.resultCode === 0) {
         //dispatch(setUserLogin(data.data.userId));
         dispatch(getAuthUser());
       } else {
-        return { [FORM_ERROR]: 'submit error' };
+        return { [FORM_ERROR]: 'test' }
       }
     })
   }

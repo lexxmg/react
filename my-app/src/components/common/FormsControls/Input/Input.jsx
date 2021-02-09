@@ -2,7 +2,8 @@
 import './inputForm.css';
 
 export const Input = ({meta, input, ...props}) => {
-  console.log(props);
+  //console.log(props);
+  //console.log(meta);
   return (
     <div className="form-input">
       <input {...input} {...props}
