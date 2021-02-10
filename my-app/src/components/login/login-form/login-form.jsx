@@ -44,6 +44,7 @@ const LoginForm = (props) => {
 
             <button type="submit" disabled={invalid}>Submit</button>
             <span>{submitError}</span>
+            <span>{props.isError}</span>
           </form>
         )
       }}

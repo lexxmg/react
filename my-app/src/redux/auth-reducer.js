@@ -1,10 +1,11 @@
 
 import { authAPI, profileAPI } from '../api/api';
-import { FORM_ERROR } from 'final-form';
+//import { FORM_ERROR } from 'final-form';
 
 
 const SET_USER_DATA = 'SET_USER_DATA',
-      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
+      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE',
+      SET_SERVER_ERRORS = 'SET_SERVER_ERRORS';
       // USER_LOGIN = 'USER_LOGIN',
       // USER_LOGOUT = 'USER_LOGOUT';
 
@@ -67,15 +68,23 @@ export const getUserLogout = () => {
   }
 }
 
+const setServerErrors = (error) => {
+  return {
+    type: SET_SERVER_ERRORS,
+    error
+  }
+}
+
 export const getUserLogin = (email, password, rememberMe, captcha) => {
   return (dispatch) => {
     authAPI.userLogin(email, password, rememberMe, captcha).then(data => {
-      //console.log(data);
+      console.log(data);
       if (data.resultCode === 0) {
         //dispatch(setUserLogin(data.data.userId));
         dispatch(getAuthUser());
       } else {
-        return { [FORM_ERROR]: 'test' }
+        console.log(data.messages);
+        dispatch(setServerErrors(data.messages));
       }
     })
   }
@@ -87,7 +96,8 @@ const initialState = {
   id: null,
   email: null,
   login: null,
-  isAuth: false
+  isAuth: false,
+  errors: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -95,7 +105,9 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {...state, ...action.data};
     case SET_AUTH_PROFILE:
-       return {...state, authProfile: {...action.profile}, profile: action.isProfile};
+      return {...state, authProfile: {...action.profile}, profile: action.isProfile, errors: null};
+    case SET_SERVER_ERRORS:
+      return {...state, errors: [...action.error]};
     // case USER_LOGIN:
     //   return {...state, isAuth: true, id: action.iserId}
     // case USER_LOGOUT:

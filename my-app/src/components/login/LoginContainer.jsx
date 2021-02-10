@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getUserLogin } from '../../redux/auth-reducer';
 import Login from './Login/login';
 import { Redirect } from 'react-router-dom';
-import { FORM_ERROR } from 'final-form';
+//import { FORM_ERROR } from 'final-form';
 
 class LoginContainer extends React.Component {
 
@@ -21,14 +21,15 @@ class LoginContainer extends React.Component {
     }
 
     return (
-      <Login getUserLogin={this.props.getUserLogin} />
+      <Login getUserLogin={this.props.getUserLogin} isError={this.props.isError}/>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.autch.isAuth
+    isAuth: state.autch.isAuth,
+    isError: state.autch.errors
   }
 }
 
