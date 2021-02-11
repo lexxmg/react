@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getUserLogin } from '../../redux/auth-reducer';
 import Login from './Login/login';
 import { Redirect } from 'react-router-dom';
-//import { FORM_ERROR } from 'final-form';
+import { FORM_ERROR } from 'final-form';
 
 class LoginContainer extends React.Component {
 
@@ -42,7 +42,8 @@ const mapDispathToProps = (dispatch) => {
       // console.log('p');
       // return { [FORM_ERROR]: 'submit error' };
 
-      dispatch( getUserLogin(email, pass, check, captcha) );
+      return dispatch( getUserLogin(email, pass, check, captcha) )
+        .then((err) => ({[FORM_ERROR]: err}));
     }
   }
 }

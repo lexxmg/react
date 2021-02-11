@@ -42,9 +42,8 @@ const LoginForm = (props) => {
               <label htmlFor="check" className="login-form__label">Запомнить?</label>
             </div>
 
-            <button type="submit" disabled={invalid}>Submit</button>
+            <button type="submit" disabled={false}>Submit</button>
             <span>{submitError}</span>
-            <span>{props.isError}</span>
           </form>
         )
       }}
