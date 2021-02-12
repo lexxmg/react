@@ -4,16 +4,9 @@ import { Form, Field } from 'react-final-form';
 import { Input } from '../../common/FormsControls/Input/Input';
 import { required } from '../../../utils/validators';
 
-
-const validate = (res) => {
-  // console.log('__________validate_________');
-  // console.log(res);
-  // console.log('___________________________');
-}
-
 const LoginForm = (props) => {
   return (
-    <Form onSubmit={props.getUserLogin} validate={validate} render={({ handleSubmit, submitError, invalid }) => {
+    <Form onSubmit={props.getUserLogin} render={({ handleSubmit, submitError, invalid }) => {
         return (
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form__input-wrapper">
@@ -34,7 +27,8 @@ const LoginForm = (props) => {
                 type="password"
                 component={Input}
                 validate={required}
-                placeholder="пароль" />
+                placeholder="пароль"
+              />
             </div>
 
             <div className="login-form__input-wrapper">

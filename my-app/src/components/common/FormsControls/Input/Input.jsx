@@ -7,13 +7,13 @@ export const Input = ({meta, input, ...props}) => {
   return (
     <div className="form-input">
       <input {...input} {...props}
-        className={ (meta.error && meta.touched)
+        className={ (meta.touched && meta.error)
                     ? props.className + " " + "form-input__input form-input__input--err"
                     : props.className + " " + "form-input__input"
                   }
       />
       {
-        (meta.error && meta.touched)
+        (meta.touched && meta.error)
         ? <span className="form-input__text">{meta.error}</span>
         : ''
       }

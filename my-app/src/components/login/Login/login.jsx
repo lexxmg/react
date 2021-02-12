@@ -7,7 +7,7 @@ const Login = (props) => {
     <div className="login">
       <h2 className="login__title">Логин</h2>
 
-      <LoginForm getUserLogin={props.getUserLogin} isError={props.isError} />
+      <LoginForm getUserLogin={props.getUserLogin} />
     </div>
   )
 }
