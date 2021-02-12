@@ -14,19 +14,26 @@ import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
 import UsersContainer from './components/users/UsersContainer';
 import LoginContainer from './components/login/LoginContainer';
-import { getAuthUser } from './redux/auth-reducer';
+//import { getAuthUser } from './redux/auth-reducer';
+import { initializeApp } from './redux/app-reducer';
+import Preloader from './components/common/Preloader/Preloader'
 
 //<Route exact path="/" component={MainContainer} />
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getAuthUser();
+    //this.props.getAuthUser();
+    this.props.initializeApp();
   }
   // const prof = props.state.prof,
   //       dialogs = props.state.dialogs,
   //       dispatch = props.state.dispatch;
 
   render() {
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
+
     return (
       <div className="wrapper fixed-container">
         <HeaderContainer />
@@ -57,7 +64,13 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    initialized: state.app.initialized
+  }
+}
+
 export default compose(
-  connect(null, {getAuthUser}),
+  connect(mapStateToProps, {initializeApp}),
   withRouter
 )(App);

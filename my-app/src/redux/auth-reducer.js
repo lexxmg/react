@@ -34,7 +34,7 @@ export const setAuthProfile = (profile, isProfile) => {
 
 export const getAuthUser = () => {
   return (dispatch) => {
-    authAPI.getAuthUser()
+    return authAPI.getAuthUser()
     .then(data => {
       if (data.resultCode === 0) {
         const {id, email, login} = data.data;
@@ -48,11 +48,6 @@ export const getAuthUser = () => {
     .then(data => {
       dispatch(setAuthProfile(data, true));
     })
-    // .then(id => {
-    //   profileAPI.getProfile(id).then(data => {
-    //     dispatch(setAuthProfile(data));
-    //   })
-    // })
   }
 }
 
