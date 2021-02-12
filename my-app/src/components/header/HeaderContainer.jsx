@@ -3,23 +3,23 @@ import React from 'react';
 import Header from './Header/Header';
 //import { profileAPI, authAPI } from '../../api/api';
 import { connect } from 'react-redux';
-import { getAuthUser, getUserLogout } from '../../redux/auth-reducer';
+import { getUserLogout } from '../../redux/auth-reducer';
 
 class HeaderContainer extends React.Component {
-  componentDidMount() {
-    this.props.getAuthUser();
-    // authAPI.getAuthUser().then(data => {
-    //   //console.log(res.data.data);
-    //   if (data.resultCode === 0) {
-    //     const {id, email, login} = data.data;
-    //     this.props.setUserData(id, email, login);
-    //     //return id;
-    //     profileAPI.getProfile(id).then(data => {
-    //       this.props.setAuthProfile(data);
-    //     })
-    //   }
-    // })
-  }
+  // componentDidMount() {
+  //   this.props.getAuthUser();
+  //   // authAPI.getAuthUser().then(data => {
+  //   //   //console.log(res.data.data);
+  //   //   if (data.resultCode === 0) {
+  //   //     const {id, email, login} = data.data;
+  //   //     this.props.setUserData(id, email, login);
+  //   //     //return id;
+  //   //     profileAPI.getProfile(id).then(data => {
+  //   //       this.props.setAuthProfile(data);
+  //   //     })
+  //   //   }
+  //   // })
+  // }
 
   render() {
     //console.log(this.props);
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {getAuthUser, getUserLogout})(HeaderContainer);
+export default connect(mapStateToProps, {getUserLogout})(HeaderContainer);

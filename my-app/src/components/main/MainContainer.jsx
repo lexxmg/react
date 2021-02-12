@@ -90,9 +90,9 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
+//WithAuthRedirect
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
-  WithAuthRedirect
+
 )(MainContainer);
