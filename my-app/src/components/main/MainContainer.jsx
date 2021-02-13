@@ -38,7 +38,9 @@ class MainContainer extends React.Component {
       this.getUser(userId);
     } else {
       userId = this.props.autch;
-      this.getUser(userId);
+      if (userId) {
+        this.getUser(userId);
+      }
     }
   }
 
