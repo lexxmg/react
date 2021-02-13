@@ -30,7 +30,11 @@ class MainContainer extends React.Component {
     let userId = this.props.match.params.userId;
 
     if (!userId) {
-      userId = this.props.autch || 2
+      //return <Redirect to="/login" />
+      userId = this.props.autch;
+      if (!userId) {
+        this.props.history.push('/login');
+      }
     }
 
     this.props.getProfile(userId);
@@ -69,7 +73,8 @@ const mapStateToProps = (state) => {
     posts: state.prof.posts,
     profile: state.prof.profile,
     userStatus: state.prof.userStatus,
-    autch: state.autch.id
+    autch: state.autch.id,
+    isAuth: state.autch.isAuth
   }
 }
 

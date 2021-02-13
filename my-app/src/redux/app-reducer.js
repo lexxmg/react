@@ -9,7 +9,8 @@ export const initializedSuccess = () => {
 
 export const initializeApp = () => {
   return (dispatch) => {
-    dispatch( getAuthUser() ).then(() => dispatch(initializedSuccess()))
+    dispatch( getAuthUser() )
+      .then(() => dispatch(initializedSuccess()))
   }
 }
 

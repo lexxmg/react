@@ -39,14 +39,10 @@ export const getAuthUser = () => {
       if (data.resultCode === 0) {
         const {id, email, login} = data.data;
         dispatch(setUserData(id, email, login, true));
-        return id;
+        profileAPI.getProfile(id).then(data => {
+          dispatch(setAuthProfile(data, true));
+        })
       }
-    })
-    .then(id => {
-      return profileAPI.getProfile(id);
-    })
-    .then(data => {
-      dispatch(setAuthProfile(data, true));
     })
   }
 }
