@@ -14,7 +14,7 @@ import {
       } from '../../redux/prof-reducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect'
 
 // const postsMap = posts.map((obj) => {
@@ -25,23 +25,28 @@ import { WithAuthRedirect } from '../../hoc/AuthRedirect'
 
 class MainContainer extends React.Component {
 
+  getUser(id) {
+    this.props.getProfile(id);
+    this.props.getUserStatus(id);
+  }
+
   componentDidMount() {
     //this.props.togglePreload(true);
     let userId = this.props.match.params.userId;
 
-    if (!userId) {
-      //return <Redirect to="/login" />
+    if (userId) {
+      this.getUser(userId);
+    } else {
       userId = this.props.autch;
-      if (!userId) {
-        this.props.history.push('/login');
-      }
+      this.getUser(userId);
     }
-
-    this.props.getProfile(userId);
-    this.props.getUserStatus(userId);
   }
 
   render() {
+    if (!this.props.isAuth && !this.props.match.params.userId) {
+      return <Redirect to="/login" />
+    }
+
     return (
       <div className="">
         <Top />
