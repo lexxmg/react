@@ -16,6 +16,7 @@ import UsersContainer from './components/users/UsersContainer';
 import LoginContainer from './components/login/LoginContainer';
 //import { getAuthUser } from './redux/auth-reducer';
 import { initializeApp } from './redux/app-reducer';
+import { getInitializedState } from './redux/app-selectors'
 import Preloader from './components/common/Preloader/Preloader'
 
 //<Route exact path="/" component={MainContainer} />
@@ -33,7 +34,7 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Preloader />
     }
-
+    
     return (
       <div className="wrapper fixed-container">
         <HeaderContainer />
@@ -66,7 +67,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    initialized: state.app.initialized
+    initialized: getInitializedState(state)
   }
 }
 
