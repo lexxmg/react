@@ -2,7 +2,20 @@
 import React from 'react';
 import UserWrrapper from './UsersWrapper/UsersWrapper';
 import { connect } from 'react-redux';
-import { followThunk, unfollowThunk, setCurrentPage, setStartPage, getUsersThunk } from '../../redux/users-reducer';
+import { followThunk,
+          unfollowThunk,
+          setCurrentPage,
+          setStartPage,
+          getUsersThunk
+        } from '../../redux/users-reducer';
+import { getUsers,
+         getUsersCount,
+         getUsersAllCount,
+         getCurrentPage,
+         getStartPage,
+         getStatePreload,
+         getFollowingInProgress
+} from '../../redux/users-selectors';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -44,13 +57,13 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users,
-    userCount: state.users.userCount,
-    usersAllCount: state.users.usersAllCount,
-    currentPage: state.users.currentPage,
-    startPage: state.users.startPage,
-    preload: state.users.preload,
-    followingInProgress: state.users.followingInProgress
+    users: getUsers(state),
+    userCount: getUsersCount(state),
+    usersAllCount: getUsersAllCount(state),
+    currentPage: getCurrentPage(state),
+    startPage: getStartPage(state),
+    preload:getStatePreload(state),
+    followingInProgress: getFollowingInProgress(state)
   }
 }
 
