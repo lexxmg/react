@@ -4,6 +4,7 @@ import UserList from './userList/UserList';
 import UserDialog from './userDialog/UserDialog';
 import SendMessage from './sendMessage/SendMessage';
 import { sendMessage } from '../../redux/dialogs-reducer';
+import { gerUserData, gerUserDialogs } from '../../redux/dialogs-selectors';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect';
@@ -48,8 +49,8 @@ let DialogsContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.dialogs.userData,
-    userDialog: state.dialogs.userDialog,
+    userData: gerUserData(state),
+    userDialog: gerUserDialogs(state)
   }
 }
 
