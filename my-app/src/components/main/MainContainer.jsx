@@ -5,13 +5,17 @@ import User from './user/User';
 import UserPost from './userPost/AddPost';
 import Post from './post/Post';
 import ProfileStatus from './profileStatus/ProfileStatus';
-//import { profileAPI } from '../../api/api';
 import {
         actionCreatorAddPost,
         getProfile,
         getUserStatus,
         updateUserStatus
-      } from '../../redux/prof-reducer';
+       } from '../../redux/prof-reducer';
+import { getPosts,
+         getAuthProfile,
+         userStatus
+} from '../../redux/prof-selectors';
+import { getUserId, getIsAuthState } from '../../redux/auth-selectors';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter, Redirect } from 'react-router-dom';
@@ -77,11 +81,11 @@ class MainContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.prof.posts,
-    profile: state.prof.profile,
-    userStatus: state.prof.userStatus,
-    autch: state.autch.id,
-    isAuth: state.autch.isAuth
+    posts: getPosts(state),
+    profile: getAuthProfile(state),
+    userStatus: userStatus(state),
+    autch: getUserId(state),
+    isAuth: getIsAuthState(state)
   }
 }
 

@@ -74,7 +74,7 @@ export const getUserLogin = (email, password, rememberMe, captcha) => {
 }
 
 const initialState = {
-  authProfile: {},
+  authProfile: null,
   profile: false,
   id: null,
   email: null,
