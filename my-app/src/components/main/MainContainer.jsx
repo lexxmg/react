@@ -4,7 +4,8 @@ import Top from './top/Top';
 import User from './user/User';
 import UserPost from './userPost/AddPost';
 import Post from './post/Post';
-import ProfileStatus from './profileStatus/ProfileStatus';
+//import ProfileStatus from './profileStatus/ProfileStatus';
+import ProfileStatusHook from './profileStatus/ProfileStatusHook';
 import {
         actionCreatorAddPost,
         getProfile,
@@ -59,7 +60,7 @@ class MainContainer extends React.Component {
         <Top />
         <User {...this.props.profile} profile={this.props.profile}/>
 
-        <ProfileStatus
+        <ProfileStatusHook
           userStatus={this.props.userStatus}
           updateUserStatus={this.props.updateUserStatus}
           currentProfile={this.props.profile}
