@@ -9,6 +9,11 @@ import App from './App';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 
+// setInterval(() => {
+//   const random = Math.random();
+//   store.dispatch({type: 'FAKE', random})
+// }, 1000);
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

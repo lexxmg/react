@@ -11,7 +11,7 @@ import {
         getUserStatus,
         updateUserStatus
        } from '../../redux/prof-reducer';
-import { getPosts,
+import { getPostsReselect,
          getAuthProfile,
          userStatus
 } from '../../redux/prof-selectors';
@@ -19,7 +19,7 @@ import { getUserId, getIsAuthState } from '../../redux/auth-selectors';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter, Redirect } from 'react-router-dom';
-import { WithAuthRedirect } from '../../hoc/AuthRedirect'
+//import { WithAuthRedirect } from '../../hoc/AuthRedirect'
 
 // const postsMap = posts.map((obj) => {
 //   return (
@@ -49,6 +49,7 @@ class MainContainer extends React.Component {
   }
 
   render() {
+    //console.log('main render');
     if (!this.props.isAuth && !this.props.match.params.userId) {
       return <Redirect to="/login" />
     }
@@ -80,8 +81,9 @@ class MainContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  //console.log('mapStateToProps');
   return {
-    posts: getPosts(state),
+    posts: getPostsReselect(state),
     profile: getAuthProfile(state),
     userStatus: userStatus(state),
     autch: getUserId(state),

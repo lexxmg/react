@@ -53,11 +53,14 @@ const initialState = {
     {name: 'Петя', post: 'werhwgng', avatar: avatar, id: '1'},
     {name: 'Вася', post: 'werhwgng', avatar: '', id: '2'},
     {name: 'Даша', post: 'werhwgng', avatar: avatar, id: '3'}
-  ]
+  ],
+  random: ''
 }
 
 const profReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'FAKE':
+      return {...state, random: action.random};
     case ADD_POST:
       const id = (+new Date() + 1).toString(16);
       const obj = {name: 'Вася', avatar: '', post: action.message, id: id};

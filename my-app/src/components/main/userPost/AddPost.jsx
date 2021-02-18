@@ -26,7 +26,11 @@ const UserPost = (props) => {
         //console.log(props);
         return (
           <form className={s.post__form} onSubmit={props.handleSubmit}>
-            <Field className={s.post__textarea} name="text" validate={composeValidators(maxLength(10), required)} component={Textarea} />
+            <Field className={s.post__textarea}
+              name="text"
+              validate={composeValidators(maxLength(10), required)}
+              component={Textarea}
+          />
 
             <button className={s.post__btn} disabled={props.pristine}>send</button>
           </form>

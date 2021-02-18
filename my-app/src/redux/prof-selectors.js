@@ -1,7 +1,15 @@
 
+import { createSelector } from 'reselect';
+
 export const getPosts = (state) => {
   return state.prof.posts;
 }
+
+export const getPostsReselect = createSelector(getPosts, (posts) => {
+  return posts.filter(u => {
+    return true //u.name === 'Вася';
+  });
+});
 
 export const getAuthProfile = (state) => {
   return state.prof.profile;
