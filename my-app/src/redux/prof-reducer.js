@@ -2,11 +2,19 @@
 import { profileAPI } from '../api/api';
 
 const ADD_POST = 'ADD-POST',
+      DELETE_POST = 'DELETE-POST',
       SET_USER_PROFILE = 'SET_USER_PROFILE',
       SET_USER_STATUS = 'SET_USER_STATUS';
 
 export const actionCreatorAddPost = (text) => {
   return {type: ADD_POST, message: text};
+}
+
+export const deletePost = (id) => {
+  return {
+    type: DELETE_POST,
+    id
+  }
 }
 
 export const setUsersProfile = (profile) => {
@@ -50,9 +58,9 @@ const initialState = {
   profile: null,
   userStatus: '',
   posts: [
-    {name: 'Петя', post: 'werhwgng', avatar: avatar, id: '1'},
-    {name: 'Вася', post: 'werhwgng', avatar: '', id: '2'},
-    {name: 'Даша', post: 'werhwgng', avatar: avatar, id: '3'}
+    {name: 'Петя', post: 'werhwgng', avatar: avatar, id: 1},
+    {name: 'Вася', post: 'werhwgng', avatar: '', id: 2},
+    {name: 'Даша', post: 'werhwgng', avatar: avatar, id: 3}
   ],
   random: ''
 }
@@ -66,6 +74,12 @@ const profReducer = (state = initialState, action) => {
       const obj = {name: 'Вася', avatar: '', post: action.message, id: id};
 
       return {...state, posts: [...state.posts, obj]};
+    case DELETE_POST:
+      return {...state,
+        posts: state.posts.filter(obj => {
+          return obj.id !== action.id
+        })
+      }
     case  SET_USER_PROFILE:
       return { ...state, profile: action.profile };
     case SET_USER_STATUS:
