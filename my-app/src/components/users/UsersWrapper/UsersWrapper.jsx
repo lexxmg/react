@@ -3,6 +3,7 @@ import React from 'react';
 import './usersWrapper.css';
 import Users from '../UsersComponent/Users';
 import Preloader from '../../common/Preloader/Preloader';
+import Paginator from '../../common/Paginator/Paginator';
 
 const UserWrrapper = (props) => {
 
@@ -26,6 +27,8 @@ const UserWrrapper = (props) => {
       {props.preload ? <Preloader /> : null}
 
       <h2 className="users-wrapper__tirle">Пользователи</h2>
+
+      <Paginator {...props}/>
 
       <ul className="users-wrapper__list wrapper-list">
 

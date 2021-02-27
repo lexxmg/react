@@ -1,0 +1,36 @@
+.paginator {
+  display: flex;
+}
+
+.paginator__btn {
+
+}
+
+.paginator-list {
+  margin: 0 5px;
+}
+
+..paginator-list:last-child {
+  margin: 0;
+}
+
+.paginator-list__item {
+  display: block;
+
+  width: 1.5em;
+  height: 1.5em;
+
+  border: 1px solid #000;
+
+  border-radius: 1.5em;
+
+  margin: 0 3px 0 0;
+
+  text-align: center;
+}
+
+.paginator-list__item--active {
+  background-color: black;
+
+  color: white;
+}
