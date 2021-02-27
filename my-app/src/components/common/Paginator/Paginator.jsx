@@ -8,8 +8,9 @@ const Paginator = (props) => {
   const [btnNext, setBtnNext] = useState(true);
 
   let pages = [];
+  let part = 6;
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1 + part; i <= props.userCount + part; i++) {
     pages.push(i);
   }
 
