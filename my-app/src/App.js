@@ -1,6 +1,6 @@
 
 import './css/main.css';
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Route, withRouter } from "react-router-dom";
@@ -8,7 +8,8 @@ import HeaderContainer from './components/header/HeaderContainer';
 import Nav from './components/aside/Nav';
 import MainContainer from './components/main/MainContainer';
 import Footer from './components/footer/Footer';
-import DialogsContainer from './components/dialogs/dialogs-container';
+//import DialogsContainer from './components/dialogs/dialogs-container';
+
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
@@ -18,7 +19,7 @@ import LoginContainer from './components/login/LoginContainer';
 import { initializeApp } from './redux/app-reducer';
 import { getInitializedState } from './redux/app-selectors'
 import Preloader from './components/common/Preloader/Preloader'
-
+const DialogsContainer = lazy(() => import('./components/dialogs/dialogs-container'));
 //<Route exact path="/" component={MainContainer} />
 
 class App extends React.Component {
@@ -34,7 +35,7 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Preloader />
     }
-    
+
     return (
       <div className="wrapper fixed-container">
         <HeaderContainer />
@@ -46,13 +47,18 @@ class App extends React.Component {
         <main className="main">
            <Route path="/prof/:userId?" component={MainContainer} />
 
-           <Route path="/message" render={() => {
-             return (
-                <DialogsContainer />
-              )
+
+           <Suspense fallback={<div>Загрузка...</div>}>
+             <Route path="/message" render={() => {
+               return (
+                  <DialogsContainer />
+                )
+               }
              }
-           }
-           />
+             />
+           </Suspense>
+
+
            <Route path="/news" component={News} />
            <Route path="/music" component={Music} />
            <Route path="/users" component={UsersContainer} />
