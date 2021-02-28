@@ -15,10 +15,6 @@ export const getCurrentPage = (state) => {
   return state.users.currentPage;
 }
 
-export const getStartPage = (state) => {
-  return state.users.startPage;
-}
-
 export const getStatePreload = (state) => {
   return state.users.preload;
 }

@@ -10,10 +10,6 @@
   margin: 0 5px;
 }
 
-..paginator-list:last-child {
-  margin: 0;
-}
-
 .paginator-list__item {
   display: block;
 
@@ -29,6 +25,12 @@
   margin: 0 3px 0 0;
 
   text-align: center;
+
+  cursor: pointer;
+}
+
+.paginator-list__item:last-child {
+  margin: 0;
 }
 
 .paginator-list__item--active {

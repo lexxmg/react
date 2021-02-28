@@ -3,20 +3,19 @@ import './paginator.css';
 
 import { useState } from 'react';
 
-const Paginator = (props) => {
+const Paginator = ({usersAllCount, currentPage, userCount, getUsersThunk}) => {
   let pages = [];
 
-  const pageSize = 5;
+  //const pageSize = 5;
 
-  const pagesCount = Math.ceil(props.usersAllCount / pageSize);
+  const portionSize = userCount;
 
-  const portionSize = 5;
-  const portionCount = Math.ceil(props.usersAllCount / portionSize);
+  const portionCount = Math.ceil(usersAllCount / portionSize);
   const [portionNimber, setPortionNumber] = useState(1);
   const leftPortionPageNumber = (portionNimber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNimber * portionSize;
 
-  for (let i = 1; i <= pagesCount; i++) {
+  for (let i = 1; i <= portionCount; i++) {
     pages.push(i);
   }
 
@@ -38,12 +37,12 @@ const Paginator = (props) => {
               return (
                 <li
                   className={
-                    (props.currentPage === page)
+                    (currentPage === page)
                     ? "paginator-list__item paginator-list__item--active"
                     : "paginator-list__item"
                   }
                   key={page}
-                  onClick={() => props.getUsersThunk(page, pageSize)}
+                  onClick={() => getUsersThunk(page, portionSize)}
                 >
                 {page}
                 </li>

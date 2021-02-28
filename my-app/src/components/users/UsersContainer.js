@@ -5,14 +5,12 @@ import { connect } from 'react-redux';
 import { followThunk,
           unfollowThunk,
           setCurrentPage,
-          setStartPage,
           getUsersThunk
         } from '../../redux/users-reducer';
 import { getUsers,
          getUsersCount,
          getUsersAllCount,
          getCurrentPage,
-         getStartPage,
          getStatePreload,
          getFollowingInProgress
 } from '../../redux/users-selectors';
@@ -42,7 +40,6 @@ class UsersContainer extends React.Component {
     return (
       <UserWrrapper
         followingInProgress={this.props.followingInProgress}
-        startPage={this.props.startPage}
         userCount={this.props.userCount}
         usersAllCount={this.props.usersAllCount}
         currentPage={this.props.currentPage}
@@ -50,7 +47,6 @@ class UsersContainer extends React.Component {
         users={this.props.users}
         follow={this.props.followThunk}
         unFollow={this.props.unfollowThunk}
-        getUsers={this.getUsers}
         preload={this.props.preload}
       />
     )
@@ -63,7 +59,6 @@ const mapStateToProps = (state) => {
     userCount: getUsersCount(state),
     usersAllCount: getUsersAllCount(state),
     currentPage: getCurrentPage(state),
-    startPage: getStartPage(state),
     preload:getStatePreload(state),
     followingInProgress: getFollowingInProgress(state)
   }
@@ -73,7 +68,6 @@ const mapDispatchToProps = {
   followThunk,
   unfollowThunk,
   setCurrentPage,
-  setStartPage,
   getUsersThunk
 }
 

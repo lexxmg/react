@@ -6,7 +6,6 @@ const FOLLOW = 'FOLLOW',
       SHOW_MORE = 'SHOW_MORE',
       SET_USERS = 'SET_USERS',
       SET_CURENT_PAGE = 'SET_CURENT_PAGE',
-      SET_START_PAGE = 'SET_START_PAGE',
       TOGGLE_PRELOADER = 'TOGGLE_PRELOADER',
       TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
@@ -31,10 +30,6 @@ export const showMore = (count) => {
 
 export const setCurrentPage = (page) => {
   return {type: SET_CURENT_PAGE, page};
-}
-
-export const setStartPage = (page) => {
-  return {type: SET_START_PAGE, page};
 }
 
 export const setUsers = (users, count) => {
@@ -86,8 +81,7 @@ export const unfollowThunk = (userId) => {
 
 const initialState =  {
   users: [],
-  startPage: 1,
-  userCount: 5,
+  userCount: 10,
   usersAllCount: 0,
   currentPage: 1,
   preload: false,
@@ -122,8 +116,6 @@ const usersReducer =  (state = initialState, action) => {
       return {...state, users: action.users, usersAllCount: action.count};
     case SET_CURENT_PAGE:
       return {...state, currentPage: action.page};
-    case SET_START_PAGE:
-      return {...state, startPage: action.page};
     case TOGGLE_PRELOADER:
       return {...state, preload: action.load};
     case TOGGLE_IS_FOLLOWING_PROGRESS:
