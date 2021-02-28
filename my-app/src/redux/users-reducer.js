@@ -51,6 +51,7 @@ export const getUsersThunk = (currentPage, userCount) => {
     usersAPI.getUsers(currentPage, userCount)
       .then(data => {
         dispatch( setUsers(data.items, data.totalCount) );
+        dispatch ( setCurrentPage(currentPage) );
         dispatch( togglePreload(false) );
       })
     }
