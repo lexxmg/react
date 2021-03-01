@@ -10,7 +10,8 @@ import {
         actionCreatorAddPost,
         getProfile,
         getUserStatus,
-        updateUserStatus
+        updateUserStatus,
+        savePhoto
        } from '../../redux/prof-reducer';
 import { getPostsReselect,
          getAuthProfile,
@@ -49,6 +50,12 @@ class MainContainer extends React.Component {
     }
   }
 
+  // onMainPhotoSelected(event) {
+  //   if(event.target.files.length > 0) {
+  //     this.props.savePhoto(event.target.files[0]);
+  //   }
+  // }
+
   render() {
     //console.log('main render');
     if (!this.props.isAuth && !this.props.match.params.userId) {
@@ -59,6 +66,14 @@ class MainContainer extends React.Component {
       <div className="">
         <Top />
         <User {...this.props.profile} profile={this.props.profile}/>
+
+        <div>
+          {
+            (this.props.profile && this.props.profile.userId === this.props.autch)
+            ? <input className="" type="file" onChange={this.props.savePhoto}/>
+            : ''
+          }
+        </div>
 
         <ProfileStatusHook
           userStatus={this.props.userStatus}
@@ -106,6 +121,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateUserStatus: (status) => {
       dispatch(updateUserStatus(status));
+    },
+    savePhoto: (event) => {
+      dispatch(savePhoto(event.target.files[0]));
     }
   }
 }

@@ -4,7 +4,15 @@ import { profileAPI } from '../api/api';
 const ADD_POST = 'ADD-POST',
       DELETE_POST = 'DELETE-POST',
       SET_USER_PROFILE = 'SET_USER_PROFILE',
+      SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS',
       SET_USER_STATUS = 'SET_USER_STATUS';
+
+const savePhotoSuccess = (photos) => {
+  return {
+    type: SAVE_PHOTO_SUCCESS,
+    photos
+  }
+}
 
 export const actionCreatorAddPost = (text) => {
   return {type: ADD_POST, message: text};
@@ -52,6 +60,17 @@ export const updateUserStatus = (status) => {
   }
 }
 
+export const savePhoto = (photoFile) => {
+  return (dispatch) => {
+    profileAPI.savePhoto(photoFile)
+      .then(data => {
+        if ( data.resultCode === 0 ) {
+          dispatch(savePhotoSuccess(data.data.photos));
+        }
+    })
+  }
+}
+
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
 
 const initialState = {
@@ -80,6 +99,8 @@ const profReducer = (state = initialState, action) => {
           return obj.id !== action.id
         })
       }
+    case SAVE_PHOTO_SUCCESS:
+      return {...state, profile: {...state.profile, photos: action.photos}}
     case  SET_USER_PROFILE:
       return { ...state, profile: action.profile };
     case SET_USER_STATUS:
