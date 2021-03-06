@@ -11,7 +11,8 @@ import {
         getProfile,
         getUserStatus,
         updateUserStatus,
-        savePhoto
+        savePhoto,
+        saveProfile
        } from '../../redux/prof-reducer';
 import { getPostsReselect,
          getAuthProfile,
@@ -65,7 +66,12 @@ class MainContainer extends React.Component {
     return (
       <div className="">
         <Top />
-        <User {...this.props.profile} profile={this.props.profile}/>
+        <User
+          {...this.props.profile}
+          profile={this.props.profile}
+          authId={this.props.autch}
+          saveProfile={this.props.saveProfile}
+        />
 
         <div>
           {
@@ -124,6 +130,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     savePhoto: (event) => {
       dispatch(savePhoto(event.target.files[0]));
+    },
+    saveProfile: (formData) => {
+      dispatch(saveProfile(formData));
     }
   }
 }

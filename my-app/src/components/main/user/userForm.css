@@ -1,0 +1,61 @@
+.user-form-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.user-form-container__inner {
+  width: 500px;
+  min-height: 100px;
+
+  padding: 25px 15px;
+  margin: 50px auto 0;
+
+  background-color: white;
+}
+
+.user-form-container__form {
+
+}
+
+.user-form-container-form {
+
+}
+
+.user-form-container-form__input-container {
+  display: flex;
+
+  align-items: center;
+
+  margin: 0 0 10px 0;
+}
+
+.user-form-container-form__label {
+  margin: 0 7px 0 0;
+}
+
+.user-form-container-form__input {
+  width: 100%;
+  height: 30px;
+}
+
+.user-form-container-form__checkbox {
+
+}
+
+.user-form-container-form__btn {
+  display: block;
+
+  margin: 20px 0 0 0;
+}
+
+.user-form-container__btn {
+  display: block;
+
+  margin: 20px 0 0 0;
+}

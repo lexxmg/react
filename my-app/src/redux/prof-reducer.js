@@ -71,6 +71,12 @@ export const savePhoto = (photoFile) => {
   }
 }
 
+export const saveProfile = (formData) => {
+  return (dispatch) => {
+    console.log(formData);
+  }
+}
+
 const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBngc-qOfx6OQ-rCm6L-xHp-t6R2QA&usqp=CAU';
 
 const initialState = {
