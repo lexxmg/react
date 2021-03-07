@@ -98,11 +98,12 @@ export const saveProfile = (formData) => {
      fullName: formData.fullName
   }
 
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    //console.log(getState().autch.id);
     return profileAPI.saveProfile(profile).then(data => {
       if ( data.resultCode === 0 ) {
         dispatch(setEditMode(false));
-        //dispatch(getProfile(initialState.profile.userId));
+        dispatch( getProfile(getState().autch.id) );
       } else {
         return data.messages;
       }
