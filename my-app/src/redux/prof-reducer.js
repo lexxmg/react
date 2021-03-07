@@ -1,10 +1,12 @@
 
 import { profileAPI } from '../api/api';
+import { getAuthUser } from './auth-reducer';
 
 const ADD_POST = 'ADD-POST',
       DELETE_POST = 'DELETE-POST',
       SET_USER_PROFILE = 'SET_USER_PROFILE',
       SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS',
+      SET_EDIT_MODE = 'SET_EDIT_MODE',
       SET_USER_STATUS = 'SET_USER_STATUS';
 
 const savePhotoSuccess = (photos) => {
@@ -22,6 +24,13 @@ export const deletePost = (id) => {
   return {
     type: DELETE_POST,
     id
+  }
+}
+
+export const setEditMode = (editMode) => {
+  return {
+    type: SET_EDIT_MODE,
+    editMode
   }
 }
 
@@ -72,8 +81,32 @@ export const savePhoto = (photoFile) => {
 }
 
 export const saveProfile = (formData) => {
+  const profile = {
+    aboutMe: formData.aboutMe,
+     contacts: {
+         facebook: formData.facebook,
+         website: formData.website,
+         vk: formData.vk,
+         twitter: formData.twitter,
+         instagram: formData.instagram,
+         youtube: formData.youtube,
+         github: formData.github,
+         mainLink: formData.mainLink
+     },
+     lookingForAJob: formData.lookingForAJob,
+     lookingForAJobDescription: formData.lookingForAJobDescription,
+     fullName: formData.fullName
+  }
+
   return (dispatch) => {
-    console.log(formData);
+    return profileAPI.saveProfile(profile).then(data => {
+      if ( data.resultCode === 0 ) {
+        dispatch(setEditMode(false));
+        //dispatch(getProfile(initialState.profile.userId));
+      } else {
+        return data.messages;
+      }
+    })
   }
 }
 
@@ -81,6 +114,7 @@ const avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNClHcBng
 
 const initialState = {
   profile: null,
+  profileEditMode: false,
   userStatus: '',
   posts: [
     {name: 'Петя', post: 'werhwgng', avatar: avatar, id: 1},
@@ -108,7 +142,9 @@ const profReducer = (state = initialState, action) => {
     case SAVE_PHOTO_SUCCESS:
       return {...state, profile: {...state.profile, photos: action.photos}}
     case  SET_USER_PROFILE:
-      return { ...state, profile: action.profile };
+      return { ...state, profile: {...state.profile , ...action.profile}};
+    case SET_EDIT_MODE:
+      return {...state, profileEditMode: action.editMode}
     case SET_USER_STATUS:
       return {...state, userStatus: action.status}
     default:

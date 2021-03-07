@@ -18,3 +18,7 @@ export const getAuthProfile = (state) => {
 export const userStatus = (state) => {
   return state.prof.userStatus;
 }
+
+export const getEditMode = (state) => {
+  return state.prof.profileEditMode
+}

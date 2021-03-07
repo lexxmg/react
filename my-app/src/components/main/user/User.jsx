@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import s from './user.module.css';
 import './userForm.css';
 import Preload from '../../common/Preloader/Preloader';
@@ -11,10 +11,10 @@ import { Form, Field } from 'react-final-form';
 const User = ({
     authId, photos, fullName, aboutMe,
     profile, lookingForAJob, lookingForAJobDescription,
-    saveProfile
+    saveProfile, getEditMode, setEditMode
   }) => {
   //lookingForAJob = true;
-  const [editMode, setEditMode] = useState(false);
+  //const [editMode, setEditMode] = useState(false);
 
   if(!profile) {
     return <Preload />
@@ -49,7 +49,7 @@ const User = ({
 
           {
             Object.keys(profile.contacts).map(key => {
-              if (!profile.contacts[key]) {
+              if (profile.contacts[key]) {
                 return (
                   <li className={s.list__item} key={key}>
                     <span className={s.list__dada}>{key}:</span>
@@ -70,11 +70,17 @@ const User = ({
         </div>
 
         {
-          editMode && <UserContactsForm
+          getEditMode && <UserContactsForm
             setEditMode={setEditMode}
             profile={profile}
             saveProfile={saveProfile}
             />
+        }
+
+        {
+          getEditMode
+            ? document.body.style.overflow = 'hidden'
+            : document.body.style.overflow = ''
         }
       </div>
     </div>
@@ -82,19 +88,26 @@ const User = ({
 }
 
 const UserContactsForm = (props) => {
+  const closeEditMode = (event) => {
+    //console.log(event.target.className);
+    if (event.target.className === 'user-form-container') {
+      props.setEditMode(false);
+    }
+  }
+
   return (
-    <div className="user-form-container">
+    <div className="user-form-container" onClick={closeEditMode}>
       <div className="user-form-container__inner">
         <Form
           onSubmit={props.saveProfile}
           initialValues={{
             fullName: props.profile.fullName,
             aboutMe: props.profile.aboutMe,
-            lookingForAJob: props.profile.lookingForAJobб,
+            lookingForAJob: props.profile.lookingForAJob,
             lookingForAJobDescription: props.profile.lookingForAJobDescription,
             ...props.profile.contacts
           }}
-          render={({handleSubmit}) => {
+          render={({ handleSubmit, submitError }) => {
             return (
               <form
                 className="user-form-container__form user-form-container-form"
@@ -167,6 +180,11 @@ const UserContactsForm = (props) => {
                       </div>
                     )
                   })
+                }
+
+                {
+                  submitError &&
+                  <div className="user-form-container-form__tex-err">{submitError}</div>
                 }
 
                 <button className="user-form-container-form__btn">Сохранить</button>

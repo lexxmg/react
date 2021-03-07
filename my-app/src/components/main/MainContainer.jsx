@@ -12,16 +12,19 @@ import {
         getUserStatus,
         updateUserStatus,
         savePhoto,
-        saveProfile
+        saveProfile,
+        setEditMode
        } from '../../redux/prof-reducer';
 import { getPostsReselect,
          getAuthProfile,
-         userStatus
+         userStatus,
+         getEditMode
 } from '../../redux/prof-selectors';
 import { getUserId, getIsAuthState } from '../../redux/auth-selectors';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter, Redirect } from 'react-router-dom';
+import { FORM_ERROR } from 'final-form';
 //import { WithAuthRedirect } from '../../hoc/AuthRedirect'
 
 // const postsMap = posts.map((obj) => {
@@ -71,6 +74,8 @@ class MainContainer extends React.Component {
           profile={this.props.profile}
           authId={this.props.autch}
           saveProfile={this.props.saveProfile}
+          getEditMode={this.props.getEditMode}
+          setEditMode={this.props.setEditMode}
         />
 
         <div>
@@ -107,6 +112,7 @@ const mapStateToProps = (state) => {
   return {
     posts: getPostsReselect(state),
     profile: getAuthProfile(state),
+    getEditMode: getEditMode(state),
     userStatus: userStatus(state),
     autch: getUserId(state),
     isAuth: getIsAuthState(state)
@@ -122,6 +128,9 @@ const mapDispatchToProps = (dispatch) => {
     getProfile: (userId) => {
       dispatch(getProfile(userId));
     },
+    setEditMode: (editMode) => {
+      dispatch(setEditMode(editMode));
+    },
     getUserStatus: (userId) => {
       dispatch(getUserStatus(userId));
     },
@@ -132,7 +141,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(savePhoto(event.target.files[0]));
     },
     saveProfile: (formData) => {
-      dispatch(saveProfile(formData));
+      return dispatch(saveProfile(formData)).then(err => {
+        return { [FORM_ERROR]: err };
+      })
     }
   }
 }
