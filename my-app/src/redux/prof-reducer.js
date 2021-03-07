@@ -1,6 +1,5 @@
 
 import { profileAPI } from '../api/api';
-import { getAuthUser } from './auth-reducer';
 
 const ADD_POST = 'ADD-POST',
       DELETE_POST = 'DELETE-POST',
