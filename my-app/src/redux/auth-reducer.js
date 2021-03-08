@@ -25,13 +25,13 @@ export const setAuthProfile = (profile, isProfile) => {
   return {type: SET_AUTH_PROFILE, profile, isProfile}
 }
 
-// const getCaptcha = () => {
-//   return (dispatch) => {
-//     securityAPI.getCaptcha().then(data => {
-//       dispatch(setCaptcha(data.url))
-//     });
-//   }
-// }
+const getCaptchaUrl = () => {
+  return dispatch => {
+    securityAPI.getCaptcha().then(data => {
+      dispatch(setCaptcha(data.url))
+    });
+  }
+}
 
 const setCaptcha = (url) => {
   return {
@@ -77,9 +77,7 @@ export const getUserLogin = (email, password, rememberMe, captcha) => {
       } else {
         if (data.resultCode === 10) {
           //console.log(data.messages);
-          securityAPI.getCaptcha().then(data => {
-            dispatch(setCaptcha(data.url))
-          });
+          dispatch(getCaptchaUrl());
         }
 
         return data.messages;
