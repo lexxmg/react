@@ -6,3 +6,7 @@ export const getUserId = (state) => {
 export const getIsAuthState = (state) => {
   return state.autch.isAuth;
 }
+
+export const getCaptcha = (state) => {
+  return state.autch.captcha;
+}

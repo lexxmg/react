@@ -38,6 +38,24 @@ const LoginForm = (props) => {
 
             <button type="submit" disabled={false}>Submit</button>
             <span>{submitError}</span>
+
+            {
+              props.captcha && 
+                <div className="login-form__captcha-container">
+                  <img className="login-form__img" src={props.captcha} alt="captcha"/>
+
+                  <div className="login-form__input-wrapper">
+                    <Field
+                      className="login-form__input"
+                      name="captcha"
+                      type="text"
+                      component={Input}
+                      validate={required}
+                      placeholder="captcha"
+                    />
+                  </div>
+                </div>
+            }
           </form>
         )
       }}

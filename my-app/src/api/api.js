@@ -70,3 +70,11 @@ export const followAPI = {
     return instance.delete(`follow/${userId}`).then(res => res.data)
   }
 }
+
+export const securityAPI = {
+  getCaptcha() {
+    return instance.get('security/get-captcha-url').then(res => res.data)
+  }
+}
+
+//window.securityAPI = securityAPI.getCaptcha;

@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getUserLogin } from '../../redux/auth-reducer';
-import { getIsAuthState } from '../../redux/auth-selectors';
+import { getIsAuthState, getCaptcha } from '../../redux/auth-selectors';
 import Login from './Login/login';
 import { Redirect } from 'react-router-dom';
 import { FORM_ERROR } from 'final-form';
@@ -22,14 +22,15 @@ class LoginContainer extends React.Component {
     }
 
     return (
-      <Login getUserLogin={this.props.getUserLogin} />
+      <Login getUserLogin={this.props.getUserLogin} captcha={this.props.captcha}/>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: getIsAuthState(state)
+    isAuth: getIsAuthState(state),
+    captcha: getCaptcha(state)
   }
 }
 

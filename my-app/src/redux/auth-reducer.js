@@ -1,10 +1,11 @@
 
-import { authAPI, profileAPI } from '../api/api';
+import { authAPI, profileAPI, securityAPI } from '../api/api';
 //import { FORM_ERROR } from 'final-form';
 
 
 const SET_USER_DATA = 'SET_USER_DATA',
-      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE';
+      SET_AUTH_PROFILE = 'SET_AUTH_PROFILE',
+      SET_CAPTCHA = 'SET_CAPTCHA';
       // USER_LOGIN = 'USER_LOGIN',
       // USER_LOGOUT = 'USER_LOGOUT';
 
@@ -24,13 +25,20 @@ export const setAuthProfile = (profile, isProfile) => {
   return {type: SET_AUTH_PROFILE, profile, isProfile}
 }
 
-// export const setUserLogin = () => {
-//   return {type: USER_LOGIN}
+// const getCaptcha = () => {
+//   return (dispatch) => {
+//     securityAPI.getCaptcha().then(data => {
+//       dispatch(setCaptcha(data.url))
+//     });
+//   }
 // }
 
-// export const setUserLogout = (userId) => {
-//   return {type: USER_LOGOUT, userId}
-// }
+const setCaptcha = (url) => {
+  return {
+    type: SET_CAPTCHA,
+    url
+  }
+}
 
 export const getAuthUser = () => {
   return (dispatch) => {
@@ -65,7 +73,15 @@ export const getUserLogin = (email, password, rememberMe, captcha) => {
       if (data.resultCode === 0) {
         //dispatch(setUserLogin(data.data.userId));
         dispatch(getAuthUser());
+        dispatch(setCaptcha(null));
       } else {
+        if (data.resultCode === 10) {
+          //console.log(data.messages);
+          securityAPI.getCaptcha().then(data => {
+            dispatch(setCaptcha(data.url))
+          });
+        }
+
         return data.messages;
         //dispatch(setServerErrors(data.messages));
       }
@@ -80,7 +96,8 @@ const initialState = {
   email: null,
   login: null,
   isAuth: false,
-  errors: null
+  errors: null,
+  captcha: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -89,6 +106,8 @@ const authReducer = (state = initialState, action) => {
       return {...state, ...action.data};
     case SET_AUTH_PROFILE:
       return {...state, authProfile: {...action.profile}, profile: action.isProfile, errors: null};
+    case SET_CAPTCHA:
+      return {...state, captcha: action.url}
     // case USER_LOGIN:
     //   return {...state, isAuth: true, id: action.iserId}
     // case USER_LOGOUT:
