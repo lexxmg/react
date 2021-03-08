@@ -53,7 +53,14 @@ const User = ({
                 return (
                   <li className={s.list__item} key={key}>
                     <span className={s.list__dada}>{key}:</span>
-                    <span className={s.list__text}>{profile.contacts[key]}</span>
+                    <span className={s.list__text}>
+                      <a className=""
+                        href={profile.contacts[key]}
+                        target="_blanck"
+                      >
+                        {profile.contacts[key]}
+                      </a>
+                    </span>
                   </li>
                 )
               }
